@@ -1,0 +1,1454 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#123a34" />
+  <title>أثر | منصة بناء الاستراتيجية والأداء v2.1</title>
+  <style>
+:root{
+  --bg:#f4f7f6;
+  --surface:#ffffff;
+  --surface-2:#edf3f1;
+  --ink:#172321;
+  --muted:#667672;
+  --line:#dce6e3;
+  --primary:#123a34;
+  --primary-2:#1e5a50;
+  --accent:#c89b46;
+  --danger:#a83a3a;
+  --warning:#b66a15;
+  --success:#2f7d5f;
+  --shadow:0 18px 50px rgba(18,58,52,.10);
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--ink);
+  font-family:"Tahoma","Arial",sans-serif;
+  line-height:1.7;
+}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.app-shell{display:grid;grid-template-columns:300px 1fr;min-height:100vh}
+.sidebar{
+  background:linear-gradient(180deg,#123a34,#0d2d28);
+  color:#fff;
+  padding:22px 18px;
+  position:sticky;top:0;height:100vh;overflow:auto;z-index:20;
+}
+.brand{display:flex;align-items:center;gap:12px;padding:4px 8px 18px;border-bottom:1px solid rgba(255,255,255,.12)}
+.brand-mark{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--accent),#e0be77);color:#17352f;display:grid;place-items:center;font-weight:900;font-size:24px}
+.brand h1{margin:0;font-size:22px}.brand p{margin:0;color:#cfe0dc;font-size:12px}
+.plan-switcher{padding:18px 8px 8px}.plan-switcher label{font-size:12px;color:#cfe0dc}
+.plan-switcher select{width:100%;margin-top:6px;background:#fff;color:#17352f;border:none;border-radius:12px;padding:10px}
+.switch-actions{display:flex;gap:8px;margin-top:8px}
+.mini-btn,.footer-btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.10);color:#fff;border-radius:10px;padding:8px 10px;flex:1}
+.mini-btn.ghost,.footer-btn.ghost{background:transparent}
+.progress-card{margin:12px 8px;background:rgba(255,255,255,.09);padding:14px;border-radius:14px}
+.progress-head{display:flex;justify-content:space-between}.progress-track{height:7px;background:rgba(255,255,255,.14);border-radius:99px;margin:10px 0;overflow:hidden}
+.progress-track span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),#f0d39b);border-radius:99px}
+.progress-card small{color:#cfe0dc}
+.stage-nav{padding:8px}
+.stage-group-title{font-size:11px;color:#9fc0b8;padding:14px 10px 5px}
+.stage-item{
+  width:100%;border:none;background:transparent;color:#dcece8;border-radius:12px;padding:10px 12px;
+  display:flex;align-items:center;gap:10px;text-align:right;margin:2px 0
+}
+.stage-item:hover,.stage-item.active{background:rgba(255,255,255,.12);color:#fff}
+.stage-item .num{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.10);display:grid;place-items:center;font-size:12px}
+.stage-item.done .num{background:var(--accent);color:#14352f}
+.stage-item small{margin-right:auto;color:#9fc0b8}
+.sidebar-footer{padding:10px 8px;display:grid;gap:8px}
+.file-label{text-align:center;display:block}
+.main{min-width:0}
+.topbar{
+  position:sticky;top:0;z-index:10;background:rgba(244,247,246,.92);backdrop-filter:blur(14px);
+  padding:18px 28px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between
+}
+.eyebrow{font-size:12px;color:var(--primary-2);font-weight:700}.topbar h2{margin:0;font-size:24px}
+.top-actions{display:flex;align-items:center;gap:10px}.save-state{font-size:12px;color:var(--success)}
+.btn{border:none;border-radius:12px;padding:10px 15px;font-weight:700}
+.btn.primary{background:var(--primary);color:#fff}.btn.primary:hover{background:var(--primary-2)}
+.btn.ghost{background:var(--surface);color:var(--primary);border:1px solid var(--line)}
+.btn.danger{background:#fff1f1;color:var(--danger);border:1px solid #f0caca}
+.icon-btn{border:none;background:transparent;font-size:22px;color:inherit}
+.content{padding:28px;max-width:1500px;margin:auto}
+.hero{
+  background:linear-gradient(135deg,#123a34,#1b5a50);
+  color:#fff;border-radius:26px;padding:28px;box-shadow:var(--shadow);display:grid;grid-template-columns:1.5fr .7fr;gap:24px
+}
+.hero h3{font-size:30px;margin:6px 0}.hero p{color:#d5e5e1;max-width:800px}.hero-stat{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-box{background:rgba(255,255,255,.10);padding:16px;border-radius:16px}.stat-box strong{display:block;font-size:26px}
+.grid{display:grid;gap:18px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 8px 30px rgba(18,58,52,.05)}
+.card h3,.card h4{margin-top:0}.card-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
+.section-title{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:18px}
+.section-title h3{font-size:26px;margin:0}.section-title p{margin:4px 0 0;color:var(--muted)}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:20px 0}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px}.kpi small{color:var(--muted)}.kpi strong{display:block;font-size:28px;margin-top:5px}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.field{display:grid;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:13px;font-weight:700}
+.role-team{background:#dceeff!important}.role-org{background:#fff2bf!important}.role-asked{background:#e2f2d9!important}.role-auto{background:#eee2ff!important}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.legend span{padding:5px 9px;border-radius:99px;font-size:11px;border:1px solid #00000012}.legend .team{background:#dceeff}.legend .org{background:#fff2bf}.legend .asked{background:#e2f2d9}.legend .auto{background:#eee2ff}
+
+.input,textarea,select.input{width:100%;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fff;color:var(--ink)}
+textarea.input{min-height:110px;resize:vertical}
+.input:focus{outline:3px solid rgba(30,90,80,.12);border-color:var(--primary-2)}
+.hint{font-size:12px;color:var(--muted)}
+.stage-actions{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.callout{background:#f3f8f6;border-right:4px solid var(--primary-2);padding:14px 16px;border-radius:12px;color:#35504a}
+.callout.warning{background:#fff8ef;border-right-color:var(--warning)}
+.callout.success{background:#eff9f4;border-right-color:var(--success)}
+.score-wrap{display:flex;align-items:center;gap:16px}.score-ring{width:86px;height:86px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--success) var(--score),#e4ece9 0);position:relative}
+.score-ring:after{content:"";position:absolute;inset:9px;background:#fff;border-radius:50%}.score-ring strong{position:relative;z-index:1;font-size:20px}
+.rubric-list{display:grid;gap:8px}.rubric-item{display:grid;grid-template-columns:150px 1fr 42px;gap:10px;align-items:center;font-size:13px}
+.rubric-bar{height:7px;background:#edf1f0;border-radius:99px;overflow:hidden}.rubric-bar span{display:block;height:100%;background:var(--primary-2)}
+.table-wrap{overflow:auto}.data-table{width:100%;border-collapse:collapse;min-width:760px}.data-table th,.data-table td{border-bottom:1px solid var(--line);padding:10px;text-align:right;vertical-align:top}.data-table th{background:#f7faf9;font-size:12px;color:#52645f;position:sticky;top:0}
+.badge{display:inline-flex;align-items:center;border-radius:99px;padding:4px 9px;font-size:11px;font-weight:700;background:#edf3f1;color:var(--primary)}
+.badge.success{background:#e7f5ee;color:var(--success)}.badge.warning{background:#fff3df;color:var(--warning)}.badge.danger{background:#fdeaea;color:var(--danger)}
+.list-stack{display:grid;gap:10px}.list-item{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff;display:flex;gap:12px;align-items:flex-start}
+.list-item .grow{flex:1}.list-item h4{margin:0}.list-item p{margin:4px 0 0;color:var(--muted)}
+.inline-actions{display:flex;gap:7px;flex-wrap:wrap}
+.pill-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.pill-tab{border:1px solid var(--line);background:#fff;border-radius:99px;padding:7px 12px}.pill-tab.active{background:var(--primary);color:#fff}
+.empty{padding:34px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}
+.toast{position:fixed;left:24px;bottom:24px;background:#152f2a;color:#fff;padding:12px 16px;border-radius:12px;box-shadow:var(--shadow);opacity:0;transform:translateY(16px);pointer-events:none;transition:.25s;z-index:100}
+.toast.show{opacity:1;transform:none}
+dialog{border:none;padding:0;background:transparent}.modal-card{width:min(760px,92vw);background:#fff;border-radius:20px;box-shadow:var(--shadow);padding:0;overflow:hidden}.modal-head,.modal-actions{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.modal-actions{border-top:1px solid var(--line);border-bottom:none;justify-content:flex-end}.modal-head h3{margin:0}#modalBody{padding:20px;max-height:65vh;overflow:auto}
+.mobile-only{display:none}
+.report-section{page-break-inside:avoid;margin-bottom:18px}
+@media(max-width:1050px){
+  .app-shell{grid-template-columns:1fr}.sidebar{position:fixed;right:0;transform:translateX(105%);transition:.25s;width:300px}.sidebar.open{transform:none}
+  .mobile-only{display:inline-block}.hero{grid-template-columns:1fr}.kpi-grid{grid-template-columns:repeat(2,1fr)}.grid.three{grid-template-columns:1fr 1fr}
+}
+@media(max-width:720px){
+  .content{padding:16px}.topbar{padding:14px 16px}.top-actions .save-state,.top-actions .ghost{display:none}
+  .grid.two,.grid.three,.form-grid,.kpi-grid{grid-template-columns:1fr}.hero-stat{grid-template-columns:1fr 1fr}
+  .section-title{display:block}.stage-actions{flex-direction:column}
+}
+@media print{
+  .sidebar,.topbar,.no-print,.toast{display:none!important}.app-shell{display:block}.content{padding:0;max-width:none}
+  body{background:#fff}.card{box-shadow:none;break-inside:avoid}.hero{box-shadow:none}
+}
+
+</style>
+
+<style>
+/* v2.1 bank modal */
+.modal{position:fixed;inset:0;z-index:9999;background:rgba(15,35,31,.55);display:flex;align-items:center;justify-content:center;padding:20px}
+.modalbox{width:min(1240px,96vw);max-height:90vh;overflow:hidden;background:#fff;border-radius:22px;box-shadow:0 25px 80px rgba(0,0,0,.25);padding:20px}
+.toolbar{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin:12px 0 16px}
+@media(max-width:760px){.toolbar{grid-template-columns:1fr}.modalbox{padding:12px}}
+.v21-pill{display:inline-flex;align-items:center;gap:6px;background:#edf7f2;color:#245f56;border:1px solid #cfe7dc;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:700}
+</style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">أ</div>
+        <div>
+          <h1>أثر</h1>
+          <p>بناء الاستراتيجية والأداء خطوة بخطوة</p>
+        </div>
+      </div>
+
+      <div class="plan-switcher">
+        <label>الخطة الحالية</label>
+        <select id="planSelect"></select>
+        <div class="switch-actions">
+          <button class="mini-btn" id="newPlanBtn">خطة جديدة</button>
+          <button class="mini-btn ghost" id="duplicatePlanBtn">نسخ</button>
+        </div>
+      </div>
+
+      <div class="progress-card">
+        <div class="progress-head">
+          <span>اكتمال الخطة</span>
+          <strong id="overallProgressText">0%</strong>
+        </div>
+        <div class="progress-track"><span id="overallProgressBar"></span></div>
+        <small id="progressHint">ابدأ بتهيئة المنظمة</small>
+      </div>
+
+      <nav id="stageNav" class="stage-nav"></nav>
+
+      <div class="sidebar-footer">
+        <button id="exportJsonBtn" class="footer-btn">تصدير نسخة احتياطية</button>
+        <label class="footer-btn file-label">
+          استيراد نسخة
+          <input id="importJsonInput" type="file" accept=".json" hidden />
+        </label>
+        <button id="printBtn" class="footer-btn ghost">طباعة التقرير</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <button class="icon-btn mobile-only" id="menuBtn">☰</button>
+          <span class="eyebrow">من التشخيص إلى الأثر</span>
+          <h2 id="pageTitle">لوحة التحكم</h2>
+        </div>
+        <div class="top-actions">
+          <span class="save-state" id="saveState">تم الحفظ</span>
+          <button class="btn ghost" id="reviewPlanBtn">فحص الاتساق</button>
+          <button class="btn primary" id="generateReportBtn">توليد التقرير</button>
+        </div>
+      </header>
+
+      <section id="content" class="content"></section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <dialog id="modal">
+    <form method="dialog" class="modal-card">
+      <div class="modal-head">
+        <h3 id="modalTitle">عنوان</h3>
+        <button value="cancel" class="icon-btn">×</button>
+      </div>
+      <div id="modalBody"></div>
+      <div class="modal-actions">
+        <button value="cancel" class="btn ghost">إغلاق</button>
+        <button id="modalConfirmBtn" value="default" class="btn primary">اعتماد</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script>
+const STORAGE_KEY = "athar_strategy_platform_v3";
+
+const stages = [
+  {id:"dashboard", group:"الرئيسية", title:"لوحة التحكم", icon:"◈"},
+  {id:"organization", group:"بناء الاستراتيجية", title:"1. الجاهزية والنطاق", icon:"1"},
+  {id:"beneficiary", group:"بناء الاستراتيجية", title:"2. المستفيد والقضية", icon:"2"},
+  {id:"diagnosis", group:"بناء الاستراتيجية", title:"3. التشخيص المؤسسي", icon:"3"},
+  {id:"environment", group:"بناء الاستراتيجية", title:"4. التحليل الاستراتيجي", icon:"4"},
+  {id:"stakeholders", group:"بناء الاستراتيجية", title:"5. أصحاب المصلحة", icon:"5"},
+  {id:"theory", group:"بناء الاستراتيجية", title:"6. نظرية التغيير", icon:"6"},
+  {id:"identity", group:"بناء الاستراتيجية", title:"الهوية الاستراتيجية", icon:"6"},
+  {id:"issues", group:"بناء الاستراتيجية", title:"القضايا والأولويات", icon:"7"},
+  {id:"dimensions", group:"بناء الاستراتيجية", title:"الأبعاد الاستراتيجية", icon:"8"},
+  {id:"objectives", group:"بناء الاستراتيجية", title:"الأهداف الاستراتيجية", icon:"9"},
+  {id:"map", group:"بناء الاستراتيجية", title:"الخريطة الاستراتيجية", icon:"10"},
+  {id:"indicators", group:"إدارة الأداء", title:"المؤشرات الاستراتيجية", icon:"11"},
+  {id:"initiatives", group:"إدارة الأداء", title:"المبادرات والبرامج", icon:"12"},
+  {id:"operations", group:"إدارة الأداء", title:"الخطة التشغيلية", icon:"13"},
+  {id:"performance", group:"إدارة الأداء", title:"متابعة الأداء", icon:"14"},
+  {id:"governance", group:"إدارة الأداء", title:"حوكمة الأداء", icon:"15"},
+  {id:"report", group:"المخرجات", title:"التقرير الاستراتيجي", icon:"16"}
+];
+
+const diagnosisAxes = [
+  "الهوية والتوجه","الحوكمة والامتثال","القيادة والإدارة","الموارد البشرية",
+  "الاستدامة المالية","البرامج والخدمات","التقنية والبيانات","الشراكات والاتصال","التعلم والابتكار"
+];
+
+function uid(){ return Math.random().toString(36).slice(2,10); }
+function escapeHtml(s=""){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));}
+function clamp(n,min=0,max=100){return Math.max(min,Math.min(max,n));}
+
+function newPlan(name="جمعية رعاية الأيتام بالبدائع – استراتيجية 2027–2028"){
+  return {
+    id:uid(), name, createdAt:new Date().toISOString(), updatedAt:new Date().toISOString(),
+    organization:{name:"جمعية رعاية الأيتام بالبدائع",type:"جمعية أهلية",sector:"رعاية وتمكين الأيتام",region:"محافظة البدائع – منطقة القصيم",beneficiaries:"الأيتام وأسرهم",employees:2,volunteers:"",budget:"",startYear:"2027",endYear:"2028",team:"",license:"1000604600",families:44,orphans:120,approver:"",dailyLead:""},
+    beneficiary:{segments:[{name:"الأيتام",size:120,stage:"",needs:"",services:"مساعدات موسمية؛ كفالة يتيم؛ أكاديمية رعاية (بنين وبنات)",evidence:"بيانات الجمعية الأساسية"},{name:"الأسر المرتبطة بالمستفيدين",size:44,stage:"",needs:"",services:"سداد فواتير الخدمات للأسر المحتاجة",evidence:"بيانات الجمعية الأساسية"}],problem:{central:"",affected:"",symptoms:"",effects:"",why1:"",why2:"",why3:"",evidence:"",importance:"",influence:""},beneficiarySession:[]},
+    diagnosis:Object.fromEntries(diagnosisAxes.map(a=>[a,{score:0,evidence:"",gaps:""}])),
+    environment:{strengths:[],weaknesses:[],opportunities:[],threats:[],pestel:{political:"",economic:"",social:"",technological:"",environmental:"",legal:""}},
+    stakeholders:[],
+    theory:{problem:"",rootCauses:"",targetGroup:"",inputs:"",activities:"",outputs:"",shortOutcomes:"",midOutcomes:"",impact:"",assumptions:"",risks:""},
+    identity:{purpose:"",vision:"",mission:"",values:[]},
+    issues:[],
+    dimensions:[],
+    objectives:[],
+    mapLinks:[],
+    indicators:[],
+    initiatives:[],
+    operations:[],
+    performanceUpdates:[],
+    governance:{boardRole:"",executiveRole:"",strategyOfficeRole:"",reviewCycle:"ربع سنوي",approvalFlow:"",raci:[]},
+    approvals:{},
+    notes:{}
+  };
+}
+
+let state = loadState();
+let currentPlanId = state.currentPlanId || state.plans[0].id;
+let currentStage = "dashboard";
+
+function loadState(){
+  try{
+    const raw=localStorage.getItem(STORAGE_KEY);
+    if(raw){const s=JSON.parse(raw); if(s.plans?.length) return s;}
+  }catch(e){}
+  const p=newPlan();
+  return {currentPlanId:p.id,plans:[p]};
+}
+function saveState(){
+  state.currentPlanId=currentPlanId;
+  const p=getPlan(); p.updatedAt=new Date().toISOString();
+  localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+  const el=document.getElementById("saveState");
+  if(el){el.textContent="تم الحفظ الآن"; setTimeout(()=>el.textContent="تم الحفظ",900);}
+}
+function getPlan(){return state.plans.find(p=>p.id===currentPlanId) || state.plans[0];}
+
+function showToast(msg){
+  const t=document.getElementById("toast"); t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2200);
+}
+function openModal(title,body,onConfirm=null){
+  const d=document.getElementById("modal");
+  document.getElementById("modalTitle").textContent=title;
+  document.getElementById("modalBody").innerHTML=body;
+  const btn=document.getElementById("modalConfirmBtn");
+  btn.style.display=onConfirm?"inline-flex":"none";
+  btn.onclick=(e)=>{e.preventDefault(); if(onConfirm) onConfirm(); d.close();};
+  d.showModal();
+}
+
+function calculateProgress(plan){
+  const checks = [
+    !!plan.organization.name, !!plan.organization.sector,
+    !!plan.beneficiary?.problem?.central && (plan.beneficiary?.beneficiarySession?.length||0)>=1,
+    Object.values(plan.diagnosis).filter(x=>x.score>0).length>=5,
+    plan.environment.strengths.length>=2 && plan.environment.weaknesses.length>=2,
+    plan.stakeholders.length>=3,
+    !!plan.theory.problem && !!plan.theory.impact,
+    !!plan.identity.purpose && !!plan.identity.vision && !!plan.identity.mission && plan.identity.values.length>=3,
+    plan.issues.length>=3, plan.dimensions.length>=3, plan.objectives.length>=3,
+    plan.mapLinks.length>=2, plan.indicators.length>=3, plan.initiatives.length>=2,
+    plan.operations.length>=3, plan.performanceUpdates.length>=1,
+    !!plan.governance.boardRole
+  ];
+  return Math.round(checks.filter(Boolean).length/checks.length*100);
+}
+
+function renderShell(){
+  renderPlanSelect();
+  renderNav();
+  const p=getPlan(), progress=calculateProgress(p);
+  document.getElementById("overallProgressText").textContent=progress+"%";
+  document.getElementById("overallProgressBar").style.width=progress+"%";
+  document.getElementById("progressHint").textContent=progress<30?"استكمل التهيئة والتشخيص":progress<70?"انتقل لبناء الخيارات والأهداف":"اقتربت الخطة من الاكتمال";
+  const stage=stages.find(s=>s.id===currentStage);
+  document.getElementById("pageTitle").textContent=stage?.title||"";
+}
+
+function renderPlanSelect(){
+  const sel=document.getElementById("planSelect");
+  sel.innerHTML=state.plans.map(p=>`<option value="${p.id}" ${p.id===currentPlanId?"selected":""}>${escapeHtml(p.name)}</option>`).join("");
+}
+
+function isStageDone(id,p){
+  const map={
+    organization:!!p.organization.name&&!!p.organization.sector,
+    beneficiary:!!p.beneficiary?.problem?.central&&(p.beneficiary?.beneficiarySession?.length||0)>=1,
+    diagnosis:Object.values(p.diagnosis).filter(x=>x.score>0).length>=5,
+    environment:p.environment.strengths.length>=2&&p.environment.weaknesses.length>=2,
+    stakeholders:p.stakeholders.length>=3,
+    theory:!!p.theory.problem&&!!p.theory.impact,
+    identity:!!p.identity.vision&&!!p.identity.mission&&p.identity.values.length>=3,
+    issues:p.issues.length>=3,dimensions:p.dimensions.length>=3,objectives:p.objectives.length>=3,
+    map:p.mapLinks.length>=2,indicators:p.indicators.length>=3,initiatives:p.initiatives.length>=2,
+    operations:p.operations.length>=3,performance:p.performanceUpdates.length>=1,
+    governance:!!p.governance.boardRole,report:calculateProgress(p)>=70
+  };
+  return !!map[id];
+}
+
+function renderNav(){
+  const p=getPlan(), nav=document.getElementById("stageNav");
+  let currentGroup="";
+  nav.innerHTML=stages.map(s=>{
+    let heading="";
+    if(s.group!==currentGroup){currentGroup=s.group;heading=`<div class="stage-group-title">${s.group}</div>`;}
+    return heading+`<button class="stage-item ${currentStage===s.id?"active":""} ${isStageDone(s.id,p)?"done":""}" data-stage="${s.id}">
+      <span class="num">${s.icon}</span><span>${s.title}</span>${isStageDone(s.id,p)?'<small>مكتمل</small>':""}
+    </button>`;
+  }).join("");
+  nav.querySelectorAll("[data-stage]").forEach(b=>b.onclick=()=>{currentStage=b.dataset.stage;render();document.getElementById("sidebar").classList.remove("open");});
+}
+
+function render(){
+  renderShell();
+  const fn=views[currentStage]||views.dashboard;
+  document.getElementById("content").innerHTML=fn(getPlan());
+  bindCommon();
+}
+
+function bindCommon(){
+  document.querySelectorAll("[data-go]").forEach(b=>b.onclick=()=>{currentStage=b.dataset.go;render();});
+  document.querySelectorAll("[data-field]").forEach(el=>{
+    el.addEventListener("input",()=>{
+      const path=el.dataset.field.split(".");
+      let obj=getPlan(); while(path.length>1)obj=obj[path.shift()];
+      obj[path[0]]=el.type==="number"?Number(el.value):el.value;
+      saveState(); renderShell();
+    });
+  });
+}
+
+function scoreText(text,type){
+  const t=(text||"").trim();
+  const words=t.split(/\s+/).filter(Boolean).length;
+  const rubrics={
+    vision:[
+      ["مستقبلية",/(مجتمع|بيئة|ريادة|مستقبل|نحو|أن نكون)/,20],
+      ["موجزة",words>2&&words<=18,20],
+      ["ملهمة",/(مستدام|مزدهر|رائد|مُمكّن|جودة|أثر)/,20],
+      ["غير تشغيلية",!/(تنفيذ|تقديم|تدريب|توزيع|إدارة)/.test(t),20],
+      ["واضحة",t.length>=15,20]
+    ],
+    mission:[
+      ["تحدد المستفيد",/(أسر|أيتام|شباب|مستفيد|مجتمع|نساء|أطفال|منظمات)/,20],
+      ["تحدد القيمة",/(تمكين|رعاية|تنمية|تطوير|تحسين|تعزيز|خدمة)/,20],
+      ["توضح الأسلوب",/(من خلال|عبر|بواسطة|بالشراكة)/,20],
+      ["تتجه للأثر",/(أثر|استدام|جودة حياة|نتائج|تغيير)/,20],
+      ["متوازنة الطول",words>=8&&words<=35,20]
+    ],
+    objective:[
+      ["يركز على نتيجة",/(رفع|خفض|تحسين|تعزيز|زيادة|تنمية|تحقيق|تمكين)/,20],
+      ["قابل للقياس",/\d|نسبة|معدل|مؤشر|مستوى/,20],
+      ["محدد زمنيا",/(خلال|بحلول|سنة|سنوات|20\d\d)/,20],
+      ["واضح",words>=5&&words<=30,20],
+      ["غير تشغيلي",!/(عقد|تنفيذ دورة|إعداد تقرير|إنشاء اجتماع)/.test(t),20]
+    ]
+  };
+  const rows=rubrics[type]||[];
+  let score=0; const details=[];
+  rows.forEach(([name,test,pts])=>{const ok=test instanceof RegExp?test.test(t):!!test;score+=ok?pts:0;details.push({name,score:ok?pts:0,max:pts});});
+  return {score,details};
+}
+
+function suggestIdentity(kind,p){
+  const sector=p.organization.sector||"التنمية المجتمعية";
+  const ben=p.organization.beneficiaries||"الفئات المستفيدة";
+  if(kind==="vision") return [
+    `مجتمعٌ مُمكّن تتحقق فيه جودة الحياة المستدامة لـ${ben}.`,
+    `الريادة في صناعة أثر تنموي مستدام في مجال ${sector}.`,
+    `بيئة مجتمعية مزدهرة تتسع فيها فرص التمكين والاعتماد على الذات.`
+  ];
+  if(kind==="mission") return [
+    `نُمكّن ${ben} من خلال برامج نوعية وشراكات فاعلة وحلول مستدامة تحقق أثرًا قابلًا للقياس.`,
+    `نعمل على تطوير وتقديم تدخلات متكاملة في مجال ${sector} تستجيب للاحتياج وتبني قدرات المستفيدين.`,
+    `نصنع قيمة اجتماعية مستدامة عبر خدمات عالية الجودة، وبيانات موثوقة، وشراكات مؤثرة.`
+  ];
+  return [
+    `الإسهام في إحداث تغيير مستدام في حياة ${ben}.`,
+    `تعظيم القيمة الاجتماعية المتحققة في مجال ${sector}.`,
+    `تمكين الإنسان والمجتمع من بناء مستقبل أكثر استدامة.`
+  ];
+}
+
+function arrayEditor(title,key,items,placeholder){
+  return `<div class="card">
+    <div class="card-header"><h3>${title}</h3><button class="btn ghost add-array" data-key="${key}" data-placeholder="${placeholder}">إضافة</button></div>
+    <div class="list-stack">${items.length?items.map((x,i)=>`<div class="list-item"><div class="grow">${escapeHtml(x)}</div><button class="icon-btn remove-array" data-key="${key}" data-index="${i}">×</button></div>`).join(""):'<div class="empty">لا توجد عناصر بعد</div>'}</div>
+  </div>`;
+}
+
+function bindArrayEditors(){
+  document.querySelectorAll(".add-array").forEach(b=>b.onclick=()=>{
+    const key=b.dataset.key, placeholder=b.dataset.placeholder;
+    openModal("إضافة عنصر",`<div class="field"><label>${placeholder}</label><textarea id="arrayValue" class="input"></textarea></div>`,()=>{
+      const val=document.getElementById("arrayValue").value.trim(); if(!val)return;
+      const p=getPlan(); const path=key.split("."); let obj=p; while(path.length>1)obj=obj[path.shift()];
+      obj[path[0]].push(val);saveState();render();
+    });
+  });
+  document.querySelectorAll(".remove-array").forEach(b=>b.onclick=()=>{
+    const path=b.dataset.key.split(".");let obj=getPlan();while(path.length>1)obj=obj[path.shift()];
+    obj[path[0]].splice(Number(b.dataset.index),1);saveState();render();
+  });
+}
+
+const views = {
+dashboard:p=>{
+  const progress=calculateProgress(p);
+  return `<section class="hero">
+    <div><span class="eyebrow" style="color:#d7c08c">نظام مؤسسي متكامل</span><h3>${escapeHtml(p.name)}</h3>
+    <p>منصة تتابعية لبناء الاستراتيجية وإدارة الأداء، تربط التشخيص بالخيارات والأهداف والمؤشرات والمبادرات والخطط التشغيلية والنتائج.</p>
+    <div class="inline-actions"><button class="btn primary" style="background:#fff;color:#123a34" data-go="${progress<20?"organization":progress<55?"identity":"performance"}">متابعة البناء</button><button class="btn ghost" data-go="report">عرض التقرير</button></div></div>
+    <div class="hero-stat"><div class="stat-box"><small>اكتمال الخطة</small><strong>${progress}%</strong></div><div class="stat-box"><small>الأهداف</small><strong>${p.objectives.length}</strong></div><div class="stat-box"><small>المؤشرات</small><strong>${p.indicators.length}</strong></div><div class="stat-box"><small>المبادرات</small><strong>${p.initiatives.length}</strong></div></div>
+  </section>
+  <div class="kpi-grid">
+    <div class="kpi"><small>القضايا الاستراتيجية</small><strong>${p.issues.length}</strong></div>
+    <div class="kpi"><small>الأبعاد</small><strong>${p.dimensions.length}</strong></div>
+    <div class="kpi"><small>الأنشطة التشغيلية</small><strong>${p.operations.length}</strong></div>
+    <div class="kpi"><small>تحديثات الأداء</small><strong>${p.performanceUpdates.length}</strong></div>
+  </div>
+  <div class="grid three">
+    ${["التشخيص المؤسسي","بناء الاستراتيجية","إدارة الأداء"].map((t,i)=>`<div class="card"><span class="badge">${i+1}</span><h3>${t}</h3><p>${["قياس النضج وتحليل البيئة وأصحاب المصلحة والفجوات.","صياغة الهوية والقضايا والأبعاد والأهداف والخريطة والمؤشرات.","تحويل الاستراتيجية إلى مبادرات وخطط ومراجعات وقرارات."][i]}</p></div>`).join("")}
+  </div>`;
+},
+organization:p=>`<div class="section-title"><div><h3>تهيئة المنظمة والخطة</h3><p>تحديد السياق المؤسسي الذي ستبنى عليه جميع التحليلات والاقتراحات.</p></div><span class="badge">المرحلة 1</span></div>
+<div class="card"><div class="form-grid">
+  ${[
+    ["organization.name","اسم المنظمة",p.organization.name,"text"],["organization.license","رقم الترخيص",p.organization.license||"","text"],
+    ["name","اسم الخطة",p.name,"text"],
+    ["organization.type","نوع الكيان",p.organization.type,"text"],
+    ["organization.sector","مجال العمل",p.organization.sector,"text"],
+    ["organization.region","النطاق الجغرافي",p.organization.region,"text"],
+    ["organization.beneficiaries","الفئات المستفيدة",p.organization.beneficiaries,"text"],
+    ["organization.employees","عدد الموظفين",p.organization.employees,"number"],["organization.orphans","عدد الأيتام",p.organization.orphans||"","number"],["organization.families","عدد الأسر",p.organization.families||"","number"],
+    ["organization.volunteers","عدد المتطوعين",p.organization.volunteers,"number"],
+    ["organization.budget","الموازنة السنوية",p.organization.budget,"number"],
+    ["organization.startYear","بداية الخطة",p.organization.startYear,"number"],
+    ["organization.endYear","نهاية الخطة",p.organization.endYear,"number"]
+  ].map(([f,l,v,t])=>`<div class="field"><label>${l}</label><input class="input" type="${t}" data-field="${f}" value="${escapeHtml(v)}"></div>`).join("")}
+  <div class="field full"><label>فريق إعداد الاستراتيجية</label><textarea class="input" data-field="organization.team">${escapeHtml(p.organization.team)}</textarea></div>
+</div></div><div class="stage-actions"><span></span><button class="btn primary" data-go="beneficiary">التالي: المستفيد والقضية</button></div>`,
+beneficiary:p=>{
+  const q=[
+    ["المشكلة المركزية","ما أهم مشكلة أو تحدٍ ترى أنه يجب على الجمعية معالجته خلال السنوات القادمة؟","central","مشكلة واحدة محددة وواضحة دون القفز للحل"],
+    ["الفئات المتأثرة","من أكثر الفئات تأثرًا بهذه المشكلة؟","affected","حدد الفئات ومدى التأثر"],
+    ["مظاهر المشكلة","كيف تظهر هذه المشكلة في الواقع؟","symptoms","أمثلة أو مظاهر قابلة للملاحظة أو القياس"],
+    ["آثار المشكلة","ما الآثار التي تترتب على استمرار هذه المشكلة؟","effects","على اليتيم والأسرة والجمعية والمجتمع"],
+    ["لماذا 1","ما السبب المباشر لهذه المشكلة؟","why1","العامل الذي يؤدي مباشرة لحدوثها أو استمرارها"],
+    ["لماذا 2","ولماذا يوجد هذا السبب أو يستمر؟","why2","السبب الأعمق وراء السبب السابق"],
+    ["لماذا 3 / السبب الجذري المحتمل","وما الأسباب الجذرية التي تقف خلف ذلك؟","why3","لا يعتمد كسبب جذري مثبت دون دليل"],
+    ["الأدلة","ما الأدلة أو المعلومات التي تؤكد وجود المشكلة وأسبابها؟","evidence","بيانات، أرقام، حالات، شكاوى، تقارير أو أمثلة"],
+    ["الأهمية","ما مدى أهمية معالجة هذه المشكلة؟","importance","درجة 1–5 مع المبرر"],
+    ["نطاق التأثير","ما مدى قدرة الجمعية على التأثير في المشكلة أو أسبابها؟","influence","درجة 1–5 مع تمييز ما يقع خارج التأثير"]
+  ];
+  const bq=[
+    ["ما أكثر ثلاثة أمور أو احتياجات تؤثر في حياتك أو حياة أسرتك حاليًا؟","أي واحد منها هو الأكثر أهمية؟ ولماذا؟","الاحتياجات وترتيب الأولوية"],
+    ["هل تقدم لك الجمعية حاليًا خدمة تساعدك في أهم احتياج لديك؟","هل تساعدك كليًا أم جزئيًا؟ وما الذي يبقى دون معالجة؟","فجوة التغطية"],
+    ["ما أكثر خدمة قدمتها الجمعية وشعرت أنها أحدثت فرقًا إيجابيًا لك أو لأسرتك؟","ما الفرق الذي حدث فعليًا؟ أعطنا مثالًا إن أمكن.","القيمة الحالية ودليل النتيجة"],
+    ["هل توجد خدمة أو مساعدة تحتاجها ولا تقدمها الجمعية حاليًا، أو لا تحصل عليها بالشكل الكافي؟","ما الخدمة؟ ولماذا هي مهمة؟","فجوات الخدمة"],
+    ["ما أكثر شيء يصعب عليك عند طلب خدمة من الجمعية أو الاستفادة منها؟","هل الصعوبة في التواصل أو الإجراءات أو الانتظار أو المواصلات أو الخصوصية؟","عوائق الوصول"],
+    ["بشكل عام، ما مدى سهولة الوصول إلى خدمات الجمعية؟","إذا كانت منخفضة، ما السبب؟","سهولة الوصول"],
+    ["إلى أي مدى تشعر أن الخدمات تناسب احتياجاتك الفعلية؟","ما الخدمة التي تحتاج تعديلًا؟","ملاءمة الخدمة"],
+    ["لو استطاعت الجمعية تحسين ثلاثة أشياء فقط خلال السنوات القادمة، فما الأشياء التي تتمنى أن تتغير؟","أيها أهم؟ وما التغيير المتوقع في حياتك؟","الصورة المستقبلية"],
+    ["ما الذي تتمنى أن تستمر الجمعية في تقديمه ولا تريد أن تفقده؟","لماذا هو مهم؟","ما ينبغي الحفاظ عليه"],
+    ["هل توجد ملاحظة أو تجربة مهمة لم نسألك عنها وتريد إيصالها؟","هل يوجد موقف يوضحها؟","قضايا غير متوقعة"]
+  ];
+  return `<div class="section-title"><div><h3>المستفيد والقضية</h3><p>فهم الشرائح والاحتياج وصوت المستفيد وشجرة المشكلة قبل أي حلول.</p></div><span class="badge">المرحلة 2</span></div>
+  <div class="legend"><span class="team">أزرق: فريق البناء</span><span class="org">أصفر: الجمعية</span><span class="asked">أخضر: الفريق بعد السؤال</span><span class="auto">بنفسجي: انعكاس سابق</span></div>
+  <div class="card"><h3>شرائح المستفيدين</h3><div class="table-wrap"><table class="data-table"><thead><tr><th>الشريحة</th><th>الحجم</th><th>العمر/المرحلة</th><th>الاحتياجات</th><th>الخدمات الحالية</th><th>الدليل</th></tr></thead><tbody>${p.beneficiary.segments.map((s,i)=>`<tr><td>${escapeHtml(s.name)}</td><td>${s.size}</td><td><input class="input role-org ben-seg" data-i="${i}" data-k="stage" value="${escapeHtml(s.stage)}"></td><td><textarea class="input role-asked ben-seg" data-i="${i}" data-k="needs">${escapeHtml(s.needs)}</textarea></td><td>${escapeHtml(s.services)}</td><td>${escapeHtml(s.evidence)}</td></tr>`).join("")}</tbody></table></div></div>
+  <div class="card"><h3>شجرة المشكلة – أسئلة تشخيصية</h3><div class="callout">الإجابة عن السبب لا تصبح حقيقة تلقائيًا؛ تعامل معها كفرضية حتى يدعمها دليل أو صوت مستفيد.</div><div class="table-wrap"><table class="data-table"><thead><tr><th>العنصر</th><th>السؤال</th><th>المطلوب</th><th>الإجابة/الخلاصة</th></tr></thead><tbody>${q.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td><small>${x[3]}</small></td><td><textarea class="input role-asked problem-field" data-k="${x[2]}">${escapeHtml(p.beneficiary.problem[x[2]])}</textarea></td></tr>`).join("")}</tbody></table></div></div>
+  <div class="card"><h3>أسئلة جلسة المستفيد/الأسرة</h3><p class="muted">أسئلة تيسير للمقابلة أو المجموعة المركزة، وليست استبانة مستقلة.</p><div class="table-wrap"><table class="data-table"><thead><tr><th>م</th><th>السؤال</th><th>متابعة</th><th>ما الذي نبحث عنه؟</th><th>الخلاصة</th></tr></thead><tbody>${bq.map((x,i)=>`<tr><td>${i+1}</td><td>${x[0]}</td><td><small>${x[1]}</small></td><td><small>${x[2]}</small></td><td><textarea class="input role-asked ben-session" data-i="${i}">${escapeHtml((p.beneficiary.beneficiarySession[i]||{}).summary||"")}</textarea></td></tr>`).join("")}</tbody></table></div></div>
+  <div class="stage-actions"><button class="btn ghost" data-go="organization">السابق</button><button class="btn primary" data-go="diagnosis">التالي: التشخيص المؤسسي</button></div>`;
+},
+diagnosis:p=>{
+  const avg=Math.round(Object.values(p.diagnosis).reduce((s,x)=>s+Number(x.score||0),0)/diagnosisAxes.length);
+  return `<div class="section-title"><div><h3>التشخيص المؤسسي</h3><p>تقييم نضج المنظمة في المحاور الحاكمة قبل صياغة أي توجه استراتيجي.</p></div><span class="badge ${avg>=70?"success":avg>=40?"warning":"danger"}">متوسط النضج ${avg}%</span></div>
+  <div class="callout">قيّم كل محور بناء على أدلة فعلية، ثم وثّق أبرز الفجوات. لا تعتمد الخطة على الانطباعات غير الموثقة.</div>
+  <div class="grid three" style="margin-top:18px">${diagnosisAxes.map(a=>{
+    const d=p.diagnosis[a];
+    return `<div class="card"><h4>${a}</h4><div class="field"><label>درجة النضج: <strong>${d.score}%</strong></label><input class="input diag-range" data-axis="${a}" type="range" min="0" max="100" value="${d.score}"></div>
+    <div class="field"><label>الأدلة</label><textarea class="input diag-field" data-axis="${a}" data-prop="evidence">${escapeHtml(d.evidence)}</textarea></div>
+    <div class="field"><label>الفجوات</label><textarea class="input diag-field" data-axis="${a}" data-prop="gaps">${escapeHtml(d.gaps)}</textarea></div></div>`;
+  }).join("")}</div><div class="stage-actions"><button class="btn ghost" data-go="beneficiary">السابق</button><button class="btn primary" data-go="environment">التالي: التحليل الاستراتيجي</button></div>`;
+},
+environment:p=>`<div class="section-title"><div><h3>التحليل الاستراتيجي</h3><p>تحليل البيئة الداخلية والخارجية وتحويل البيانات إلى دلالات استراتيجية.</p></div><span class="badge">SWOT + PESTEL</span></div>
+<div class="callout">استخدم نتائج التشخيص المؤسسي وPESTEL أولًا. ويمكنك الاستعانة ببنك الاحتمالات ثم التعديل وفق واقع الجمعية.</div>
+<div class="grid two">
+  ${arrayEditor("نقاط القوة","environment.strengths",p.environment.strengths,"اكتب نقطة قوة مدعومة بدليل")}
+  ${arrayEditor("نقاط الضعف","environment.weaknesses",p.environment.weaknesses,"اكتب نقطة ضعف أو فجوة")}
+  ${arrayEditor("الفرص","environment.opportunities",p.environment.opportunities,"اكتب فرصة خارجية قابلة للاستثمار")}
+  ${arrayEditor("التهديدات","environment.threats",p.environment.threats,"اكتب تهديدًا خارجيًا")}
+</div>
+<div class="card" style="margin-top:18px"><h3>تحليل PESTEL</h3><div class="form-grid">
+${Object.entries({political:"السياسي والتنظيمي",economic:"الاقتصادي",social:"الاجتماعي",technological:"التقني",environmental:"البيئي",legal:"القانوني"}).map(([k,l])=>`<div class="field"><label>${l}</label><textarea class="input" data-field="environment.pestel.${k}">${escapeHtml(p.environment.pestel[k])}</textarea></div>`).join("")}
+</div></div><div class="stage-actions"><button class="btn ghost" data-go="diagnosis">السابق</button><button class="btn primary" data-go="stakeholders">التالي: أصحاب المصلحة</button></div>`,
+stakeholders:p=>`<div class="section-title"><div><h3>أصحاب المصلحة</h3><p>تحليل التأثير والاهتمام والاحتياجات وتحديد استراتيجية التعامل.</p></div><button class="btn primary" id="addStakeholderBtn">إضافة طرف</button></div>
+<div class="table-wrap card"><table class="data-table"><thead><tr><th>الطرف</th><th>التأثير</th><th>الاهتمام</th><th>الاحتياج</th><th>الاستراتيجية</th><th></th></tr></thead><tbody>
+${p.stakeholders.map((x,i)=>`<tr><td>${escapeHtml(x.name)}</td><td>${x.influence}</td><td>${x.interest}</td><td>${escapeHtml(x.need)}</td><td>${escapeHtml(x.strategy)}</td><td><button class="icon-btn delete-item" data-type="stakeholders" data-index="${i}">×</button></td></tr>`).join("")||'<tr><td colspan="6"><div class="empty">لم تتم إضافة أصحاب مصلحة</div></td></tr>'}
+</tbody></table></div><div class="stage-actions"><button class="btn ghost" data-go="environment">السابق</button><button class="btn primary" data-go="theory">التالي: نظرية التغيير</button></div>`,
+theory:p=>`<div class="section-title"><div><h3>نظرية التغيير</h3><p>اختبار المنطق السببي من المشكلة إلى الأثر، مع الافتراضات والمخاطر.</p></div><span class="badge">منطق النتائج</span></div>
+<div class="card"><div class="form-grid">
+${Object.entries({problem:"المشكلة المجتمعية",rootCauses:"الأسباب الجذرية",targetGroup:"الفئة المستهدفة",inputs:"المدخلات",activities:"الأنشطة",outputs:"المخرجات المباشرة",shortOutcomes:"النتائج قصيرة المدى",midOutcomes:"النتائج المتوسطة",impact:"الأثر طويل المدى",assumptions:"الافتراضات",risks:"المخاطر والعوامل الخارجية"}).map(([k,l])=>`<div class="field ${["problem","impact"].includes(k)?"full":""}"><label>${l}</label><textarea class="input" data-field="theory.${k}">${escapeHtml(p.theory[k])}</textarea></div>`).join("")}
+</div></div><div class="stage-actions"><button class="btn ghost" data-go="stakeholders">السابق</button><button class="btn primary" data-go="identity">التالي: الهوية الاستراتيجية</button></div>`,
+identity:p=>{
+  const visionScore=scoreText(p.identity.vision,"vision"),missionScore=scoreText(p.identity.mission,"mission");
+  return `<div class="section-title"><div><h3>الهوية الاستراتيجية</h3><p>صياغة الغاية والرؤية والرسالة والقيم مع تحكيم منهجي.</p></div><span class="badge">صياغة + تحكيم</span></div>
+  <div class="grid two">
+    ${["purpose","vision","mission"].map(k=>{
+      const labels={purpose:"الغاية المؤسسية",vision:"الرؤية",mission:"الرسالة"};
+      const sc=k==="vision"?visionScore:k==="mission"?missionScore:null;
+      return `<div class="card ${k==="mission"?"":" "}"><div class="card-header"><h3>${labels[k]}</h3><button class="btn ghost suggest-identity" data-kind="${k}">اقتراحات ذكية</button></div>
+      <textarea class="input" data-field="identity.${k}">${escapeHtml(p.identity[k])}</textarea>
+      ${sc?`<div class="score-wrap" style="margin-top:15px"><div class="score-ring" style="--score:${sc.score}%"><strong>${sc.score}%</strong></div><div class="rubric-list">${sc.details.map(r=>`<div class="rubric-item"><span>${r.name}</span><div class="rubric-bar"><span style="width:${r.score/r.max*100}%"></span></div><b>${r.score}</b></div>`).join("")}</div></div>`:""}
+      </div>`;
+    }).join("")}
+    <div class="card"><div class="card-header"><h3>القيم والسلوكيات</h3><button class="btn primary" id="addValueBtn">إضافة قيمة</button></div>
+    <div class="list-stack">${p.identity.values.map((v,i)=>`<div class="list-item"><div class="grow"><h4>${escapeHtml(v.name)}</h4><p>${escapeHtml(v.definition)}</p><small>${escapeHtml(v.behaviors)}</small></div><button class="icon-btn delete-item" data-type="values" data-index="${i}">×</button></div>`).join("")||'<div class="empty">أضف 3–6 قيم مؤسسية محددة سلوكيًا</div>'}</div></div>
+  </div><div class="stage-actions"><button class="btn ghost" data-go="theory">السابق</button><button class="btn primary" data-go="issues">التالي: القضايا والأولويات</button></div>`;
+},
+issues:p=>`<div class="section-title"><div><h3>القضايا والأولويات الاستراتيجية</h3><p>تحويل نتائج التشخيص والتحليل إلى قضايا قابلة للمعالجة والاختيار.</p></div><button class="btn primary" id="addIssueBtn">إضافة قضية</button></div>
+<div class="list-stack">${p.issues.map((x,i)=>`<div class="list-item"><span class="badge ${x.priority>=80?"danger":x.priority>=55?"warning":"success"}">${x.priority}%</span><div class="grow"><h4>${escapeHtml(x.title)}</h4><p>${escapeHtml(x.description)}</p><small>الأثر: ${x.impact}/5 — الاستعجال: ${x.urgency}/5 — القدرة: ${x.capability}/5</small></div><button class="icon-btn delete-item" data-type="issues" data-index="${i}">×</button></div>`).join("")||'<div class="empty">لم تضف قضايا استراتيجية بعد</div>'}</div>
+<div class="stage-actions"><button class="btn ghost" data-go="identity">السابق</button><button class="btn primary" data-go="dimensions">التالي: الأبعاد الاستراتيجية</button></div>`,
+dimensions:p=>`<div class="section-title"><div><h3>الأبعاد الاستراتيجية</h3><p>تجميع الأهداف ضمن منظورات متوازنة تمنع اختزال الاستراتيجية في بعد واحد.</p></div><button class="btn primary" id="addDimensionBtn">إضافة بُعد</button></div>
+<div class="grid three">${p.dimensions.map((x,i)=>`<div class="card"><span class="badge">البعد ${i+1}</span><h3>${escapeHtml(x.name)}</h3><p>${escapeHtml(x.description)}</p><button class="btn danger delete-item" data-type="dimensions" data-index="${i}">حذف</button></div>`).join("")||'<div class="empty" style="grid-column:1/-1">ابدأ بأبعاد مثل: الأثر والمستفيدون، الاستدامة، العمليات، القدرات، الحوكمة.</div>'}</div>
+<div class="stage-actions"><button class="btn ghost" data-go="issues">السابق</button><button class="btn primary" data-go="objectives">التالي: الأهداف الاستراتيجية</button></div>`,
+objectives:p=>`<div class="section-title"><div><h3>الأهداف الاستراتيجية</h3><p>صياغة نتائج استراتيجية مرتبطة بالقضايا والأبعاد وقابلة للقياس.</p></div><button class="btn primary" id="addObjectiveBtn">إضافة هدف</button></div>
+<div class="list-stack">${p.objectives.map((x,i)=>{const sc=scoreText(x.title,"objective");return `<div class="list-item"><span class="badge ${sc.score>=80?"success":sc.score>=50?"warning":"danger"}">${sc.score}%</span><div class="grow"><h4>${escapeHtml(x.title)}</h4><p>${escapeHtml(x.description)}</p><small>${escapeHtml(x.dimension)} — المالك: ${escapeHtml(x.owner||"غير محدد")}</small></div><button class="btn ghost review-objective" data-index="${i}">تحكيم</button><button class="icon-btn delete-item" data-type="objectives" data-index="${i}">×</button></div>`}).join("")||'<div class="empty">لا توجد أهداف استراتيجية</div>'}</div>
+<div class="stage-actions"><button class="btn ghost" data-go="dimensions">السابق</button><button class="btn primary" data-go="map">التالي: الخريطة الاستراتيجية</button></div>`,
+map:p=>`<div class="section-title"><div><h3>الخريطة الاستراتيجية</h3><p>توضيح العلاقات السببية بين الأهداف من القدرات والعمليات إلى النتائج والأثر.</p></div><button class="btn primary" id="addMapLinkBtn">إضافة علاقة</button></div>
+<div class="card"><div class="list-stack">${p.mapLinks.map((l,i)=>`<div class="list-item"><div class="grow"><strong>${escapeHtml(l.from)}</strong> ← يؤدي إلى ← <strong>${escapeHtml(l.to)}</strong><p>${escapeHtml(l.rationale)}</p></div><button class="icon-btn delete-item" data-type="mapLinks" data-index="${i}">×</button></div>`).join("")||'<div class="empty">أضف علاقات سببية بين الأهداف</div>'}</div></div>
+<div class="stage-actions"><button class="btn ghost" data-go="objectives">السابق</button><button class="btn primary" data-go="indicators">التالي: المؤشرات</button></div>`,
+indicators:p=>`<div class="section-title"><div><h3>المؤشرات الاستراتيجية</h3><p>بطاقات قياس مكتملة تربط الهدف بالمعادلة والمصدر والمستهدف والمسؤولية.</p></div><button class="btn primary" id="addIndicatorBtn">إضافة مؤشر</button></div>
+<div class="table-wrap card"><table class="data-table"><thead><tr><th>المؤشر</th><th>الهدف</th><th>النوع</th><th>الخط الأساسي</th><th>المستهدف</th><th>الدورية</th><th></th></tr></thead><tbody>
+${p.indicators.map((x,i)=>`<tr><td><strong>${escapeHtml(x.name)}</strong><br><small>${escapeHtml(x.formula)}</small></td><td>${escapeHtml(x.objective)}</td><td><span class="badge">${escapeHtml(x.type)}</span></td><td>${escapeHtml(x.baseline)}</td><td>${escapeHtml(x.target)}</td><td>${escapeHtml(x.frequency)}</td><td><button class="icon-btn delete-item" data-type="indicators" data-index="${i}">×</button></td></tr>`).join("")||'<tr><td colspan="7"><div class="empty">لم تضف مؤشرات بعد</div></td></tr>'}
+</tbody></table></div><div class="stage-actions"><button class="btn ghost" data-go="map">السابق</button><button class="btn primary" data-go="initiatives">التالي: المبادرات</button></div>`,
+initiatives:p=>`<div class="section-title"><div><h3>المبادرات والبرامج</h3><p>تحويل الأهداف إلى تدخلات استراتيجية ونتائج ومشروعات قابلة للإدارة.</p></div><button class="btn primary" id="addInitiativeBtn">إضافة مبادرة</button></div>
+<div class="grid two">${p.initiatives.map((x,i)=>`<div class="card"><div class="card-header"><span class="badge">${escapeHtml(x.status)}</span><button class="icon-btn delete-item" data-type="initiatives" data-index="${i}">×</button></div><h3>${escapeHtml(x.name)}</h3><p>${escapeHtml(x.description)}</p><small>الهدف: ${escapeHtml(x.objective)} | المالك: ${escapeHtml(x.owner)} | الموازنة: ${escapeHtml(x.budget)}</small></div>`).join("")||'<div class="empty" style="grid-column:1/-1">لم تضف مبادرات بعد</div>'}</div>
+<div class="stage-actions"><button class="btn ghost" data-go="indicators">السابق</button><button class="btn primary" data-go="operations">التالي: الخطة التشغيلية</button></div>`,
+operations:p=>`<div class="section-title"><div><h3>الخطة التشغيلية</h3><p>ربط الأنشطة السنوية بالمبادرات والمخرجات والمسؤوليات والزمن والميزانية.</p></div><button class="btn primary" id="addOperationBtn">إضافة نشاط</button></div>
+<div class="table-wrap card"><table class="data-table"><thead><tr><th>النشاط</th><th>المبادرة</th><th>المخرج</th><th>المسؤول</th><th>البداية</th><th>النهاية</th><th>المستهدف</th><th></th></tr></thead><tbody>
+${p.operations.map((x,i)=>`<tr><td>${escapeHtml(x.activity)}</td><td>${escapeHtml(x.initiative)}</td><td>${escapeHtml(x.output)}</td><td>${escapeHtml(x.owner)}</td><td>${escapeHtml(x.start)}</td><td>${escapeHtml(x.end)}</td><td>${escapeHtml(x.target)}</td><td><button class="icon-btn delete-item" data-type="operations" data-index="${i}">×</button></td></tr>`).join("")||'<tr><td colspan="8"><div class="empty">لم تضف أنشطة تشغيلية</div></td></tr>'}
+</tbody></table></div><div class="stage-actions"><button class="btn ghost" data-go="initiatives">السابق</button><button class="btn primary" data-go="performance">التالي: متابعة الأداء</button></div>`,
+performance:p=>`<div class="section-title"><div><h3>متابعة الأداء والانحرافات</h3><p>تحويل القياس إلى قرارات تصحيحية ومتابعة تنفيذها.</p></div><button class="btn primary" id="addPerformanceBtn">إضافة تحديث</button></div>
+<div class="list-stack">${p.performanceUpdates.map((x,i)=>`<div class="list-item"><span class="badge ${x.status==="متأخر"?"danger":x.status==="بحاجة تدخل"?"warning":"success"}">${escapeHtml(x.status)}</span><div class="grow"><h4>${escapeHtml(x.indicator)}</h4><p>الفعلي: ${escapeHtml(x.actual)} — المستهدف: ${escapeHtml(x.target)}</p><small>السبب: ${escapeHtml(x.cause)} | الإجراء: ${escapeHtml(x.action)}</small></div><button class="icon-btn delete-item" data-type="performanceUpdates" data-index="${i}">×</button></div>`).join("")||'<div class="empty">أضف أول قراءة أداء وتحليل انحراف</div>'}</div>
+<div class="stage-actions"><button class="btn ghost" data-go="operations">السابق</button><button class="btn primary" data-go="governance">التالي: الحوكمة</button></div>`,
+governance:p=>`<div class="section-title"><div><h3>حوكمة الاستراتيجية والأداء</h3><p>تحديد الأدوار ودورية المراجعة ومسار الاعتماد والتصعيد.</p></div><span class="badge">RACI</span></div>
+<div class="card"><div class="form-grid">
+${Object.entries({boardRole:"دور مجلس الإدارة",executiveRole:"دور الإدارة التنفيذية",strategyOfficeRole:"دور مكتب الاستراتيجية والأداء",approvalFlow:"مسار الاعتماد والتصعيد"}).map(([k,l])=>`<div class="field"><label>${l}</label><textarea class="input" data-field="governance.${k}">${escapeHtml(p.governance[k])}</textarea></div>`).join("")}
+<div class="field"><label>دورية مراجعة الأداء</label><select class="input" data-field="governance.reviewCycle">${["شهري","ربع سنوي","نصف سنوي","سنوي"].map(x=>`<option ${p.governance.reviewCycle===x?"selected":""}>${x}</option>`).join("")}</select></div>
+</div></div><div class="stage-actions"><button class="btn ghost" data-go="performance">السابق</button><button class="btn primary" data-go="report">التالي: التقرير</button></div>`,
+report:p=>buildReport(p)
+};
+
+function buildReport(p){
+  return `<div class="section-title no-print"><div><h3>التقرير الاستراتيجي المتكامل</h3><p>ملخص مترابط لجميع مكونات الخطة.</p></div><button class="btn primary" onclick="window.print()">طباعة / حفظ PDF</button></div>
+  <section class="hero report-section"><div><span class="eyebrow" style="color:#d7c08c">الخطة الاستراتيجية</span><h3>${escapeHtml(p.organization.name||p.name)}</h3><p>${escapeHtml(p.organization.startYear)}–${escapeHtml(p.organization.endYear)} | ${escapeHtml(p.organization.sector)}</p></div><div class="hero-stat"><div class="stat-box"><small>الأهداف</small><strong>${p.objectives.length}</strong></div><div class="stat-box"><small>المؤشرات</small><strong>${p.indicators.length}</strong></div></div></section>
+  ${[
+    ["الغاية",p.identity.purpose],["الرؤية",p.identity.vision],["الرسالة",p.identity.mission]
+  ].map(([t,v])=>`<div class="card report-section"><h3>${t}</h3><p>${escapeHtml(v)||"—"}</p></div>`).join("")}
+  <div class="card report-section"><h3>القيم</h3><div class="grid three">${p.identity.values.map(v=>`<div><strong>${escapeHtml(v.name)}</strong><p>${escapeHtml(v.definition)}</p></div>`).join("")||"—"}</div></div>
+  <div class="card report-section"><h3>القضايا الاستراتيجية</h3><ol>${p.issues.map(x=>`<li><strong>${escapeHtml(x.title)}</strong> — ${escapeHtml(x.description)}</li>`).join("")||"<li>—</li>"}</ol></div>
+  <div class="card report-section"><h3>الأبعاد والأهداف</h3>${p.dimensions.map(d=>`<h4>${escapeHtml(d.name)}</h4><ul>${p.objectives.filter(o=>o.dimension===d.name).map(o=>`<li>${escapeHtml(o.title)}</li>`).join("")||"<li>لا توجد أهداف مرتبطة</li>"}</ul>`).join("")||"—"}</div>
+  <div class="card report-section"><h3>المؤشرات الاستراتيجية</h3><div class="table-wrap"><table class="data-table"><thead><tr><th>المؤشر</th><th>الهدف</th><th>الخط الأساسي</th><th>المستهدف</th></tr></thead><tbody>${p.indicators.map(x=>`<tr><td>${escapeHtml(x.name)}</td><td>${escapeHtml(x.objective)}</td><td>${escapeHtml(x.baseline)}</td><td>${escapeHtml(x.target)}</td></tr>`).join("")||"<tr><td colspan='4'>—</td></tr>"}</tbody></table></div></div>
+  <div class="card report-section"><h3>المبادرات</h3><ol>${p.initiatives.map(x=>`<li><strong>${escapeHtml(x.name)}</strong> — ${escapeHtml(x.description)}</li>`).join("")||"<li>—</li>"}</ol></div>`;
+}
+
+function bindBeneficiaryFields(){
+  document.querySelectorAll(".problem-field").forEach(el=>el.oninput=()=>{getPlan().beneficiary.problem[el.dataset.k]=el.value;saveState();renderShell();});
+  document.querySelectorAll(".ben-seg").forEach(el=>el.oninput=()=>{getPlan().beneficiary.segments[Number(el.dataset.i)][el.dataset.k]=el.value;saveState();});
+  document.querySelectorAll(".ben-session").forEach(el=>el.oninput=()=>{const i=Number(el.dataset.i);while(getPlan().beneficiary.beneficiarySession.length<=i)getPlan().beneficiary.beneficiarySession.push({summary:""});getPlan().beneficiary.beneficiarySession[i].summary=el.value;saveState();renderShell();});
+}
+
+function bindDynamic(){
+  bindBeneficiaryFields();
+  bindArrayEditors();
+  document.querySelectorAll(".diag-range").forEach(el=>el.oninput=()=>{getPlan().diagnosis[el.dataset.axis].score=Number(el.value);saveState();render();});
+  document.querySelectorAll(".diag-field").forEach(el=>el.oninput=()=>{getPlan().diagnosis[el.dataset.axis][el.dataset.prop]=el.value;saveState();});
+  document.querySelectorAll(".delete-item").forEach(b=>b.onclick=()=>{
+    const p=getPlan(),type=b.dataset.type,i=Number(b.dataset.index);
+    if(type==="values")p.identity.values.splice(i,1);else p[type].splice(i,1);saveState();render();
+  });
+  document.querySelectorAll(".suggest-identity").forEach(b=>b.onclick=()=>{
+    const kind=b.dataset.kind,opts=suggestIdentity(kind,getPlan());
+    openModal("مقترحات صياغة",`<div class="list-stack">${opts.map((o,i)=>`<label class="list-item"><input type="radio" name="sugg" value="${i}" ${i===0?"checked":""}><div class="grow">${escapeHtml(o)}</div></label>`).join("")}</div>`,()=>{
+      const i=Number(document.querySelector('input[name="sugg"]:checked')?.value||0);getPlan().identity[kind]=opts[i];saveState();render();
+    });
+  });
+  const addHandlers={
+    addStakeholderBtn:()=>openModal("إضافة صاحب مصلحة",formHtml([
+      ["name","اسم الطرف","text"],["influence","درجة التأثير 1–5","number"],["interest","درجة الاهتمام 1–5","number"],["need","الاحتياج أو التوقع","text"],["strategy","استراتيجية التعامل","text"]
+    ]),()=>pushFromForm("stakeholders",["name","influence","interest","need","strategy"])),
+    addValueBtn:()=>openModal("إضافة قيمة",formHtml([["name","اسم القيمة","text"],["definition","تعريف القيمة","text"],["behaviors","السلوكيات الدالة عليها","text"]]),()=>{const o=readForm(["name","definition","behaviors"]);getPlan().identity.values.push(o);saveState();render();}),
+    addIssueBtn:()=>openModal("إضافة قضية استراتيجية",formHtml([["title","عنوان القضية","text"],["description","وصف القضية","text"],["impact","الأثر 1–5","number"],["urgency","الاستعجال 1–5","number"],["capability","قدرة المنظمة 1–5","number"]]),()=>{let o=readForm(["title","description","impact","urgency","capability"]);o.priority=Math.round((Number(o.impact)+Number(o.urgency)+Number(o.capability))/15*100);getPlan().issues.push(o);saveState();render();}),
+    addDimensionBtn:()=>openModal("إضافة بُعد",formHtml([["name","اسم البعد","text"],["description","وصف البعد","text"]]),()=>pushFromForm("dimensions",["name","description"])),
+    addObjectiveBtn:()=>openModal("إضافة هدف استراتيجي",formHtml([["title","صياغة الهدف","text"],["description","الوصف والمبرر","text"],["dimension","البعد","text"],["issue","القضية المرتبطة","text"],["owner","مالك الهدف","text"],["baseline","خط الأساس","text"],["target","المستهدف النهائي","text"]]),()=>pushFromForm("objectives",["title","description","dimension","issue","owner","baseline","target"])),
+    addMapLinkBtn:()=>openModal("إضافة علاقة سببية",formHtml([["from","الهدف المؤثر","text"],["to","الهدف المتأثر","text"],["rationale","مبرر العلاقة","text"]]),()=>pushFromForm("mapLinks",["from","to","rationale"])),
+    addIndicatorBtn:()=>openModal("إضافة مؤشر",formHtml([["name","اسم المؤشر","text"],["objective","الهدف المرتبط","text"],["type","النوع: قائد/متأخر/KPI","text"],["formula","معادلة القياس","text"],["baseline","خط الأساس","text"],["target","المستهدف","text"],["frequency","دورية القياس","text"],["source","مصدر البيانات","text"],["owner","مالك المؤشر","text"]]),()=>pushFromForm("indicators",["name","objective","type","formula","baseline","target","frequency","source","owner"])),
+    addInitiativeBtn:()=>openModal("إضافة مبادرة",formHtml([["name","اسم المبادرة","text"],["description","الوصف","text"],["objective","الهدف المرتبط","text"],["owner","المالك","text"],["budget","الموازنة","text"],["status","الحالة","text"]]),()=>pushFromForm("initiatives",["name","description","objective","owner","budget","status"])),
+    addOperationBtn:()=>openModal("إضافة نشاط تشغيلي",formHtml([["activity","النشاط","text"],["initiative","المبادرة","text"],["output","المخرج","text"],["owner","المسؤول","text"],["start","تاريخ البداية","date"],["end","تاريخ النهاية","date"],["target","المستهدف","text"]]),()=>pushFromForm("operations",["activity","initiative","output","owner","start","end","target"])),
+    addPerformanceBtn:()=>openModal("تحديث أداء",formHtml([["indicator","المؤشر","text"],["actual","القيمة الفعلية","text"],["target","المستهدف","text"],["status","الحالة","text"],["cause","سبب الانحراف","text"],["action","الإجراء التصحيحي","text"]]),()=>pushFromForm("performanceUpdates",["indicator","actual","target","status","cause","action"]))
+  };
+  Object.entries(addHandlers).forEach(([id,fn])=>{const el=document.getElementById(id);if(el)el.onclick=fn;});
+  document.querySelectorAll(".review-objective").forEach(b=>b.onclick=()=>{
+    const o=getPlan().objectives[Number(b.dataset.index)],sc=scoreText(o.title,"objective");
+    openModal("تحكيم الهدف",`<div class="score-wrap"><div class="score-ring" style="--score:${sc.score}%"><strong>${sc.score}%</strong></div><div class="rubric-list">${sc.details.map(r=>`<div class="rubric-item"><span>${r.name}</span><div class="rubric-bar"><span style="width:${r.score/r.max*100}%"></span></div><b>${r.score}</b></div>`).join("")}</div></div><div class="callout ${sc.score>=80?"success":"warning"}" style="margin-top:16px">${sc.score>=80?"الصياغة جيدة مبدئيًا. استكمل الربط بالمؤشرات والمستهدفات.":"الصياغة تحتاج مزيدًا من التركيز على النتيجة والقياس والزمن."}</div>`);
+  });
+}
+
+function formHtml(fields){return `<div class="form-grid">${fields.map(([id,label,type])=>`<div class="field ${id==="description"?"full":""}"><label>${label}</label><input id="f_${id}" class="input" type="${type||"text"}"></div>`).join("")}</div>`;}
+function readForm(keys){return Object.fromEntries(keys.map(k=>[k,document.getElementById("f_"+k)?.value||""]));}
+function pushFromForm(type,keys){getPlan()[type].push(readForm(keys));saveState();render();}
+
+const originalRender=render;
+render=function(){originalRender();bindDynamic();};
+
+document.getElementById("planSelect").onchange=e=>{currentPlanId=e.target.value;currentStage="dashboard";render();};
+document.getElementById("newPlanBtn").onclick=()=>{
+  openModal("إنشاء خطة جديدة",`<div class="field"><label>اسم الخطة</label><input id="newPlanName" class="input" value="الخطة الاستراتيجية الجديدة"></div>`,()=>{
+    const p=newPlan(document.getElementById("newPlanName").value||"خطة جديدة");state.plans.push(p);currentPlanId=p.id;saveState();render();
+  });
+};
+document.getElementById("duplicatePlanBtn").onclick=()=>{
+  const src=getPlan(), copy=JSON.parse(JSON.stringify(src));copy.id=uid();copy.name=src.name+" - نسخة";state.plans.push(copy);currentPlanId=copy.id;saveState();render();showToast("تم إنشاء نسخة من الخطة");
+};
+document.getElementById("menuBtn").onclick=()=>document.getElementById("sidebar").classList.toggle("open");
+document.getElementById("printBtn").onclick=()=>{currentStage="report";render();setTimeout(()=>window.print(),200);};
+document.getElementById("generateReportBtn").onclick=()=>{currentStage="report";render();};
+document.getElementById("exportJsonBtn").onclick=()=>{
+  const blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"});
+  const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="masar-strategy-backup.json";a.click();URL.revokeObjectURL(a.href);
+};
+document.getElementById("importJsonInput").onchange=e=>{
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const s=JSON.parse(r.result);if(!s.plans?.length)throw Error();state=s;currentPlanId=s.currentPlanId||s.plans[0].id;saveState();render();showToast("تم استيراد النسخة بنجاح");}catch(_){showToast("الملف غير صالح");}};r.readAsText(f);
+};
+document.getElementById("reviewPlanBtn").onclick=()=>{
+  const p=getPlan(),issues=[];
+  if(!p.identity.vision)issues.push("الرؤية غير مكتملة");
+  if(!p.identity.mission)issues.push("الرسالة غير مكتملة");
+  if(p.objectives.length<3)issues.push("عدد الأهداف الاستراتيجية قليل");
+  if(p.indicators.length<p.objectives.length)issues.push("بعض الأهداف لا يقابلها مؤشر");
+  p.objectives.forEach(o=>{if(!p.indicators.some(i=>i.objective===o.title))issues.push(`الهدف «${o.title}» بلا مؤشر مطابق`);});
+  p.initiatives.forEach(i=>{if(!p.objectives.some(o=>o.title===i.objective))issues.push(`المبادرة «${i.name}» غير مرتبطة بهدف مطابق`);});
+  openModal("نتيجة فحص الاتساق",issues.length?`<div class="list-stack">${issues.map(x=>`<div class="list-item"><span class="badge warning">تنبيه</span><div>${escapeHtml(x)}</div></div>`).join("")}</div>`:`<div class="callout success">لم تُكتشف تعارضات أساسية. استمر في المراجعة البشرية والاعتماد المؤسسي.</div>`);
+};
+
+render();
+
+</script>
+
+<script>
+/* أثر v2 — ترقية البيانات مع المحافظة على المشاريع الحالية */
+function ensureV2(x){
+ x.scope=x.scope||{};
+ x.scope.readinessRows=x.scope.readinessRows||[
+  {item:"التزام القيادة",question:"هل القيادة حاضرة وقادرة على حسم المفاضلات في وقتها؟",score:5,evidence:"",gap:"",treatment:"",owner:"",date:""},
+  {item:"الوقت",question:"هل يملك المشاركون الوقت المطلوب خلال أسبوعين؟",score:5,evidence:"",gap:"",treatment:"",owner:"",date:""},
+  {item:"البيانات",question:"هل تتوفر البيانات الأساسية قبل المرحلة التي تحتاجها؟",score:4,evidence:"",gap:"",treatment:"",owner:"",date:""},
+  {item:"المشاركة",question:"هل نستطيع الوصول لمستفيدين وشركاء وتمثيلهم؟",score:4,evidence:"",gap:"",treatment:"",owner:"",date:""},
+  {item:"القدرة على التنفيذ",question:"هل توجد قدرة فعلية لتنفيذ ما ستختاره الاستراتيجية؟",score:4,evidence:"",gap:"",treatment:"",owner:"",date:""},
+  {item:"سرعة القرار",question:"هل مسار الاعتماد واضح ولا يعطل المراحل؟",score:5,evidence:"",gap:"",treatment:"",owner:"",date:""}
+ ];
+ x.needGap=x.needGap||[];
+ x.capacity=(x.capacity||[]).map(r=>({...r,note:r.note||""}));
+ x.stakeholders=(x.stakeholders||[]).map(r=>({name:r.name||"",type:r.type||"",influence:r.influence||"",interest:r.interest||"",expects:r.expects||r.wants||"",need:r.need||"",offer:r.offer||"",relationship:r.relationship||"",strategy:r.strategy||"",method:r.method||"",owner:r.owner||"",date:r.date||"",use:r.use||r.insight||"",insight:r.insight||""}));
+ x.pestel=(x.pestel||[]).map(r=>({dimension:r.dimension||"",factor:r.factor||"",source:r.source||"",sourceDate:r.sourceDate||"",type:r.type||"",likelihood:r.likelihood||"",impact:r.impact||"",horizon:r.horizon||"",affected:r.affected||"",decision:r.decision||"",response:r.response||r.implication||"",confidence:r.confidence||"",note:r.note||""}));
+ x.swot=x.swot||{strengths:[],weaknesses:[],opportunities:[],threats:[],tows:[]};
+ ["strengths","weaknesses","opportunities","threats"].forEach(k=>x.swot[k]=(x.swot[k]||[]).map(v=>typeof v==="string"?{point:v,evidence:"",evidenceStrength:"",impact:"",why:"",issue:"",verify:"قيد التحقق"}:v));
+ x.swot.tows=(x.swot.tows||[]).map(r=>({type:r.type||"",internal:r.internal||r.inputs||"",external:r.external||"",option:r.option||"",do:r.do||"",defer:r.defer||"",evidence:r.evidence||"",owner:r.owner||"",move:r.move||"لا"}));
+ x.alternatives=(x.alternatives||[]).map(r=>({option:r.option||"",source:r.source||"TOWS",impact:r.impact||"",feasibility:r.feasibility||r.fit||"",resources:r.resources||"",sustainability:r.sustainability||"",risk:r.risk||"",urgency:r.urgency||"",compliance:r.compliance||"",reason:r.reason||"",decision:r.decision||"قيد المراجعة",choiceReason:r.choiceReason||""}));
+ x.causalityTests=x.causalityTests||[
+  {q:"إذا نفذنا التدخل، لماذا سيؤدي للمخرج؟",answer:""},
+  {q:"إذا تحقق المخرج، لماذا يؤدي للنتيجة؟",answer:""},
+  {q:"ما العوامل الخارجية التي قد تقطع السلسلة؟",answer:""},
+  {q:"ما الدليل أو الخبرة التي تدعم كل رابط؟",answer:""}
+ ];
+ x.identityTests=x.identityTests||[
+  {item:"الرسالة",draft:x.identity?.mission||"",quality:"هل تحدد الغرض والمستفيد والدور بوضوح؟",score:"",note:"",decision:""},
+  {item:"الرؤية",draft:x.identity?.vision||"",quality:"هل تصف مستقبلًا مرغوبًا للمستفيد/القضية لا نشاطًا مؤسسيًا؟",score:"",note:"",decision:""},
+  {item:"القيم",draft:x.identity?.values||"",quality:"هل هي 3–5 قيم حاكمة ولكل قيمة سلوك متوقع؟",score:"",note:"",decision:""}
+ ];
+ x.mapLinks=x.mapLinks||[];
+ x.kpiQualityTests=x.kpiQualityTests||[
+  {q:"هل يمكن لشخصين حساب المؤشر والحصول على النتيجة نفسها؟",answer:"",action:""},
+  {q:"هل يتوفر المصدر في وقت القرار؟",answer:"",action:""},
+  {q:"هل الخط الأساسي حقيقي وليس تقديرًا غير موثق؟",answer:"",action:""},
+  {q:"هل المستهدف مبرر بالقدرة والاتجاه لا بالرغبة فقط؟",answer:"",action:""},
+  {q:"هل يوجد فحص للاكتمال والدقة والاتساق والتوقيت؟",answer:"",action:""}
+ ];
+ x.portfolioTests=x.portfolioTests||[
+  {q:"هل لكل هدف تدخل كافٍ لتحقيقه؟",answer:""},
+  {q:"هل توجد مبادرات لا ترتبط بهدف؟",answer:""},
+  {q:"ما الذي يمكن تنفيذه بالشراكة بدل زيادة التكاليف الثابتة؟",answer:""},
+  {q:"ما المبادرات التي يجب تأجيلها بسبب الموارد أو التبعية؟",answer:""}
+ ];
+ x.year1Tasks=x.year1Tasks||[];
+ x.performanceReview=x.performanceReview||[
+  {q:"المراجعة الشهرية – ما المدخلات؟",answer:""},
+  {q:"المراجعة الربع سنوية – ما الذي يحسمه المجلس؟",answer:""},
+  {q:"متى يعد الانحراف بحاجة إلى تصعيد؟",answer:""},
+  {q:"من يراجع صحة البيانات قبل الاجتماع؟",answer:""},
+  {q:"كيف يسجل الإجراء التصحيحي والمالك والموعد؟",answer:""},
+  {q:"كيف تسجل الدروس والتغييرات؟",answer:""},
+  {q:"من يعتمد تعديل هدف/مؤشر/مبادرة؟",answer:""},
+  {q:"كيف تحفظ أرقام النسخ وتاريخ النفاذ؟",answer:""}
+ ];
+ x.learningLog=x.learningLog||[];
+}
+state.projects.forEach(ensureV2); save();
+</script>
+
+
+<script>
+const swotBankV2={
+ strengths:["سمعة مجتمعية جيدة وثقة محلية","مجلس إدارة داعم ومشارك","قيادة تنفيذية متحمسة للتطوير","تفاعل المجتمع المحلي مع الجمعية","وجود قاعدة مستفيدين واضحة","وجود برامج قائمة يمكن تطويرها","خبرة أولية في الكفالات والمساعدات","وجود أكاديمية/برامج تعليمية أولية","قرب الجمعية من المجتمع المحلي","مرونة جمعية ناشئة وسهولة تعديل النموذج","وجود شراكات أولية","وجود موقع/حضور رقمي أولي","قابلية جذب متطوعين من المجتمع","وجود بيانات مالية وقوائم مراجعة","وضوح الغرض النظامي لخدمة الأيتام","قوة العلاقات الشخصية لأعضاء المجلس","قدرة على اتخاذ قرارات سريعة","بيئة عمل صغيرة تسهل التنسيق","استعداد للتعلم والتطوير","قدرة على بناء قصة أثر إنساني قوية","دعم مشروع تمكين والاستشارات الحالية","إمكان الوصول إلى مانحين محليين","إمكان قياس رضا الأسر بسهولة نسبيًا","مجلس قريب من تفاصيل الجمعية","قابلية تصميم رحلة مستفيد من الصفر","إمكان تركيز الموارد على عدد مستفيدين يمكن متابعتهم","وجود أهداف نظامية تشمل الدعم والمهارات","إمكان بناء شبكة خبراء ومتطوعين مهنيين","مرونة في تصميم منتجات التبرع","قابلية تكوين تحالفات محلية","وجود دافع واضح للانتقال من الرعاية إلى التمكين","قابلية استخدام البيانات في تخصيص الخدمة","إمكان بناء محتوى قصصي يعكس الكرامة","إمكان تعظيم قيمة الشراكات غير المالية","قابلية التطوير السريع للسياسات الأساسية","إمكان ربط الموازنة بالاستراتيجية من البداية","إمكان تطوير نظام تقارير مجلس مختصر","إمكان تعيين أولويات واضحة بسبب صغر الحجم","إمكان تحقيق أثر نوعي قابل للتتبع"],
+ weaknesses:["غياب استراتيجية معتمدة أو ضعف وضوحها","ضعف مؤشرات الأداء والأثر","محدودية الموارد البشرية","اعتماد مرتفع على أفراد محددين","ضعف توثيق احتياجات المستفيدين حسب الشرائح","البرامج قد تكون نشاطية أكثر من كونها قائمة على النتائج","ضعف تنوع الإيرادات غير المقيدة","ضعف الربط بين البرامج والقياس القبلي والبعدي","صعوبة الوصول لبعض الأسر المتعففة","عدم استقرار العمليات والإجراءات بعد","ضعف إدارة العلاقة مع الشركاء وقياس عوائدها","ضعف المحتوى الاتصالي الموجه للمانحين والمستفيدين","غياب وحدة تطوع مكتملة أو فرص نوعية","ضعف التحليل المالي الاستراتيجي والتنبؤ","احتمال اتساع الأنشطة خارج جوهر الرسالة","اعتماد العلاقات على أشخاص لا على نظام","ضعف توثيق القرار والمتابعة","تداخل أدوار ومسؤوليات","ضعف توثيق التعلم والتحسين","ضعف البيانات الكمية التي تثبت الأثر","الاعتماد المؤقت على دعم استشاري خارجي","غياب segmentation للمانحين","عدم انتظام قنوات التغذية الراجعة","تداخل محتمل بين الحوكمة والتنفيذ","عدم وجود رحلة موحدة حاليًا","قدرة محدودة على التوسع الكمي","غياب ترجمة الأهداف النظامية إلى نتائج قابلة للقياس","غياب آلية استقطاب وإدارة خبراء","ضعف التسعير/التكلفة الحقيقية للبرامج","ضعف المعرفة بخريطة الخدمات في المنطقة","خطر القفز إلى التمكين قبل استقرار الاحتياجات الأساسية","جودة البيانات الحالية قد تكون متفاوتة","خطر استخدام صور/قصص بطريقة تمس الخصوصية","التركيز المحتمل على التمويل فقط","كثرة السياسات قد تربك فريقًا صغيرًا","الموازنة الحالية قد تكون بندية لا استراتيجية","تقارير مطولة لا تدعم القرار","ضغط تعدد الاحتياجات قد يشتت القرار","ضعف تتبع النتائج على المدى المتوسط"],
+ opportunities:["نمو الاهتمام المجتمعي بقضايا الأيتام","توسع قنوات التبرع الرقمية","فرص المسؤولية الاجتماعية في القطاع الخاص","توفر منصات وطنية للتبرع والمنح","إمكان بناء شراكات مع المدارس والجامعات","إمكان الشراكة مع جهات التدريب والتوظيف","فرص الأوقاف والاستثمار الاجتماعي","إمكان الاستفادة من التعليم الإلكتروني","إمكان تفعيل شبكات الإحالة المحلية","إمكان تبني أنظمة رقمية حديثة من البداية","فرص الشراكة مع الجهات الصحية والنفسية","إمكان توسيع الوصول عبر المحتوى الرقمي","توفر منصة العمل التطوعي","توفر أدوات تحليل ومتابعة رقمية","فرص تكامل مع جمعيات متخصصة بدل تكرار الخدمة","إمكان تحويل العلاقات إلى شراكات مؤسسية","فرص لوحات الأداء والاجتماعات القصيرة","إمكان تصميم RACI رشيق","توفر خبرات ومنهجيات استشارية داعمة","ارتفاع اهتمام المانحين بقياس الأثر","إمكان نقل المعرفة وبناء القدرات الداخلية","اتجاه المانحين لتمويل نتائج واضحة","انتشار أدوات الاستبيان البسيطة","فرصة رفع نضج الحوكمة مبكرًا","فرص الربط بين الدعم والتعليم والتمكين","فرص زيادة العمق والأثر قبل الاتساع","فرصة بناء نظرية تغيير متسقة مع النظام","تنامي التطوع المهني","إمكان ربط التبرع بوحدات أثر مفهومة","وجود جهات متعددة تخدم الأسرة والطفل","توجه تنموي نحو التمكين والاستقلال","تطور أدوات التحليل والذكاء الاصطناعي","اتجاه المانحين للمحتوى الإنساني الموثق","توفر شركاء يقدمون خبرة/خدمة/مساحة/تقنية","توفر قوالب وأدلة حوكمة","توفر أساليب موازنة البرامج والنتائج","توفر لوحات مؤشرات بسيطة","أدوات مفاضلة وترتيب متاحة","اهتمام متزايد بالنتائج لا الأنشطة"],
+ threats:["تذبذب المنح والتبرعات","اشتداد المنافسة على تمويل المانحين","ارتفاع تكاليف التشغيل","مخاطر الامتثال والتنظيم في جمع التبرعات","حساسية خصوصية بيانات الأسر والأيتام","ضعف الإقبال أو الاستمرار في بعض البرامج","تقلب الظروف الاقتصادية للأسر والمتبرعين","تغير احتياجات الفئات العمرية بسرعة","وصمة اجتماعية أو تحفظ بعض الأسر","مقاومة التغيير أو ضغط التشغيل اليومي","فشل بعض الشراكات أو عدم الالتزام","مخاطر السمعة من رسالة غير دقيقة أو إفصاح ضعيف","ضعف استبقاء المتطوعين","ارتفاع الاعتماد على مصدر تمويل واحد أو اثنين","تشتت الموارد بسبب التوسع في مجالات كثيرة","تغير أعضاء المجلس أو الداعمين","قرارات متسرعة دون بيانات كافية","إرهاق الفريق وتعارض الأولويات","تكرار الأخطاء عند غياب التعلم المؤسسي","فقدان الثقة إذا بالغت الجمعية في ادعاء الأثر","انتهاء الدعم الخارجي قبل استدامة الممارسات","تغير أولويات المانحين","انخفاض الاستجابة أو تحيز العينة","بطء القرار عند تضارب الصلاحيات","تسرب المستفيد بين البرامج دون متابعة","ضغط المجتمع لزيادة أعداد المستفيدين","مبادرات جذابة لكنها خارج الاختصاص","تضارب جودة الخدمات المقدمة من متطوعين","عدم كفاية التبرعات لتغطية التكلفة الكاملة","ازدواجية الخدمات وإهدار الموارد","فشل التمكين إذا لم تتوفر جاهزية المستفيد","أخطاء قرار ناتجة عن بيانات ناقصة","ضرر سمعة أو خصوصية من النشر","فقدان فرص بسبب حصر الشراكة في المال","تحول الحوكمة إلى عبء ورقي","فجوة بين الطموح والتمويل","ضياع وقت المجلس في التفاصيل التشغيلية","عدم رضا بعض الأطراف عند تأجيل احتياجات","فشل إثبات الأثر للمانحين والمجلس"],
+ so:["استثمار الثقة المجتمعية في بناء برنامج متبرعين متكررين","توسيع التبرعات الرقمية اعتمادًا على السمعة وقاعدة المجتمع","بناء شراكات مسؤولية اجتماعية موجهة لمسارات تعليم وتمكين","تأسيس سفراء مجتمع وبرنامج تطوع منظم","تحويل قاعدة المستفيدين إلى رحلة خدمة مبنية على الاحتياج","إعادة تصميم البرامج الحالية كمحفظة نتائج قابلة للقياس","تطوير منتجات تمويل مرنة ومقيدة وغير مقيدة","توسيع الأكاديمية عبر شراكات تعليمية رقمية","استخدام العلاقات المحلية لبناء شبكة إحالة تحفظ الخصوصية","تبني عمليات رقمية خفيفة بدل ترحيل تعقيدات قديمة","تحويل الشراكات القائمة إلى محفظة نتائج وقيمة متبادلة","استخدام الحضور الرقمي لبناء الثقة والاستقطاب","تصميم فرص تطوعية مرتبطة مباشرة باحتياجات البرامج","استخدام البيانات المالية لبناء سيناريوهات واستدامة","التركيز على التمكين ضمن الغرض النظامي مع إحالات تخصصية","مأسسة شبكة العلاقات في قاعدة شركاء ومانحين","استخدام سرعة القرار مع بوابات جودة واضحة","استثمار صغر الفريق في تواصل يومي منظم","إنشاء سجل تعلم وربطه بقرارات البرامج","دمج القصص الإنسانية مع مؤشرات نتائج موثقة"],
+ st:["استخدام السمعة والشراكات لحماية البرامج الأساسية من تذبذب التمويل","تنويع مصادر التمويل بالاستفادة من القنوات الرقمية والشركاء","تصميم برامج قابلة للتجزئة والتمويل بحسب الأولويات","رفع الحوكمة والإفصاح للاستفادة من الثقة وتقليل مخاطر الامتثال","تطبيق ضوابط خصوصية قوية مع الحفاظ على جودة الخدمة","استخدام البرامج الأكثر قبولًا لبناء ولاء واستمرارية المستفيد","بناء احتياطي تشغيلي وتنويع التمويل لحماية الخدمات","تحديث البرامج دوريًا بناء على بيانات الفئات العمرية","تعزيز الثقة والخصوصية لتقليل العزوف","استخدام المرونة لتعديل الخدمات سريعًا عند تغير البيئة","تحديد اتفاقيات أداء واضحة للشراكات","اعتماد رسائل وإفصاحات موحدة تحمي السمعة","استخدام المجتمع المحلي لاستدامة التطوع","تفعيل إنذار مبكر للتدفقات والالتزامات","استخدام وضوح الغرض لمقاومة التشتت"],
+ wo:["بناء شراكات تنفيذية لتعويض محدودية الفريق","إنشاء نظام مؤشرات وأثر بمساندة شريك تقني/استشاري","تفعيل التطوع المهني لتغطية فجوات القدرات","تطوير مصفوفة صلاحيات وإجراءات مبسطة","بناء نموذج تقييم احتياج موحد بمساندة مختصين","تطوير تصميم البرامج وقياسها قبل التوسع","إعداد دراسة جدوى وقف تدريجية قبل الإطلاق","بناء أدوات قياس تعليمية ومهارية مبسطة","تصميم قنوات إحالة سرية ومتعددة","توثيق العمليات الحرجة وتبسيطها تدريجيًا","إنشاء سجل شراكات ومؤشرات متابعة","تطوير خطة اتصال وهوية محتوى","بناء دورة حياة للمتطوع وفرص مهارية","بناء موازنة وسيناريوهات نقدية مرتبطة بالاستراتيجية","بناء معايير قبول/استبعاد للمبادرات"],
+ wt:["تركيز الموارد على البرامج الأساسية وتأجيل التوسع غير الممول","خفض التكاليف الثابتة واستخدام التعاقد والشراكة","إيقاف أو دمج البرامج منخفضة الأثر أو ضعيفة التمويل","عدم إطلاق منتجات تمويلية قبل اكتمال المتطلبات النظامية","تقليل جمع البيانات غير الضرورية وتشديد صلاحيات الوصول","إيقاف الأنشطة التي لا تثبت قيمة أو إقبالًا كافيًا","تأجيل الالتزامات الرأسمالية الكبيرة حتى تتضح الجدوى","عدم تثبيت محتوى طويل الأجل دون مراجعة الاحتياج","تجنب أساليب الوصول التي قد تكشف هوية الأسر أو تسبب حرجًا","عدم بناء أنظمة معقدة أكبر من حجم الجمعية","إنهاء الشراكات التي لا تحقق التزامًا أو قيمة","عدم نشر قصص أو بيانات حساسة بلا ضوابط","عدم الاعتماد على التطوع في أدوار حرجة بلا بديل","تقييد الالتزامات الجديدة عند انخفاض التغطية التمويلية","إيقاف أي مبادرة لا ترتبط مباشرة بقضية أو هدف"]
+};
+Object.keys(swotBankV2).forEach(k=>swotBank[k]=[...new Set([...(swotBank[k]||[]),...swotBankV2[k]])]);
+</script>
+
+
+<script>
+function bindArr(selector,key,getter){
+ document.querySelectorAll(selector).forEach(el=>el.onchange=()=>{let [i,k]=el.dataset[key].split(":");getter()[Number(i)][k]=el.type==="number"?Number(el.value):el.value;save();updateProgress();});
+}
+
+/* مطابقة أ03 */
+capacity=function(){
+ let x=p();
+ let rows=x.capacity.map((r,i)=>`<tr><td>${esc(r.area)}</td><td>${esc(r.question)}<button class="why" type="button">لماذا؟</button><div class="help">قيّم 1–5. لا تسجل درجة دون دليل. اكتب الفجوة التي تعطل الأثر، لا كل فرصة تحسين عامة.</div></td>
+ <td><select class="role-team" data-capv2="${i}:score">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.score)?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><textarea class="role-org" data-capv2="${i}:evidence">${esc(r.evidence)}</textarea></td>
+ <td><textarea class="role-team" data-capv2="${i}:strength">${esc(r.strength)}</textarea></td>
+ <td><textarea class="role-team" data-capv2="${i}:gap">${esc(r.gap)}</textarea></td>
+ <td><textarea class="role-team" data-capv2="${i}:impact">${esc(r.impact)}</textarea></td>
+ <td><select class="role-team" data-capv2="${i}:priority">${["","حرجة","عالية","متوسطة","منخفضة"].map(v=>`<option ${v===r.priority?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><input class="role-org" data-capv2="${i}:owner" value="${esc(r.owner)}"></td>
+ <td><textarea class="role-team" data-capv2="${i}:note">${esc(r.note)}</textarea></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>3. تقييم القدرات المؤسسية</h3><p class="muted">مطابقة لورقة أ03_القدرات المؤسسية: المجال، سؤال القياس، الدرجة، الدليل، القوة، الفجوة، الأثر، الأولوية، مالك البيانات والملاحظة.</p></div><span class="badge">أ03</span></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>المجال</th><th>سؤال القياس</th><th>الدرجة 1-5</th><th>الدليل</th><th>نقطة القوة</th><th>الفجوة</th><th>أثر الفجوة على الاستراتيجية</th><th>أولوية المعالجة</th><th>مالك البيانات</th><th>ملاحظة</th></tr></thead><tbody>${rows}</tbody></table></div></div>
+ <div class="autoflow"><b>تكامل آلي:</b> القوة والفجوة المسجلتان هنا تظهران تلقائيًا ضمن الخيارات المحتملة في SWOT.</div>
+ ${gate("أ03",[[x.capacity.filter(r=>r.score).length>=6,"تم تقييم معظم المجالات"],[x.capacity.filter(r=>r.score&&!r.evidence).length===0,"لا توجد درجة بلا دليل"],[x.capacity.some(r=>r.strength),"استخرجت نقاط قوة"],[x.capacity.some(r=>r.gap),"استخرجت فجوات"]])}`;
+};
+
+/* مطابقة أ04 */
+stakeholders=function(){
+ let x=p(),rows=x.stakeholders.map((r,i)=>`<tr><td><input class="role-asked" data-stv2="${i}:name" value="${esc(r.name)}"></td><td><input class="role-org" data-stv2="${i}:type" value="${esc(r.type)}"></td>
+ <td><select class="role-team" data-stv2="${i}:influence">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.influence)?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><select class="role-team" data-stv2="${i}:interest">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.interest)?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><textarea class="role-asked" data-stv2="${i}:expects">${esc(r.expects)}</textarea></td><td><textarea class="role-asked" data-stv2="${i}:need">${esc(r.need)}</textarea></td><td><textarea class="role-team" data-stv2="${i}:offer">${esc(r.offer)}</textarea></td>
+ <td><select class="role-asked" data-stv2="${i}:relationship">${["","قوية","جيدة","متوسطة","ضعيفة","غير قائمة"].map(v=>`<option ${v===r.relationship?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><select class="role-team" data-stv2="${i}:strategy">${["","إدارة لصيقة","إشراك/تعاون","إبقاء راضيًا","إبقاء مطلعًا","متابعة"].map(v=>`<option ${v===r.strategy?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><select class="role-team" data-stv2="${i}:method">${["","مقابلة","ورشة","استبانة","مجموعة تركيز","إحاطة/مراسلة","مراجعة وثائق"].map(v=>`<option ${v===r.method?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><input class="role-org" data-stv2="${i}:owner" value="${esc(r.owner)}"></td><td><input type="date" class="role-team" data-stv2="${i}:date" value="${esc(r.date)}"></td>
+ <td><textarea class="role-team" data-stv2="${i}:use">${esc(r.use)}</textarea></td><td><button class="btn danger" data-del="stakeholders:${i}">حذف</button></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>4. مصفوفة أصحاب المصلحة</h3><p class="muted">مطابقة لورقة أ04، مع القيمة المتبادلة واستراتيجية التعامل وطريقة المشاركة.</p></div><button class="btn primary" id="addStakeholder">+ طرف</button></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>الطرف</th><th>الفئة</th><th>قوة التأثير 1-5</th><th>الاهتمام 1-5</th><th>ماذا يتوقع من الجمعية؟</th><th>ماذا نحتاج منه؟</th><th>ما الذي نقدمه له؟</th><th>وضع العلاقة الحالي</th><th>استراتيجية التعامل</th><th>طريقة المشاركة</th><th>المسؤول</th><th>موعد التواصل</th><th>ما الذي سنستخدم رأيه فيه؟</th><th></th></tr></thead><tbody>${rows||`<tr><td colspan="14" class="empty">أضف الأطراف الرئيسة.</td></tr>`}</tbody></table></div></div>`;
+};
+
+/* مطابقة أ05 */
+pestel=function(){
+ let x=p(),rows=x.pestel.map((r,i)=>`<tr><td><select class="role-team" data-pev2="${i}:dimension">${["","سياسي/تنظيمي","اقتصادي","اجتماعي","تقني","بيئي/مكاني","قانوني"].map(v=>`<option ${v===r.dimension?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><textarea class="role-team" data-pev2="${i}:factor">${esc(r.factor)}</textarea></td><td><input class="role-team" data-pev2="${i}:source" value="${esc(r.source)}"></td><td><input type="date" class="role-team" data-pev2="${i}:sourceDate" value="${esc(r.sourceDate)}"></td>
+ <td><select class="role-team" data-pev2="${i}:type">${["","فرصة","تهديد"].map(v=>`<option ${v===r.type?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><select class="role-team" data-pev2="${i}:likelihood">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.likelihood)?"selected":""}>${v}</option>`).join("")}</select></td><td><select class="role-team" data-pev2="${i}:impact">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.impact)?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><select class="role-team" data-pev2="${i}:horizon">${["","0–12 شهر","1–2 سنة","2–5 سنوات","مستمر"].map(v=>`<option ${v===r.horizon?"selected":""}>${v}</option>`).join("")}</select></td>
+ <td><textarea class="role-team" data-pev2="${i}:affected">${esc(r.affected)}</textarea></td><td><textarea class="role-team" data-pev2="${i}:decision">${esc(r.decision)}</textarea></td><td><textarea class="role-team" data-pev2="${i}:response">${esc(r.response)}</textarea></td>
+ <td><select class="role-team" data-pev2="${i}:confidence">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.confidence)?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-pev2="${i}:note">${esc(r.note)}</textarea></td><td><button class="btn danger" data-del="pestel:${i}">حذف</button></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>5. تحليل PESTEL</h3><p class="muted">مطابقة لأ05: العامل، المصدر وتاريخه، فرصة/تهديد، الاحتمال والتأثير، الأفق، المتأثرون، القرار والاستجابة والثقة.</p></div><button class="btn primary" id="addPestel">+ عامل</button></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>البعد</th><th>العامل/التغير</th><th>الدليل/المصدر</th><th>تاريخ المصدر</th><th>فرصة/تهديد</th><th>احتمال 1-5</th><th>تأثير 1-5</th><th>الأفق الزمني</th><th>من سيتأثر؟</th><th>ما القرار الذي قد يتغير؟</th><th>الاستجابة المحتملة</th><th>الثقة 1-5</th><th>ملاحظة</th><th></th></tr></thead><tbody>${rows||`<tr><td colspan="14" class="empty">أضف العوامل عالية الصلة فقط.</td></tr>`}</tbody></table></div></div>
+ <div class="autoflow"><b>تكامل آلي:</b> الفرص والتهديدات الموثقة هنا تظهر تلقائيًا ضمن بنك SWOT.</div>`;
+};
+
+renders.capacity=capacity;renders.stakeholders=stakeholders;renders.pestel=pestel;
+
+const bindStage_v2a=bindStage;
+bindStage=function(){
+ bindStage_v2a();
+ bindArr("[data-capv2]","capv2",()=>p().capacity);
+ bindArr("[data-stv2]","stv2",()=>p().stakeholders);
+ bindArr("[data-pev2]","pev2",()=>p().pestel);
+};
+render();
+</script>
+
+
+<script>
+function swotDerivedV2(key){
+ const x=p();let a=[];
+ if(key==="strengths")a=x.capacity.filter(r=>r.strength).map(r=>({point:r.strength,evidence:r.evidence,evidenceStrength:r.score||"",impact:"",why:r.impact||"",issue:"",verify:"مستمد من أ03"}));
+ if(key==="weaknesses")a=x.capacity.filter(r=>r.gap).map(r=>({point:r.gap,evidence:r.evidence,evidenceStrength:r.score||"",impact:"",why:r.impact||"",issue:"",verify:"مستمد من أ03"}));
+ if(key==="opportunities")a=x.pestel.filter(r=>r.type==="فرصة").map(r=>({point:r.factor,evidence:r.source,evidenceStrength:r.confidence||"",impact:r.impact||"",why:r.decision||"",issue:"",verify:"مستمد من أ05"}));
+ if(key==="threats")a=x.pestel.filter(r=>r.type==="تهديد").map(r=>({point:r.factor,evidence:r.source,evidenceStrength:r.confidence||"",impact:r.impact||"",why:r.decision||"",issue:"",verify:"مستمد من أ05"}));
+ return a;
+}
+function swotLabelV2(k){return ({strengths:"قوة",weaknesses:"ضعف",opportunities:"فرصة",threats:"تهديد"})[k]}
+function bankPickerV2(k){
+ const used=p().swot[k].map(o=>o.point),derived=swotDerivedV2(k).map(o=>o.point),opts=[...new Set([...derived,...swotBank[k]])].filter(v=>v&&!used.includes(v));
+ return `<select class="input swotPickV2" data-key="${k}"><option value="">اختر من نتائج التحليل أو بنك الخيارات…</option>${opts.map(v=>`<option>${esc(v)}</option>`).join("")}</select>`;
+}
+function swRowsV2(k){
+ return p().swot[k].map((r,i)=>`<tr><td>${swotLabelV2(k)}</td><td><textarea class="role-team" data-sw2="${k}:${i}:point">${esc(r.point)}</textarea></td><td><textarea class="role-auto" data-sw2="${k}:${i}:evidence">${esc(r.evidence)}</textarea></td><td><select class="role-team" data-sw2="${k}:${i}:evidenceStrength">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.evidenceStrength)?"selected":""}>${v}</option>`).join("")}</select></td><td><select class="role-team" data-sw2="${k}:${i}:impact">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.impact)?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-sw2="${k}:${i}:why">${esc(r.why)}</textarea></td><td><input class="role-team" data-sw2="${k}:${i}:issue" value="${esc(r.issue)}"></td><td><select class="role-team" data-sw2="${k}:${i}:verify">${["قيد التحقق","متحقق","مرفوض","مستمد من أ03","مستمد من أ05"].map(v=>`<option ${v===r.verify?"selected":""}>${v}</option>`).join("")}</select></td><td><button class="btn danger" data-swdel2="${k}:${i}">حذف</button></td></tr>`).join("");
+}
+function swOptList(k){return p().swot[k].map(r=>`<option>${esc(r.point)}</option>`).join("")}
+function towsBankFor(t){return swotBank[(t||"").toLowerCase()]||[]}
+
+swot=function(){
+ let x=p(), all=["strengths","weaknesses","opportunities","threats"].map(swRowsV2).join("");
+ let trows=x.swot.tows.map((r,i)=>{
+   let ik=(r.type==="SO"||r.type==="ST")?"strengths":"weaknesses",ek=(r.type==="SO"||r.type==="WO")?"opportunities":"threats";
+   return `<tr><td><select class="role-team" data-towsv2="${i}:type">${["","SO","ST","WO","WT"].map(v=>`<option ${v===r.type?"selected":""}>${v}</option>`).join("")}</select></td>
+   <td><input list="int${i}" class="role-auto" data-towsv2="${i}:internal" value="${esc(r.internal)}"><datalist id="int${i}">${swOptList(ik)}</datalist></td>
+   <td><input list="ext${i}" class="role-auto" data-towsv2="${i}:external" value="${esc(r.external)}"><datalist id="ext${i}">${swOptList(ek)}</datalist></td>
+   <td><textarea class="role-team" data-towsv2="${i}:option">${esc(r.option)}</textarea><select class="input towsBankPick" data-i="${i}"><option value="">اختر صياغة محتملة…</option>${towsBankFor(r.type).map(v=>`<option>${esc(v)}</option>`).join("")}</select></td>
+   <td><textarea class="role-asked" data-towsv2="${i}:do">${esc(r.do)}</textarea></td><td><textarea class="role-asked" data-towsv2="${i}:defer">${esc(r.defer)}</textarea></td><td><textarea class="role-team" data-towsv2="${i}:evidence">${esc(r.evidence)}</textarea></td><td><input class="role-asked" data-towsv2="${i}:owner" value="${esc(r.owner)}"></td><td><select class="role-team" data-towsv2="${i}:move">${["لا","نعم"].map(v=>`<option ${v===r.move?"selected":""}>${v}</option>`).join("")}</select></td><td><button class="btn danger" data-towsdel2="${i}">حذف</button></td></tr>`;
+ }).join("");
+ return `<div class="section-head"><div><h3>6. SWOT وTOWS</h3><p class="muted">اختيارات محتملة واسعة مثل منصة التشخيص، مع تعديل أي بند، وانعكاس آلي من أ03 وأ05.</p></div><span class="badge">أ06</span></div>${legend()}
+ <div class="grid g2">${["strengths","weaknesses","opportunities","threats"].map(k=>`<div class="card"><h3>${({strengths:"نقاط القوة",weaknesses:"نقاط الضعف",opportunities:"الفرص",threats:"التهديدات"})[k]}</h3>${bankPickerV2(k)}<div class="small muted" style="margin-top:8px">يمكن اختيار المقترح ثم تعديل النص والدليل والتصنيف بحرية.</div></div>`).join("")}</div>
+ <div class="card"><div class="section-head"><h3>سجل SWOT</h3><button class="btn ghost" id="addManualSwot">إضافة بند يدوي</button></div><div class="tablewrap"><table class="table"><thead><tr><th>النوع</th><th>النقطة</th><th>الدليل/المصدر</th><th>قوة الدليل</th><th>الأثر</th><th>لماذا جوهرية؟</th><th>مرتبطة بأي قضية؟</th><th>حالة التحقق</th><th></th></tr></thead><tbody>${all||`<tr><td colspan="9" class="empty">اختر من البنوك أعلاه أو أضف يدويًا.</td></tr>`}</tbody></table></div></div>
+ <div class="card"><div class="section-head"><div><h3>مصفوفة استخراج التوجهات TOWS</h3><p class="muted">اختر نقطة داخلية وخارجية، ثم اختر صياغة محتملة أو اكتب/عدّل الخيار الناتج.</p></div><button class="btn primary" id="addTowsV2">+ تقاطع TOWS</button></div><div class="tablewrap"><table class="table"><thead><tr><th>النوع</th><th>نقطة داخلية</th><th>نقطة خارجية</th><th>الخيار الناتج</th><th>ما الذي سنفعله؟</th><th>ما الذي سنمتنع/نؤجله؟</th><th>الدليل</th><th>المالك المقترح</th><th>إلى تقييم البدائل؟</th><th></th></tr></thead><tbody>${trows||`<tr><td colspan="10" class="empty">أضف تقاطعات SO/ST/WO/WT.</td></tr>`}</tbody></table></div></div>`;
+};
+
+/* مطابقة أ07 */
+alternatives=function(){
+ let x=p();x.swot.tows.filter(r=>r.move==="نعم").forEach(t=>{if(t.option&&!x.alternatives.some(a=>a.option===t.option))x.alternatives.push({option:t.option,source:"TOWS "+t.type,impact:"",feasibility:"",resources:"",sustainability:"",risk:"",urgency:"",compliance:"",reason:"",decision:"قيد المراجعة",choiceReason:""})});
+ let rows=x.alternatives.map((r,i)=>{let nums=[r.impact,r.feasibility,r.resources,r.sustainability,r.urgency,r.compliance].map(Number).filter(Boolean),total=nums.reduce((a,b)=>a+b,0)+(r.risk?6-Number(r.risk):0);return `<tr><td><textarea class="role-auto" data-altv2="${i}:option">${esc(r.option)}</textarea></td><td><input class="role-auto" data-altv2="${i}:source" value="${esc(r.source)}"></td>${["impact","feasibility","resources","sustainability","risk","urgency","compliance"].map(k=>`<td><select class="role-team" data-altv2="${i}:${k}">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r[k])?"selected":""}>${v}</option>`).join("")}</select></td>`).join("")}<td class="role-auto"><b>${total||"—"}</b></td><td><textarea class="role-team" data-altv2="${i}:reason">${esc(r.reason)}</textarea></td><td><select class="role-asked" data-altv2="${i}:decision">${["قيد المراجعة","اختيار","استبعاد","تأجيل","اعتماد مشروط"].map(v=>`<option ${v===r.decision?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-asked" data-altv2="${i}:choiceReason">${esc(r.choiceReason)}</textarea></td></tr>`}).join("");
+ return `<div class="section-head"><div><h3>7. تقييم البدائل الاستراتيجية</h3><p class="muted">مطابقة لأ07: الأثر، الجدوى، الموارد، الاستدامة، المخاطر، الاستعجال والتوافق النظامي.</p></div><button class="btn ghost" id="syncAltsV2">تحديث من TOWS</button></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>البديل</th><th>مصدره</th><th>الأثر</th><th>الجدوى</th><th>ملاءمة الموارد</th><th>الاستدامة</th><th>المخاطر</th><th>الاستعجال</th><th>التوافق النظامي</th><th>المجموع</th><th>المبرر</th><th>القرار</th><th>سبب الاستبعاد/الاختيار</th></tr></thead><tbody>${rows||`<tr><td colspan="13" class="empty">انقل التوجهات من TOWS أولًا.</td></tr>`}</tbody></table></div></div>
+ <div class="card"><h3>أسئلة الحسم</h3><div class="callout">ما البديل الأعلى أثرًا ضمن موارد الجمعية ومخاطرها؟</div><div class="callout">ما الذي لن نفعله رغم أنه مفيد؟ ولماذا؟</div><div class="callout">ما الافتراضات التي يقوم عليها البديل المختار؟</div></div>`;
+};
+
+renders.swot=swot;renders.alternatives=alternatives;
+const bindStage_v2b=bindStage;
+bindStage=function(){
+ bindStage_v2b();
+ document.querySelectorAll("[data-sw2]").forEach(el=>el.onchange=()=>{let [k,i,f]=el.dataset.sw2.split(":");p().swot[k][Number(i)][f]=el.value;save()});
+ document.querySelectorAll(".swotPickV2").forEach(s=>s.onchange=()=>{if(!s.value)return;let d=swotDerivedV2(s.dataset.key).find(o=>o.point===s.value);p().swot[s.dataset.key].push(d||{point:s.value,evidence:"",evidenceStrength:"",impact:"",why:"",issue:"",verify:"قيد التحقق"});save();render()});
+ document.querySelectorAll("[data-swdel2]").forEach(b=>b.onclick=()=>{let[k,i]=b.dataset.swdel2.split(":");p().swot[k].splice(Number(i),1);save();render()});
+ document.querySelectorAll("[data-towsv2]").forEach(el=>el.onchange=()=>{let[i,k]=el.dataset.towsv2.split(":");p().swot.tows[Number(i)][k]=el.value;save();render()});
+ document.querySelectorAll(".towsBankPick").forEach(s=>s.onchange=()=>{if(s.value){p().swot.tows[Number(s.dataset.i)].option=s.value;save();render()}});
+ document.querySelectorAll("[data-towsdel2]").forEach(b=>b.onclick=()=>{p().swot.tows.splice(Number(b.dataset.towsdel2),1);save();render()});
+ if(document.getElementById("addTowsV2"))document.getElementById("addTowsV2").onclick=()=>{p().swot.tows.push({type:"SO",internal:"",external:"",option:"",do:"",defer:"",evidence:"",owner:"",move:"لا"});save();render()};
+ if(document.getElementById("addManualSwot"))document.getElementById("addManualSwot").onclick=()=>{let k=prompt("اكتب النوع: strengths / weaknesses / opportunities / threats","strengths");if(!["strengths","weaknesses","opportunities","threats"].includes(k))return;let v=prompt("اكتب النقطة");if(v){p().swot[k].push({point:v,evidence:"",evidenceStrength:"",impact:"",why:"",issue:"",verify:"قيد التحقق"});save();render()}};
+ bindArr("[data-altv2]","altv2",()=>p().alternatives);
+ if(document.getElementById("syncAltsV2"))document.getElementById("syncAltsV2").onclick=()=>{p().swot.tows.filter(r=>r.move==="نعم").forEach(t=>{if(t.option&&!p().alternatives.some(a=>a.option===t.option))p().alternatives.push({option:t.option,source:"TOWS "+t.type,impact:"",feasibility:"",resources:"",sustainability:"",risk:"",urgency:"",compliance:"",reason:"",decision:"قيد المراجعة",choiceReason:""})});save();render()};
+};
+render();
+</script>
+
+
+<script>
+scope=function(){
+ let x=p(),rows=x.scope.readinessRows.map((r,i)=>`<tr><td>${esc(r.item)}</td><td>${esc(r.question)}</td><td><select class="role-asked" data-rdy="${i}:score">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.score)?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-org" data-rdy="${i}:evidence">${esc(r.evidence)}</textarea></td><td><textarea class="role-team" data-rdy="${i}:gap">${esc(r.gap)}</textarea></td><td><textarea class="role-team" data-rdy="${i}:treatment">${esc(r.treatment)}</textarea></td><td><input class="role-org" data-rdy="${i}:owner" value="${esc(r.owner)}"></td><td><input type="date" class="role-team" data-rdy="${i}:date" value="${esc(r.date)}"></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>1. قياس الجاهزية وتثبيت نطاق البناء</h3><p class="muted">مطابقة لأ01: بطاقة نطاق المشروع + مقياس الجاهزية بالدليل وخطة معالجة العوائق.</p></div><span class="badge">أ01</span></div>${legend()}
+ <div class="card"><h3>بطاقة نطاق المشروع</h3><div class="formgrid">
+ ${field("org.region","النطاق الجغرافي",x.org.region,"org")}
+ ${field("org.beneficiaries","الفئات المستفيدة الداخلة في النطاق",x.org.beneficiaries,"org")}
+ ${field("scope.included","البرامج/الخدمات الداخلة",x.scope.included,"asked","textarea")}
+ ${field("scope.excluded","ما الذي لا يدخل في النطاق؟",x.scope.excluded,"asked","textarea")}
+ ${field("org.approver","من يملك اعتماد الاستراتيجية؟",x.org.approver,"org")}
+ ${field("org.dailyLead","من يقود البناء يوميًا؟",x.org.dailyLead,"org")}
+ ${field("org.startYear","بداية الخطة",x.org.startYear,"asked","number")}
+ ${field("org.endYear","نهاية الخطة",x.org.endYear,"asked","number")}
+ </div></div>
+ <div class="card"><h3>مقياس الجاهزية</h3><div class="tablewrap"><table class="table"><thead><tr><th>المقياس</th><th>سؤال القياس</th><th>درجة 1-5</th><th>الدليل/المثال</th><th>الفجوة</th><th>المعالجة</th><th>المالك</th><th>الموعد</th></tr></thead><tbody>${rows}</tbody></table></div></div>`;
+};
+
+beneficiary=function(){
+ let x=p();
+ let segRows=x.beneficiaries.map((r,i)=>`<tr><td><input class="role-asked" data-bfield="${i}:segment" value="${esc(r.segment)}"></td><td><input class="role-org" data-bfield="${i}:size" type="number" value="${esc(r.size)}"></td><td><input class="role-org" data-bfield="${i}:stage" value="${esc(r.stage)}"></td><td><input class="role-org" data-bfield="${i}:location" value="${esc(r.location)}"></td><td><textarea class="role-asked" data-bfield="${i}:needs">${esc(r.needs)}</textarea></td><td><textarea class="role-org" data-bfield="${i}:services">${esc(r.services)}</textarea></td><td><select class="role-asked" data-bfield="${i}:access">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.access)?"selected":""}>${v}</option>`).join("")}</select></td><td><select class="role-team" data-bfield="${i}:priority">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.priority)?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-bfield="${i}:evidence">${esc(r.evidence)}</textarea></td><td><textarea class="role-team" data-bfield="${i}:gap">${esc(r.gap)}</textarea></td></tr>`).join("");
+ let gaps=x.needGap.map((r,i)=>`<tr><td><input class="role-asked" data-ng="${i}:need" value="${esc(r.need)}"></td><td><textarea class="role-org" data-ng="${i}:current">${esc(r.current)}</textarea></td><td><textarea class="role-asked" data-ng="${i}:desired">${esc(r.desired)}</textarea></td><td><select class="role-team" data-ng="${i}:gap">${["","منخفض","متوسط","مرتفع","حرج"].map(v=>`<option ${v===r.gap?"selected":""}>${v}</option>`).join("")}</select></td><td><select class="role-team" data-ng="${i}:severity">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.severity)?"selected":""}>${v}</option>`).join("")}</select></td><td><input class="role-org" data-ng="${i}:affected" value="${esc(r.affected)}"></td><td><textarea class="role-team" data-ng="${i}:quant">${esc(r.quant)}</textarea></td><td><textarea class="role-asked" data-ng="${i}:qual">${esc(r.qual)}</textarea></td><td><select class="role-team" data-ng="${i}:priority">${["","حرجة","عالية","متوسطة","منخفضة"].map(v=>`<option ${v===r.priority?"selected":""}>${v}</option>`).join("")}</select></td><td><button class="btn danger" data-del="needGap:${i}">حذف</button></td></tr>`).join("");
+ let pq=problemQuestions.map((q,i)=>`<tr><td>${q[0]}</td><td>${q[1]}</td><td class="small muted">${q[2]}</td><td><textarea class="role-asked" data-problem="${i}">${esc(x.problemAnswers[i]||"")}</textarea></td><td><textarea class="role-team" data-problem-evidence="${i}">${esc(x.problemAnswers["e"+i]||"")}</textarea></td></tr>`).join("");
+ let bq=x.beneficiarySession.map((r,i)=>`<tr><td>${i+1}</td><td>${esc(r.q)}</td><td class="small muted">${esc(r.follow)}</td><td class="small">${esc(r.seek)}</td><td><textarea class="role-asked" data-bsession="${i}:summary">${esc(r.summary)}</textarea></td><td><textarea class="role-team" data-bsession="${i}:story">${esc(r.story)}</textarea></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>2. المستفيد والقضية</h3><p class="muted">مطابقة لأ02: الشرائح، تحليل الاحتياج والفجوة، شجرة المشكلة، وأسئلة جلسة المستفيد.</p></div><span class="badge">أ02</span></div>${legend()}
+ <div class="card"><div class="section-head"><h3>مصفوفة شرائح المستفيدين</h3><button class="btn ghost" id="addBeneficiary">+ شريحة</button></div><div class="tablewrap"><table class="table"><thead><tr><th>الشريحة</th><th>الحجم</th><th>العمر/المرحلة</th><th>الموقع</th><th>أهم الاحتياجات</th><th>الخدمات الحالية</th><th>سهولة الوصول 1-5</th><th>الأولوية 1-5</th><th>الدليل</th><th>فجوة البيانات</th></tr></thead><tbody>${segRows}</tbody></table></div></div>
+ <div class="card"><div class="section-head"><h3>تحليل الاحتياج والفجوة</h3><button class="btn ghost" id="addNeedGap">+ احتياج/فجوة</button></div><div class="tablewrap"><table class="table"><thead><tr><th>الاحتياج</th><th>الحالة الحالية</th><th>الحالة المطلوبة</th><th>حجم الفجوة</th><th>الشدة 1-5</th><th>عدد المتأثرين</th><th>الدليل الكمي</th><th>الدليل النوعي</th><th>الأولوية</th><th></th></tr></thead><tbody>${gaps||`<tr><td colspan="10" class="empty">أضف الفجوات بعد جمع البيانات وصوت المستفيد.</td></tr>`}</tbody></table></div></div>
+ <div class="card"><h3>شجرة المشكلة – أسئلة التشخيص</h3><div class="tablewrap"><table class="table"><thead><tr><th>العنصر</th><th>السؤال</th><th>المطلوب</th><th>الإجابة/الخلاصة</th><th>الدليل</th></tr></thead><tbody>${pq}</tbody></table></div></div>
+ <div class="card"><h3>أسئلة جلسة المستفيد</h3><div class="tablewrap"><table class="table"><thead><tr><th>م</th><th>السؤال</th><th>سؤال متابعة</th><th>ما الذي نبحث عنه؟</th><th>ملخص الإجابة</th><th>دليل/قصة</th></tr></thead><tbody>${bq}</tbody></table></div></div>`;
+};
+renders.scope=scope;renders.beneficiary=beneficiary;
+const bindStage_v2c=bindStage;
+bindStage=function(){
+ bindStage_v2c();
+ bindArr("[data-rdy]","rdy",()=>p().scope.readinessRows);
+ bindArr("[data-ng]","ng",()=>p().needGap);
+ if(document.getElementById("addNeedGap"))document.getElementById("addNeedGap").onclick=()=>{p().needGap.push({need:"",current:"",desired:"",gap:"",severity:"",affected:"",quant:"",qual:"",priority:""});save();render()};
+};
+render();
+</script>
+
+
+<script>
+/* أ08 */
+theory=function(){
+ let x=p(),rows=x.theory.map((r,i)=>`<tr><td><input class="role-asked" data-thv2="${i}:segment" value="${esc(r.segment)}"></td><td><textarea class="role-auto" data-thv2="${i}:problem">${esc(r.problem)}</textarea></td><td><textarea class="role-auto" data-thv2="${i}:cause">${esc(r.cause)}</textarea></td><td><textarea class="role-asked" data-thv2="${i}:intervention">${esc(r.intervention)}</textarea></td><td><textarea class="role-team" data-thv2="${i}:rationale">${esc(r.rationale)}</textarea></td><td><textarea class="role-team" data-thv2="${i}:outputs">${esc(r.outputs)}</textarea></td><td><textarea class="role-team" data-thv2="${i}:short">${esc(r.short)}</textarea></td><td><textarea class="role-team" data-thv2="${i}:medium">${esc(r.medium)}</textarea></td><td><textarea class="role-team" data-thv2="${i}:impact">${esc(r.impact)}</textarea></td><td><select class="role-team" data-thv2="${i}:scope">${["","ضمن التحكم","ضمن التأثير","خارج النطاق"].map(v=>`<option ${v===r.scope?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-thv2="${i}:assumption">${esc(r.assumption)}</textarea></td><td><textarea class="role-team" data-thv2="${i}:monitor">${esc(r.monitor)}</textarea></td><td><textarea class="role-team" data-thv2="${i}:evidence">${esc(r.evidence)}</textarea></td><td><button class="btn danger" data-del="theory:${i}">حذف</button></td></tr>`).join("");
+ let tests=x.causalityTests.map((r,i)=>`<tr><td>${esc(r.q)}</td><td><textarea class="role-team" data-ctv2="${i}:answer">${esc(r.answer)}</textarea></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>8. نظرية التغيير</h3><p class="muted">مطابقة لأ08: ابدأ بالأثر والنتائج، وافصل بين التحكم والتأثير وخارج النطاق.</p></div><button class="btn primary" id="addTheory">+ مسار أثر</button></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>الشريحة/الفئة</th><th>المشكلة المثبتة</th><th>الأسباب الجذرية</th><th>التدخل المرشح</th><th>لماذا نتوقع أن يعمل؟</th><th>المخرجات</th><th>النتيجة القريبة</th><th>النتيجة المتوسطة</th><th>الأثر المنشود</th><th>التحكم/التأثير/خارج النطاق</th><th>الافتراض</th><th>كيف نراقبه؟</th><th>الدليل/المصدر</th><th></th></tr></thead><tbody>${rows||`<tr><td colspan="14" class="empty">أضف مسار أثر واحدًا على الأقل.</td></tr>`}</tbody></table></div></div>
+ <div class="card"><h3>اختبار السببية</h3><div class="tablewrap"><table class="table"><tbody>${tests}</tbody></table></div></div>`;
+};
+
+/* أ09 */
+identity=function(){
+ let x=p(),it=x.identityTests.map((r,i)=>`<tr><td>${r.item}</td><td><textarea class="role-asked" data-idtv2="${i}:draft">${esc(r.draft)}</textarea></td><td>${esc(r.quality)}</td><td><select class="role-team" data-idtv2="${i}:score">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.score)?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-idtv2="${i}:note">${esc(r.note)}</textarea></td><td><select class="role-asked" data-idtv2="${i}:decision">${["","مسودة","مراجعة","اعتماد","إعادة صياغة"].map(v=>`<option ${v===r.decision?"selected":""}>${v}</option>`).join("")}</select></td></tr>`).join("");
+ let rows=x.issues.map((r,i)=>`<tr><td><textarea class="role-auto" data-isv2="${i}:issue">${esc(r.issue)}</textarea></td><td><textarea class="role-team" data-isv2="${i}:evidence">${esc(r.evidence)}</textarea></td><td><textarea class="role-team" data-isv2="${i}:effect">${esc(r.effect)}</textarea></td>${["urgency","impact","influence"].map(k=>`<td><select class="role-team" data-isv2="${i}:${k}">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r[k])?"selected":""}>${v}</option>`).join("")}</select></td>`).join("")}<td><textarea class="role-asked" data-isv2="${i}:choice">${esc(r.choice)}</textarea></td><td><textarea class="role-asked" data-isv2="${i}:notDo">${esc(r.notDo)}</textarea></td><td><select class="role-team" data-isv2="${i}:priority">${["","حرجة","عالية","متوسطة","منخفضة"].map(v=>`<option ${v===r.priority?"selected":""}>${v}</option>`).join("")}</select></td><td><select class="role-asked" data-isv2="${i}:boardDecision">${["","مسودة","اعتماد","اعتماد مشروط","مرفوض","مؤجل"].map(v=>`<option ${v===r.boardDecision?"selected":""}>${v}</option>`).join("")}</select></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>9. الهوية والقضايا والاختيارات</h3><p class="muted">مطابقة لأ09، ولا تكتب الهوية قبل اجتياز المفاضلات والقضايا.</p></div><button class="btn ghost" id="syncIssuesV2">جلب البدائل المختارة</button></div>${legend()}
+ <div class="card"><h3>اختبار الهوية</h3><div class="tablewrap"><table class="table"><thead><tr><th>العنصر</th><th>المسودة الناتجة من الورشة</th><th>سؤال الجودة</th><th>التقييم 1-5</th><th>ملاحظة</th><th>القرار</th></tr></thead><tbody>${it}</tbody></table></div></div>
+ <div class="card"><h3>القضايا الاستراتيجية</h3><div class="tablewrap"><table class="table"><thead><tr><th>القضية</th><th>الدليل الذي أوجدها</th><th>الأثر على الرسالة/المستفيد</th><th>الاستعجال</th><th>الأثر</th><th>قدرة الجمعية على التأثير</th><th>الاختيار المطلوب</th><th>ما الذي لن نفعله/سنؤجله؟</th><th>الأولوية</th><th>قرار المجلس</th></tr></thead><tbody>${rows||`<tr><td colspan="10" class="empty">جلب البدائل المختارة ثم مناقشتها مع المجلس.</td></tr>`}</tbody></table></div></div>`;
+};
+
+/* أ10 */
+objectives=function(){
+ let x=p(),rows=x.objectives.map((r,i)=>`<tr><td><select class="role-auto" data-obv2="${i}:issue">${["",...x.issues.filter(z=>z.boardDecision&&z.boardDecision!=="مرفوض").map(z=>z.issue)].map(v=>`<option ${v===r.issue?"selected":""}>${esc(v)}</option>`).join("")}</select></td><td><textarea class="role-team" data-obv2="${i}:title">${esc(r.title)}</textarea></td><td><textarea class="role-team" data-obv2="${i}:result">${esc(r.result)}</textarea></td><td><select class="role-team" data-obv2="${i}:within">${["","نعم","جزئيًا","لا"].map(v=>`<option ${v===r.within?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-obv2="${i}:notActivity">${esc(r.notActivity)}</textarea></td><td><textarea class="role-team" data-obv2="${i}:overlap">${esc(r.overlap)}</textarea></td><td><select class="role-team" data-obv2="${i}:horizon">${["","قصير","متوسط","طويل","طوال الخطة"].map(v=>`<option ${v===r.horizon?"selected":""}>${v}</option>`).join("")}</select></td><td><input class="role-asked" data-obv2="${i}:owner" value="${esc(r.owner)}"></td><td><select class="role-team" data-obv2="${i}:quality">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.quality)?"selected":""}>${v}</option>`).join("")}</select></td><td><select class="role-asked" data-obv2="${i}:review">${["مسودة","مراجعة","اعتماد","مرفوض"].map(v=>`<option ${v===r.review?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-obv2="${i}:note">${esc(r.note)}</textarea></td><td><button class="btn ghost reviewObj" data-i="${i}">تحكيم</button></td></tr>`).join("");
+ let links=x.mapLinks.map((r,i)=>`<tr><td><select class="role-auto" data-mlv2="${i}:from">${["",...x.objectives.map(o=>o.title)].map(v=>`<option ${v===r.from?"selected":""}>${esc(v)}</option>`).join("")}</select></td><td><select class="role-auto" data-mlv2="${i}:to">${["",...x.objectives.map(o=>o.title)].map(v=>`<option ${v===r.to?"selected":""}>${esc(v)}</option>`).join("")}</select></td><td><select class="role-team" data-mlv2="${i}:type">${["","يسبق","يدعم","يعتمد على","يساهم في"].map(v=>`<option ${v===r.type?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-mlv2="${i}:why">${esc(r.why)}</textarea></td><td><textarea class="role-team" data-mlv2="${i}:evidence">${esc(r.evidence)}</textarea></td><td><select class="role-team" data-mlv2="${i}:necessary">${["","نعم","لا","يحتاج مراجعة"].map(v=>`<option ${v===r.necessary?"selected":""}>${v}</option>`).join("")}</select></td><td><button class="btn danger" data-mapdelv2="${i}">حذف</button></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>10. صياغة الأهداف والخريطة الاستراتيجية</h3><p class="muted">مطابقة لأ10: الهدف نتيجة استراتيجية، والخريطة تُختبر بعلاقات سببية مفهومة.</p></div><button class="btn primary" id="addObjective">+ هدف</button></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>القضية المعتمدة</th><th>مسودة الهدف</th><th>النتيجة المطلوبة</th><th>داخل قدرة التأثير؟</th><th>كيف نعرف أنه ليس نشاطًا؟</th><th>هل يتداخل مع هدف آخر؟</th><th>الأفق الزمني</th><th>المالك المحتمل</th><th>جودة الصياغة 1-5</th><th>قرار المراجعة</th><th>ملاحظات</th><th></th></tr></thead><tbody>${rows||`<tr><td colspan="12" class="empty">لا تبدأ الأهداف قبل اعتماد القضايا.</td></tr>`}</tbody></table></div></div>
+ <div class="card"><div class="section-head"><h3>اختبار الخريطة</h3><button class="btn ghost" id="addMapLink">+ علاقة</button></div><div class="tablewrap"><table class="table"><thead><tr><th>من الهدف</th><th>إلى الهدف</th><th>نوع العلاقة</th><th>لماذا يسبق/يدعم؟</th><th>الدليل/المنطق</th><th>هل السهم ضروري؟</th><th></th></tr></thead><tbody>${links||`<tr><td colspan="7" class="empty">أضف العلاقات بعد صياغة الأهداف.</td></tr>`}</tbody></table></div></div>`;
+};
+
+renders.theory=theory;renders.identity=identity;renders.objectives=objectives;
+const bindStage_v2d=bindStage;
+bindStage=function(){
+ bindStage_v2d();
+ bindArr("[data-thv2]","thv2",()=>p().theory);
+ bindArr("[data-ctv2]","ctv2",()=>p().causalityTests);
+ bindArr("[data-idtv2]","idtv2",()=>p().identityTests);
+ bindArr("[data-isv2]","isv2",()=>p().issues);
+ bindArr("[data-obv2]","obv2",()=>p().objectives);
+ bindArr("[data-mlv2]","mlv2",()=>p().mapLinks);
+ if(document.getElementById("syncIssuesV2"))document.getElementById("syncIssuesV2").onclick=()=>{p().alternatives.filter(a=>["اختيار","اعتماد مشروط"].includes(a.decision)).forEach(a=>{if(!p().issues.some(i=>i.issue===a.option))p().issues.push({issue:a.option,evidence:a.reason,effect:"",urgency:"",impact:"",influence:"",choice:a.option,notDo:"",priority:"",boardDecision:"مسودة"})});save();render()};
+ if(document.getElementById("addMapLink"))document.getElementById("addMapLink").onclick=()=>{p().mapLinks.push({from:"",to:"",type:"",why:"",evidence:"",necessary:""});save();render()};
+ document.querySelectorAll("[data-mapdelv2]").forEach(b=>b.onclick=()=>{p().mapLinks.splice(Number(b.dataset.mapdelv2),1);save();render()});
+ document.querySelectorAll("[data-idtv2]").forEach(el=>{let prev=el.onchange;el.onchange=()=>{prev&&prev();let i=Number(el.dataset.idtv2.split(":")[0]),r=p().identityTests[i];if(r.item==="الرؤية")p().identity.vision=r.draft;if(r.item==="الرسالة")p().identity.mission=r.draft;if(r.item==="القيم")p().identity.values=r.draft;save()}});
+};
+render();
+</script>
+
+
+<script>
+/* أ11 */
+kpis=function(){
+ let x=p(),goals=x.objectives.filter(o=>o.review&&o.review!=="مرفوض");
+ let rows=x.kpis.map((r,i)=>`<tr><td><select class="role-auto" data-kpiv2="${i}:objective">${["",...goals.map(o=>o.title)].map(v=>`<option ${v===r.objective?"selected":""}>${esc(v)}</option>`).join("")}</select></td><td><textarea class="role-team" data-kpiv2="${i}:name">${esc(r.name)}</textarea></td><td><select class="role-team" data-kpiv2="${i}:type">${["","أثر","نتيجة","مخرج"].map(v=>`<option ${v===r.type?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-kpiv2="${i}:definition">${esc(r.definition)}</textarea></td><td><input class="role-team" data-kpiv2="${i}:formula" value="${esc(r.formula)}"></td><td><input class="role-team" data-kpiv2="${i}:unit" value="${esc(r.unit)}"></td><td><input class="role-org" data-kpiv2="${i}:baseline" value="${esc(r.baseline)}"></td><td><input class="role-org" data-kpiv2="${i}:baselineSource" value="${esc(r.baselineSource)}"></td><td><input class="role-asked" data-kpiv2="${i}:target" value="${esc(r.target)}"></td><td><input class="role-org" data-kpiv2="${i}:source" value="${esc(r.source)}"></td><td><select class="role-team" data-kpiv2="${i}:freq">${["","شهري","ربع سنوي","نصف سنوي","سنوي"].map(v=>`<option ${v===r.freq?"selected":""}>${v}</option>`).join("")}</select></td><td><input class="role-org" data-kpiv2="${i}:owner" value="${esc(r.owner)}"></td><td><input class="role-org" data-kpiv2="${i}:collector" value="${esc(r.collector)}"></td><td><input class="role-org" data-kpiv2="${i}:reviewer" value="${esc(r.reviewer)}"></td><td><input class="role-team" data-kpiv2="${i}:quality" value="${esc(r.quality)}"></td><td><select class="role-asked" data-kpiv2="${i}:decision">${["","مسودة","اعتماد","اعتماد مشروط","مرفوض"].map(v=>`<option ${v===r.decision?"selected":""}>${v}</option>`).join("")}</select></td></tr>`).join("");
+ let tests=x.kpiQualityTests.map((r,i)=>`<tr><td>${esc(r.q)}</td><td><select class="role-team" data-kqtv2="${i}:answer">${["","نعم","لا","جزئيًا"].map(v=>`<option ${v===r.answer?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-kqtv2="${i}:action">${esc(r.action)}</textarea></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>11. قاموس المؤشرات وجودة البيانات</h3><p class="muted">مطابقة لأ11 بالكامل.</p></div><button class="btn primary" id="addKpi">+ مؤشر</button></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>الهدف</th><th>اسم المؤشر</th><th>النوع</th><th>التعريف</th><th>المعادلة</th><th>الوحدة</th><th>خط الأساس</th><th>مصدر خط الأساس</th><th>المستهدف</th><th>مصدر البيانات</th><th>الدورية</th><th>المالك</th><th>جامع البيانات</th><th>المراجع</th><th>اختبار الجودة</th><th>قرار الاعتماد</th></tr></thead><tbody>${rows||`<tr><td colspan="16" class="empty">أضف المؤشرات بعد اعتماد الأهداف.</td></tr>`}</tbody></table></div></div>
+ <div class="card"><h3>اختبار جودة البيانات</h3><div class="tablewrap"><table class="table"><thead><tr><th>الاختبار</th><th>نعم/لا</th><th>الملاحظة/الإجراء</th></tr></thead><tbody>${tests}</tbody></table></div></div>`;
+};
+
+/* أ12 */
+initiatives=function(){
+ let x=p(),goals=x.objectives.filter(o=>o.review&&o.review!=="مرفوض");
+ let rows=x.initiatives.map((r,i)=>`<tr><td><select class="role-auto" data-inv2="${i}:objective">${["",...goals.map(o=>o.title)].map(v=>`<option ${v===r.objective?"selected":""}>${esc(v)}</option>`).join("")}</select></td><td><textarea class="role-team" data-inv2="${i}:name">${esc(r.name)}</textarea></td><td><textarea class="role-team" data-inv2="${i}:problem">${esc(r.problem)}</textarea></td><td><select class="role-team" data-inv2="${i}:existing">${["","قائمة","جديدة","تطوير قائمة"].map(v=>`<option ${v===r.existing?"selected":""}>${v}</option>`).join("")}</select></td>${["impact","feasibility","cost","risk","urgency"].map(k=>`<td><select class="role-team" data-inv2="${i}:${k}">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r[k])?"selected":""}>${v}</option>`).join("")}</select></td>`).join("")}<td><textarea class="role-team" data-inv2="${i}:dependencies">${esc(r.dependencies)}</textarea></td><td><input class="role-asked" data-inv2="${i}:owner" value="${esc(r.owner)}"></td><td><input class="role-asked" data-inv2="${i}:partner" value="${esc(r.partner)}"></td><td><input class="role-auto" data-inv2="${i}:rank" value="${esc(r.rank)}"></td><td><select class="role-asked" data-inv2="${i}:decision">${["مسودة","اعتماد","اعتماد مشروط","تأجيل","مرفوض"].map(v=>`<option ${v===r.decision?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-asked" data-inv2="${i}:reason">${esc(r.reason)}</textarea></td></tr>`).join("");
+ let tests=x.portfolioTests.map((r,i)=>`<tr><td>${esc(r.q)}</td><td><textarea class="role-team" data-ptv2="${i}:answer">${esc(r.answer)}</textarea></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>12. توليد وترتيب المبادرات</h3><p class="muted">مطابقة لأ12، مع اختبار المحفظة لا المبادرة وحدها.</p></div><button class="btn primary" id="addInitiative">+ مبادرة</button></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>الهدف</th><th>المبادرة المرشحة</th><th>المشكلة/النتيجة</th><th>قائمة/جديدة</th><th>الأثر</th><th>الجدوى</th><th>التكلفة</th><th>المخاطر</th><th>الاستعجال</th><th>التبعيات</th><th>المالك</th><th>الشريك</th><th>الترتيب</th><th>القرار</th><th>سبب القرار</th></tr></thead><tbody>${rows||`<tr><td colspan="15" class="empty">أضف المبادرات بعد تثبيت الأهداف والمؤشرات الأساسية.</td></tr>`}</tbody></table></div></div>
+ <div class="card"><h3>اختبار المحفظة</h3><div class="tablewrap"><table class="table"><tbody>${tests}</tbody></table></div></div>`;
+};
+
+/* أ13 */
+roadmap=function(){
+ let x=p(),ins=x.initiatives.filter(i=>i.decision==="اعتماد"||i.decision==="اعتماد مشروط");
+ let rows=x.roadmap.map((r,i)=>`<tr><td><select class="role-auto" data-rmv2="${i}:initiative">${["",...ins.map(z=>z.name)].map(v=>`<option ${v===r.initiative?"selected":""}>${esc(v)}</option>`).join("")}</select></td><td><input class="role-team" data-rmv2="${i}:phase" value="${esc(r.phase)}"></td><td><input class="role-team" data-rmv2="${i}:period" value="${esc(r.period)}"></td><td><input type="date" class="role-team" data-rmv2="${i}:start" value="${esc(r.start)}"></td><td><input type="date" class="role-team" data-rmv2="${i}:end" value="${esc(r.end)}"></td><td><textarea class="role-auto" data-rmv2="${i}:predecessor">${esc(r.predecessor)}</textarea></td><td><textarea class="role-team" data-rmv2="${i}:milestone">${esc(r.milestone)}</textarea></td><td><textarea class="role-team" data-rmv2="${i}:interim">${esc(r.interim)}</textarea></td><td><input class="role-org" data-rmv2="${i}:budget" value="${esc(r.budget)}"></td><td><input class="role-org" data-rmv2="${i}:funding" value="${esc(r.funding)}"></td><td><input class="role-org" data-rmv2="${i}:owner" value="${esc(r.owner)}"></td><td><input class="role-org" data-rmv2="${i}:partner" value="${esc(r.partner)}"></td><td><select class="role-team" data-rmv2="${i}:readiness">${["",1,2,3,4,5].map(v=>`<option ${String(v)===String(r.readiness)?"selected":""}>${v}</option>`).join("")}</select></td><td><select class="role-asked" data-rmv2="${i}:decision">${["","جاهز","اعتماد","اعتماد مشروط","مؤجل"].map(v=>`<option ${v===r.decision?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-rmv2="${i}:timingReason">${esc(r.timingReason)}</textarea></td></tr>`).join("");
+ let y=x.year1Tasks.map((r,i)=>`<tr><td><select class="role-auto" data-y1v2="${i}:initiative">${["",...ins.map(z=>z.name)].map(v=>`<option ${v===r.initiative?"selected":""}>${esc(v)}</option>`).join("")}</select></td><td><textarea class="role-team" data-y1v2="${i}:task">${esc(r.task)}</textarea></td><td><input class="role-org" data-y1v2="${i}:owner" value="${esc(r.owner)}"></td><td><input type="date" class="role-team" data-y1v2="${i}:start" value="${esc(r.start)}"></td><td><input type="date" class="role-team" data-y1v2="${i}:end" value="${esc(r.end)}"></td><td><textarea class="role-team" data-y1v2="${i}:output">${esc(r.output)}</textarea></td><td><input class="role-team" data-y1v2="${i}:indicator" value="${esc(r.indicator)}"></td><td><input class="role-org" data-y1v2="${i}:resource" value="${esc(r.resource)}"></td><td><input class="role-asked" data-y1v2="${i}:approval" value="${esc(r.approval)}"></td><td><select class="role-team" data-y1v2="${i}:status">${["لم يبدأ","جاري","مكتمل","متعثر"].map(v=>`<option ${v===r.status?"selected":""}>${v}</option>`).join("")}</select></td><td><button class="btn danger" data-y1delv2="${i}">حذف</button></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>13. خارطة الطريق والخطة التشغيلية</h3><p class="muted">مطابقة لأ13: التبعيات، المعالم، الموازنة والتمويل، ثم تفصيل السنة الأولى.</p></div><button class="btn ghost" id="syncRoadmapV2">تحديث من المبادرات</button></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>المبادرة</th><th>مرحلة/سنة</th><th>ربع/شهر</th><th>البداية</th><th>النهاية</th><th>ما الذي يجب أن يسبقها؟</th><th>المعلم الرئيس</th><th>النتيجة المرحلية</th><th>الموازنة</th><th>مصدر التمويل</th><th>المالك</th><th>الشريك</th><th>الجاهزية</th><th>حالة القرار</th><th>سبب التوقيت</th></tr></thead><tbody>${rows||`<tr><td colspan="15" class="empty">اعتمد مبادرات أولًا.</td></tr>`}</tbody></table></div></div>
+ <div class="card"><div class="section-head"><h3>السنة الأولى – تفصيل التنفيذ</h3><button class="btn primary" id="addYear1">+ مهمة/حزمة</button></div><div class="tablewrap"><table class="table"><thead><tr><th>المبادرة</th><th>المهمة/الحزمة</th><th>المسؤول</th><th>البداية</th><th>النهاية</th><th>المخرج</th><th>مؤشر الإنجاز</th><th>المورد/الميزانية</th><th>الاعتماد المطلوب</th><th>الحالة</th><th></th></tr></thead><tbody>${y||`<tr><td colspan="11" class="empty">أضف تفاصيل السنة الأولى.</td></tr>`}</tbody></table></div></div>`;
+};
+
+/* أ14 */
+governance=function(){
+ let x=p(),rows=x.raci.map((r,i)=>`<tr><td><input class="role-auto" data-rav2="${i}:item" value="${esc(r.item)}"></td><td><input class="role-asked" data-rav2="${i}:R" value="${esc(r.R)}"></td><td><input class="role-asked" data-rav2="${i}:A" value="${esc(r.A)}"></td><td><input class="role-asked" data-rav2="${i}:C" value="${esc(r.C)}"></td><td><input class="role-asked" data-rav2="${i}:I" value="${esc(r.I)}"></td><td><textarea class="role-asked" data-rav2="${i}:boardOnly">${esc(r.boardOnly)}</textarea></td><td><textarea class="role-asked" data-rav2="${i}:delegated">${esc(r.delegated)}</textarea></td><td><select class="role-team" data-rav2="${i}:cadence">${["","شهري","ربع سنوي","نصف سنوي","سنوي"].map(v=>`<option ${v===r.cadence?"selected":""}>${v}</option>`).join("")}</select></td><td><textarea class="role-team" data-rav2="${i}:escalation">${esc(r.escalation)}</textarea></td><td><textarea class="role-team" data-rav2="${i}:note">${esc(r.note)}</textarea></td><td><button class="btn danger" data-del="raci:${i}">حذف</button></td></tr>`).join("");
+ let pr=x.performanceReview.map((r,i)=>`<tr><td>${esc(r.q)}</td><td><textarea class="role-asked" data-prv2="${i}:answer">${esc(r.answer)}</textarea></td></tr>`).join("");
+ let ll=x.learningLog.map((r,i)=>`<tr><td><textarea class="role-team" data-llv2="${i}:event">${esc(r.event)}</textarea></td><td><textarea class="role-team" data-llv2="${i}:learning">${esc(r.learning)}</textarea></td><td><select class="role-asked" data-llv2="${i}:decision">${["","استمرار","تعديل","توسع","إيقاف"].map(v=>`<option ${v===r.decision?"selected":""}>${v}</option>`).join("")}</select></td><td><input class="role-org" data-llv2="${i}:approver" value="${esc(r.approver)}"></td><td><input type="date" class="role-team" data-llv2="${i}:date" value="${esc(r.date)}"></td><td><input class="role-team" data-llv2="${i}:version" value="${esc(r.version)}"></td><td><button class="btn danger" data-lldelv2="${i}">حذف</button></td></tr>`).join("");
+ return `<div class="section-head"><div><h3>14. RACI وحوكمة الأداء والتعلم</h3><p class="muted">مطابقة لأ14: المسؤوليات، صلاحيات المجلس والإدارة، إيقاع المراجعة، التصعيد، وسجل التعلم.</p></div><button class="btn primary" id="addRaci">+ عنصر RACI</button></div>${legend()}
+ <div class="card"><div class="tablewrap"><table class="table"><thead><tr><th>العنصر/الهدف/المبادرة</th><th>R منفذ</th><th>A مسؤول نهائي</th><th>C مستشار</th><th>I يُبلغ</th><th>قرار لا يملكه إلا المجلس</th><th>قرار تفوضه الإدارة</th><th>إيقاع المتابعة</th><th>حد التصعيد</th><th>ملاحظات</th><th></th></tr></thead><tbody>${rows||`<tr><td colspan="11" class="empty">أضف عناصر الحوكمة.</td></tr>`}</tbody></table></div></div>
+ <div class="card"><h3>نظام مراجعة الأداء</h3><div class="tablewrap"><table class="table"><tbody>${pr}</tbody></table></div></div>
+ <div class="card"><div class="section-head"><h3>سجل التعلم</h3><button class="btn ghost" id="addLearning">+ درس/تغيير</button></div><div class="tablewrap"><table class="table"><thead><tr><th>الدليل/الحدث</th><th>ما تعلمناه</th><th>القرار</th><th>الموافق</th><th>تاريخ النفاذ</th><th>النسخة الجديدة</th><th></th></tr></thead><tbody>${ll||`<tr><td colspan="7" class="empty">يسجل بعد بدء التنفيذ.</td></tr>`}</tbody></table></div></div>`;
+};
+
+renders.kpis=kpis;renders.initiatives=initiatives;renders.roadmap=roadmap;renders.governance=governance;
+const bindStage_v2e=bindStage;
+bindStage=function(){
+ bindStage_v2e();
+ bindArr("[data-kpiv2]","kpiv2",()=>p().kpis);
+ bindArr("[data-kqtv2]","kqtv2",()=>p().kpiQualityTests);
+ bindArr("[data-inv2]","inv2",()=>p().initiatives);
+ bindArr("[data-ptv2]","ptv2",()=>p().portfolioTests);
+ bindArr("[data-rmv2]","rmv2",()=>p().roadmap);
+ bindArr("[data-y1v2]","y1v2",()=>p().year1Tasks);
+ bindArr("[data-rav2]","rav2",()=>p().raci);
+ bindArr("[data-prv2]","prv2",()=>p().performanceReview);
+ bindArr("[data-llv2]","llv2",()=>p().learningLog);
+ if(document.getElementById("syncRoadmapV2"))document.getElementById("syncRoadmapV2").onclick=()=>{p().initiatives.filter(i=>["اعتماد","اعتماد مشروط"].includes(i.decision)).forEach(i=>{if(!p().roadmap.some(r=>r.initiative===i.name))p().roadmap.push({initiative:i.name,phase:"",period:"",start:"",end:"",predecessor:i.dependencies||"",milestone:"",interim:"",budget:"",funding:"",owner:i.owner||"",partner:i.partner||"",readiness:"",decision:"",timingReason:""})});save();render()};
+ if(document.getElementById("addYear1"))document.getElementById("addYear1").onclick=()=>{p().year1Tasks.push({initiative:"",task:"",owner:"",start:"",end:"",output:"",indicator:"",resource:"",approval:"",status:"لم يبدأ"});save();render()};
+ document.querySelectorAll("[data-y1delv2]").forEach(b=>b.onclick=()=>{p().year1Tasks.splice(Number(b.dataset.y1delv2),1);save();render()});
+ if(document.getElementById("addLearning"))document.getElementById("addLearning").onclick=()=>{p().learningLog.push({event:"",learning:"",decision:"",approver:"",date:"",version:""});save();render()};
+ document.querySelectorAll("[data-lldelv2]").forEach(b=>b.onclick=()=>{p().learningLog.splice(Number(b.dataset.lldelv2),1);save();render()});
+};
+render();
+</script>
+
+
+<script>
+/* ===== أثر v2.1 — بنك أفكار PESTEL + مصفوفة SWOT/TOWS تلقائية ===== */
+const pestelBankV21 = {
+ "سياسي/تنظيمي":["تحديثات الأنظمة واللوائح المنظمة للقطاع غير الربحي","متطلبات الحوكمة والامتثال والإفصاح","تنظيمات جمع التبرعات واستقبال التبرعات إلكترونيًا","اشتراطات حماية المستفيد وحقوقه","البرامج الحكومية الداعمة للقطاع غير الربحي","فرص التكامل مع الجهات الحكومية المحلية","التغير في سياسات التمويل والمنح الحكومية","متطلبات التراخيص والتصاريح للبرامج والفعاليات"],
+ "اقتصادي":["ارتفاع تكاليف التشغيل والخدمات","تذبذب القدرة الشرائية للأسر المستفيدة","تغير حجم التبرعات الفردية","اشتداد المنافسة على المنح المؤسسية","فرص المسؤولية الاجتماعية للشركات","توسع منتجات الوقف والاستثمار الاجتماعي","ارتفاع تكلفة استقطاب الكفاءات","فرص التمويل المشترك والتحالفات التمويلية"],
+ "اجتماعي":["تغير احتياجات الأيتام باختلاف المراحل العمرية","ارتفاع توقعات المستفيدين لجودة وسرعة الخدمة","الحساسية تجاه الخصوصية والكرامة في تقديم الخدمة","وجود وصمة اجتماعية لدى بعض الأسر","ارتفاع اهتمام المجتمع بقضايا التمكين لا الإعانة فقط","تزايد فرص التطوع المجتمعي والمهني","تغير أنماط الأسرة والدعم الاجتماعي","الحاجة المتزايدة للدعم النفسي والاجتماعي والتربوي"],
+ "تقني":["توسع المنصات الرقمية للتبرع والخدمات","إمكان استخدام أنظمة إدارة المستفيدين CRM","تطور أدوات تحليل البيانات والذكاء الاصطناعي","ارتفاع أهمية الأمن السيبراني وحماية البيانات","إمكان تقديم بعض الخدمات عن بعد","توسع التعليم والتدريب الإلكتروني","الحاجة إلى تكامل البيانات بين الأنظمة","فرص أتمتة الإجراءات والمتابعة والتقارير"],
+ "بيئي/مكاني":["تباعد بعض المستفيدين جغرافيًا وصعوبة الوصول","الحاجة لخدمات متنقلة أو لامركزية","تأثر بعض الأنشطة بالظروف المناخية والموسمية","اختلاف كثافة الخدمات بين المدن والمراكز","فرص الشراكة مع مرافق مجتمعية قائمة","الحاجة إلى تخطيط مواقع تقديم الخدمة","تأثير النقل والمواصلات على وصول المستفيد","تفاوت البنية التحتية الرقمية بين المستفيدين"],
+ "قانوني":["متطلبات حماية البيانات والخصوصية","الالتزامات التعاقدية مع الموظفين والموردين","اشتراطات الموافقات على استخدام الصور والقصص","الالتزام بالأنظمة المالية والمحاسبية","الاشتراطات النظامية للوقف والاستثمار","متطلبات التوثيق والعقود مع الشركاء","الضوابط النظامية للتطوع","مخاطر المسؤولية القانونية في الخدمات التخصصية"]
+};
+function ensurePestelBankState(){const x=p();x.pestelBankFilters=x.pestelBankFilters||{dimension:'الكل',type:'الكل',q:''};}
+ensurePestelBankState();
+function inferPestelType(text){const threatWords=['مخاطر','ارتفاع','تذبذب','اشتداد','حساسية','صعوبة','تأثر','الالتزامات','الضوابط','ضعف','تغير حجم','وصمة'];return threatWords.some(w=>String(text).includes(w))?'تهديد':'فرصة';}
+function pestelBankModal(){ensurePestelBankState();const f=p().pestelBankFilters;let items=[];Object.entries(pestelBankV21).forEach(([d,arr])=>arr.forEach(text=>items.push({dimension:d,text,type:inferPestelType(text)})));items=items.filter(o=>(f.dimension==='الكل'||o.dimension===f.dimension)&&(f.type==='الكل'||o.type===f.type)&&(!f.q||o.text.includes(f.q)));return `<div class="modal" id="pestelBankModal" style="display:flex"><div class="modalbox" style="max-width:1200px"><div class="section-head"><div><h2>بنك أفكار PESTEL</h2><p class="muted">أمثلة استرشادية: اختر المناسب وعدله وفق واقع الجمعية ومصدر حديث.</p></div><button class="btn ghost" id="closePestelBank">إغلاق</button></div><div class="toolbar"><input class="input" id="pestelBankSearch" placeholder="ابحث في البنك" value="${esc(f.q)}"><select class="input" id="pestelBankDim"><option>الكل</option>${Object.keys(pestelBankV21).map(d=>`<option ${d===f.dimension?'selected':''}>${d}</option>`).join('')}</select><select class="input" id="pestelBankType"><option>الكل</option><option ${f.type==='فرصة'?'selected':''}>فرصة</option><option ${f.type==='تهديد'?'selected':''}>تهديد</option></select></div><div class="grid g2" style="max-height:65vh;overflow:auto">${items.map(o=>`<div class="card" style="margin:0"><div class="small muted">${esc(o.dimension)} · ${esc(o.type)}</div><div style="font-size:1.05rem;margin:8px 0">${esc(o.text)}</div><button class="btn primary pestelBankAdd" data-d="${esc(o.dimension)}" data-t="${esc(o.type)}" data-text="${esc(o.text)}">إضافة</button></div>`).join('')}</div></div></div>`;}
+const pestel_v21_prev=pestel;
+pestel=function(){let out=pestel_v21_prev();out=out.replace('<button class="btn primary" id="addPestel">+ عامل</button>','<div><button class="btn primary" id="addPestel">+ عامل</button> <button class="btn ghost" id="openPestelBank">بنك أفكار PESTEL</button></div>');return out+(window.__showPestelBank?pestelBankModal():'');};
+function autoTowsCandidates(){const x=p();const s=x.swot.strengths.map(r=>r.point).filter(Boolean),w=x.swot.weaknesses.map(r=>r.point).filter(Boolean),o=x.swot.opportunities.map(r=>r.point).filter(Boolean),t=x.swot.threats.map(r=>r.point).filter(Boolean);let arr=[];s.forEach(a=>o.forEach(b=>arr.push({type:'SO',internal:a,external:b,option:`استثمار «${a}» لاقتناص فرصة «${b}»`})));s.forEach(a=>t.forEach(b=>arr.push({type:'ST',internal:a,external:b,option:`توظيف «${a}» لتقليل أثر التهديد «${b}»`})));w.forEach(a=>o.forEach(b=>arr.push({type:'WO',internal:a,external:b,option:`معالجة «${a}» بالاستفادة من فرصة «${b}»`})));w.forEach(a=>t.forEach(b=>arr.push({type:'WT',internal:a,external:b,option:`تقليل «${a}» للحد من التعرض لتهديد «${b}»`})));return arr.slice(0,40);}
+function autoTowsMatrixHtml(){const arr=autoTowsCandidates();return `<div class="card"><div class="section-head"><div><h3>المصفوفة التلقائية المقترحة</h3><p class="muted">تولد المنصة التقاطعات تلقائيًا من SWOT الحالي. اختر فقط العلاقات المنطقية عالية الصلة.</p></div><button class="btn ghost" id="addTopAutoTows">إضافة أعلى المقترحات</button></div><div class="grid g2">${['SO','ST','WO','WT'].map(type=>`<div class="card"><h3>${type}</h3>${arr.filter(r=>r.type===type).slice(0,5).map(r=>`<div class="callout"><b>${esc(r.option)}</b><div class="small muted" style="margin-top:6px">داخلي: ${esc(r.internal)}<br>خارجي: ${esc(r.external)}</div><button class="btn primary autoTowsAdd" data-type="${type}" data-internal="${esc(r.internal)}" data-external="${esc(r.external)}" data-option="${esc(r.option)}" style="margin-top:8px">اعتماد كمقترح</button></div>`).join('')||'<div class="empty">لا توجد نقاط كافية بعد.</div>'}</div>`).join('')}</div></div>`;}
+const swot_v21_prev=swot;
+swot=function(){let out=swot_v21_prev();return out+autoTowsMatrixHtml();};
+const bindStage_v21_prev=bindStage;
+bindStage=function(){bindStage_v21_prev();if(document.getElementById('openPestelBank'))document.getElementById('openPestelBank').onclick=()=>{window.__showPestelBank=true;render()};if(document.getElementById('closePestelBank'))document.getElementById('closePestelBank').onclick=()=>{window.__showPestelBank=false;render()};if(document.getElementById('pestelBankSearch'))document.getElementById('pestelBankSearch').oninput=e=>{p().pestelBankFilters.q=e.target.value;save();window.__showPestelBank=true;render()};if(document.getElementById('pestelBankDim'))document.getElementById('pestelBankDim').onchange=e=>{p().pestelBankFilters.dimension=e.target.value;save();window.__showPestelBank=true;render()};if(document.getElementById('pestelBankType'))document.getElementById('pestelBankType').onchange=e=>{p().pestelBankFilters.type=e.target.value;save();window.__showPestelBank=true;render()};document.querySelectorAll('.pestelBankAdd').forEach(b=>b.onclick=()=>{p().pestel.push({dimension:b.dataset.d,factor:b.dataset.text,source:'',sourceDate:'',type:b.dataset.t,likelihood:'',impact:'',horizon:'',affected:'',decision:'',response:'',confidence:'',note:'اختيار محتمل من بنك PESTEL - يلزم التحقق'});save();window.__showPestelBank=false;render()});document.querySelectorAll('.autoTowsAdd').forEach(b=>b.onclick=()=>{p().swot.tows.push({type:b.dataset.type,internal:b.dataset.internal,external:b.dataset.external,option:b.dataset.option,do:'',defer:'',evidence:'مولد تلقائيًا من SWOT - يلزم تحقق واعتماد',owner:'',move:'لا'});save();render()});if(document.getElementById('addTopAutoTows'))document.getElementById('addTopAutoTows').onclick=()=>{let arr=autoTowsCandidates();['SO','ST','WO','WT'].forEach(type=>{let r=arr.find(z=>z.type===type);if(r&&!p().swot.tows.some(z=>z.type===type&&z.internal===r.internal&&z.external===r.external))p().swot.tows.push({...r,do:'',defer:'',evidence:'مولد تلقائيًا من SWOT - يلزم تحقق واعتماد',owner:'',move:'لا'})});save();render()};};
+render();
+</script>
+
+
+<script>
+/* v2.2 FIX: stage 4 itself now contains visible SWOT/PESTEL banks + automatic TOWS matrix */
+window.__envBank=null;
+const ENV_SWOT_BANK={
+ strengths:["مجلس إدارة متفاعل وسريع الاستجابة للقرارات الأساسية","تناغم جيد بين مجلس الإدارة والإدارة التنفيذية","وضوح الصلاحيات في عدد من القرارات التشغيلية","وجود قيادات تمتلك علاقات مجتمعية ومؤسسية واسعة","ثقافة داخلية داعمة للمبادرة وتحمل المسؤولية","فريق عمل شغوف ومتحمس للتعلم وتحقيق الأثر","مرونة الفريق وقدرته على أداء أدوار متعددة","وجود خبرات متخصصة داخل الفريق في مجال عمل الجمعية","قابلية عالية لدى العاملين للتطوير واستخدام التقنية","وجود شبكة متطوعين نشطة يمكن البناء عليها","وضوح الفئة المستفيدة ووجود حاجة مجتمعية مثبتة","قرب الجمعية من المستفيدين وفهمها للسياق المحلي"],
+ weaknesses:["عدم اكتمال بعض السياسات والإجراءات المؤسسية","تداخل بعض الأدوار والصلاحيات","ضعف توثيق العمليات والمعرفة المؤسسية","محدودية الموارد البشرية المتخصصة","الاعتماد على أفراد محددين في عمليات حرجة","ضعف تكامل الأنظمة والبيانات","محدودية قياس الأثر والنتائج","ضعف تنويع مصادر الدخل","عدم انتظام متابعة مؤشرات الأداء","الحاجة إلى تطوير تجربة المستفيد ورحلة الخدمة","ضعف إدارة المخاطر المؤسسية","محدودية التخطيط للتعاقب والصف الثاني"],
+ opportunities:["نمو اهتمام الجهات المانحة ببرامج التمكين وقياس الأثر","فرص الشراكة مع القطاع الحكومي والخاص","توسع المسؤولية الاجتماعية للشركات","تزايد الحلول الرقمية منخفضة التكلفة للقطاع غير الربحي","فرص التطوع المهني والتخصصي","وجود برامج وطنية داعمة للقطاع غير الربحي","إمكان بناء تحالفات مع جمعيات متخصصة","فرص تطوير الأوقاف والاستثمار الاجتماعي","ارتفاع الاهتمام المجتمعي بتمكين الأيتام والأسر","إمكان التوسع في الخدمات عن بعد"],
+ threats:["اشتداد المنافسة على المنح والتبرعات","ارتفاع تكاليف التشغيل واستقطاب الكفاءات","تغير الاشتراطات التنظيمية والامتثال","مخاطر الأمن السيبراني وحماية بيانات المستفيدين","تذبذب التبرعات الفردية","تغير احتياجات المستفيدين بسرعة","ارتفاع توقعات المستفيدين والشركاء لجودة الخدمة","اعتماد بعض البرامج على ممول واحد","صعوبة الوصول لبعض المستفيدين جغرافيًا","مخاطر السمعة الناتجة عن ضعف الخدمة أو الإفصاح"]
+};
+const ENV_PESTEL_BANK={
+ political:["تحديثات الأنظمة واللوائح المنظمة للقطاع غير الربحي","متطلبات الحوكمة والامتثال والإفصاح","تنظيمات جمع التبرعات","البرامج الحكومية الداعمة للقطاع غير الربحي","فرص التكامل مع الجهات الحكومية المحلية"],
+ economic:["ارتفاع تكاليف التشغيل والخدمات","تغير حجم التبرعات الفردية","اشتداد المنافسة على المنح المؤسسية","فرص المسؤولية الاجتماعية للشركات","فرص الوقف والاستثمار الاجتماعي"],
+ social:["تغير احتياجات الأيتام باختلاف المراحل العمرية","ارتفاع توقعات المستفيدين لجودة وسرعة الخدمة","الحساسية تجاه الخصوصية والكرامة","تزايد فرص التطوع المجتمعي والمهني","الحاجة للدعم النفسي والاجتماعي والتربوي"],
+ technological:["توسع المنصات الرقمية للتبرع والخدمات","إمكان استخدام أنظمة إدارة المستفيدين","تطور أدوات تحليل البيانات والذكاء الاصطناعي","ارتفاع أهمية الأمن السيبراني وحماية البيانات","فرص أتمتة الإجراءات والمتابعة والتقارير"],
+ environmental:["تباعد بعض المستفيدين جغرافيًا وصعوبة الوصول","الحاجة لخدمات متنقلة أو لامركزية","تأثر بعض الأنشطة بالظروف المناخية والموسمية","فرص الشراكة مع مرافق مجتمعية قائمة","تأثير النقل والمواصلات على وصول المستفيد"],
+ legal:["متطلبات حماية البيانات والخصوصية","الالتزامات التعاقدية مع الموظفين والموردين","اشتراطات الموافقات على استخدام الصور والقصص","الالتزام بالأنظمة المالية والمحاسبية","الضوابط النظامية للتطوع"]
+};
+const ENV_LABELS={strengths:"نقاط القوة",weaknesses:"نقاط الضعف",opportunities:"الفرص",threats:"التهديدات",political:"السياسي والتنظيمي",economic:"الاقتصادي",social:"الاجتماعي",technological:"التقني",environmental:"البيئي والمكاني",legal:"القانوني"};
+function envEsc(s){return escapeHtml(String(s||''))}
+function envBankModal(){
+ let b=window.__envBank;if(!b)return '';
+ let isSwot=['strengths','weaknesses','opportunities','threats'].includes(b), arr=isSwot?ENV_SWOT_BANK[b]:ENV_PESTEL_BANK[b];
+ return `<div class="modal" style="display:flex"><div class="modalbox" style="max-width:1150px"><div class="section-title"><div><h3>بنك أفكار — ${ENV_LABELS[b]}</h3><p>اختر ما يلائم واقع الجمعية فقط؛ ويمكنك تعديل النص بعد الإضافة.</p></div><button class="btn ghost" id="envCloseBank">إغلاق</button></div><input class="input" id="envBankSearch" placeholder="ابحث في الأفكار…"><div id="envBankItems" class="grid two" style="max-height:62vh;overflow:auto;margin-top:14px">${arr.map((v,i)=>`<div class="card env-bank-card" data-search="${envEsc(v)}"><p>${envEsc(v)}</p><button class="btn primary envBankAdd" data-bank="${b}" data-i="${i}">إضافة</button></div>`).join('')}</div></div></div>`;
+}
+function envTows(){
+ const e=currentProject().environment,S=e.strengths.filter(Boolean),W=e.weaknesses.filter(Boolean),O=e.opportunities.filter(Boolean),T=e.threats.filter(Boolean);
+ const make=(a,b,type,verb)=>{let z=[];a.slice(0,4).forEach(x=>b.slice(0,4).forEach(y=>z.push({type,x,y,text:`${verb} «${x}» مع «${y}»`})));return z.slice(0,5)};
+ return {SO:make(S,O,'SO','استثمار'),ST:make(S,T,'ST','توظيف'),WO:make(W,O,'WO','معالجة'),WT:make(W,T,'WT','تقليل')};
+}
+function envMatrixHtml(){let m=envTows();return `<div class="card" style="margin-top:18px"><div class="section-title"><div><h3>مصفوفة TOWS التلقائية</h3><p>تتحدث تلقائيًا من عناصر SWOT المدخلة. الصياغات مقترحات أولية قابلة للتعديل والاعتماد.</p></div><span class="badge">تلقائي</span></div><div class="grid two">${Object.entries(m).map(([k,arr])=>`<div class="card"><h3>${k} — ${{SO:'قوة + فرصة',ST:'قوة + تهديد',WO:'ضعف + فرصة',WT:'ضعف + تهديد'}[k]}</h3>${arr.length?arr.map((r,i)=>`<div class="callout"><b>${envEsc(r.text)}</b><div class="small muted" style="margin-top:6px">داخلي: ${envEsc(r.x)}<br>خارجي: ${envEsc(r.y)}</div></div>`).join(''):'<div class="empty">أدخل عناصر SWOT ليتم التوليد تلقائيًا.</div>'}</div>`).join('')}</div></div>`}
+function envSwotCard(key,p){return `<div class="card"><div class="card-header"><h3>${ENV_LABELS[key]}</h3><div><button class="btn ghost envOpenBank" data-bank="${key}">بنك الأفكار</button> <button class="btn primary add-array-item" data-path="environment.${key}">إضافة يدويًا</button></div></div><div class="list-stack">${p.environment[key].map((v,i)=>`<div class="list-item"><textarea class="input env-array-edit" data-key="${key}" data-i="${i}">${envEsc(v)}</textarea><button class="icon-btn delete-item" data-type="array" data-path="environment.${key}" data-index="${i}">×</button></div>`).join('')||'<div class="empty">لا توجد عناصر بعد — استخدم بنك الأفكار أو أضف يدويًا.</div>'}</div></div>`}
+function envPestelCard(key,p){return `<div class="field"><div class="card-header"><label>${ENV_LABELS[key]}</label><button class="btn ghost envOpenBank" data-bank="${key}">بنك الأفكار</button></div><textarea class="input" data-field="environment.pestel.${key}">${envEsc(p.environment.pestel[key])}</textarea></div>`}
+renders.environment=p=>`<div class="section-title"><div><h3>التحليل الاستراتيجي</h3><p>تحليل البيئة الداخلية والخارجية وتحويل البيانات إلى دلالات استراتيجية.</p></div><span class="badge">SWOT + PESTEL + TOWS</span></div>
+<div class="callout"><b>طريقة العمل:</b> استخدم نتائج التشخيص أولًا، ثم بنك SWOT وPESTEL كأمثلة استرشادية، وعدّل كل بند وفق واقع الجمعية ودليله.</div>
+<div class="grid two">${['strengths','weaknesses','opportunities','threats'].map(k=>envSwotCard(k,p)).join('')}</div>
+<div class="card" style="margin-top:18px"><div class="section-title"><div><h3>تحليل PESTEL</h3><p>لكل بُعد بنك أفكار مستقل، مع بقاء الحقل مفتوحًا للتعديل والإضافة.</p></div><span class="badge">بنك أفكار</span></div><div class="form-grid">${['political','economic','social','technological','environmental','legal'].map(k=>envPestelCard(k,p)).join('')}</div></div>
+${envMatrixHtml()}${envBankModal()}<div class="stage-actions"><button class="btn ghost" data-go="diagnosis">السابق</button><button class="btn primary" data-go="stakeholders">التالي: أصحاب المصلحة</button></div>`;
+const bindStage_v22=bindStage;
+bindStage=function(){
+ bindStage_v22();
+ document.querySelectorAll('.envOpenBank').forEach(b=>b.onclick=()=>{window.__envBank=b.dataset.bank;render()});
+ const c=document.getElementById('envCloseBank');if(c)c.onclick=()=>{window.__envBank=null;render()};
+ const q=document.getElementById('envBankSearch');if(q)q.oninput=()=>document.querySelectorAll('.env-bank-card').forEach(c=>c.style.display=c.dataset.search.includes(q.value)?'':'none');
+ document.querySelectorAll('.envBankAdd').forEach(b=>b.onclick=()=>{let k=b.dataset.bank,i=Number(b.dataset.i),pr=currentProject();if(['strengths','weaknesses','opportunities','threats'].includes(k)){let v=ENV_SWOT_BANK[k][i];if(!pr.environment[k].includes(v))pr.environment[k].push(v)}else{let v=ENV_PESTEL_BANK[k][i],old=pr.environment.pestel[k]||'';pr.environment.pestel[k]=old?old+'\n• '+v:'• '+v}save();window.__envBank=null;render()});
+ document.querySelectorAll('.env-array-edit').forEach(el=>el.onchange=()=>{currentProject().environment[el.dataset.key][Number(el.dataset.i)]=el.value;save()});
+};
+render();
+</script>
+
+<script>
+/* === v2.3 FIXED FOR ACTUAL APP ARCHITECTURE (views/getPlan/bindDynamic) === */
+(function(){
+  const SWOT_BANK_FIX={
+    strengths:[
+      'مجلس إدارة متفاعل وسريع الاستجابة للقرارات الأساسية','تناغم جيد بين مجلس الإدارة والإدارة التنفيذية','وضوح الصلاحيات في عدد من القرارات التشغيلية','وجود قيادات تمتلك علاقات مجتمعية ومؤسسية واسعة','ثقافة داخلية داعمة للمبادرة وتحمل المسؤولية','فريق عمل شغوف ومتحمس للتعلم وتحقيق الأثر','مرونة الفريق وقدرته على أداء أدوار متعددة','وجود خبرات متخصصة داخل الفريق في مجال عمل الجمعية','قابلية عالية لدى العاملين للتطوير واستخدام التقنية','وجود شبكة متطوعين نشطة يمكن البناء عليها','وضوح الفئة المستفيدة ووجود حاجة مجتمعية مثبتة','قرب الجمعية من المستفيدين وفهمها للسياق المحلي','وجود برامج قائمة يمكن تطويرها وقياس أثرها','قدرة الجمعية على التحرك بسرعة لكونها ناشئة','وجود بيانات أولية عن الأسر والأيتام','وجود علاقات أولية مع داعمين وشركاء','وجود طموح واضح للانتقال من الرعاية إلى التمكين','قابلية بناء رحلة مستفيد متكاملة من الصفر','وجود دعم من مشروع تمكين وخبرات خارجية','إمكان تتبع أثر عدد مستفيدين محدود نسبيًا بدقة'
+    ],
+    weaknesses:[
+      'عدم اكتمال بعض السياسات والإجراءات المؤسسية','تداخل بعض الأدوار والصلاحيات','ضعف توثيق العمليات والمعرفة المؤسسية','محدودية الموارد البشرية المتخصصة','الاعتماد على أفراد محددين في عمليات حرجة','ضعف تكامل الأنظمة والبيانات','محدودية قياس الأثر والنتائج','ضعف تنويع مصادر الدخل','عدم انتظام متابعة مؤشرات الأداء','الحاجة إلى تطوير تجربة المستفيد ورحلة الخدمة','ضعف إدارة المخاطر المؤسسية','محدودية التخطيط للتعاقب والصف الثاني','غياب استراتيجية مكتملة ومعتمدة','ضعف الإيرادات غير المقيدة','عدم اكتمال تصنيف المستفيدين حسب الاحتياج','ضعف الربط بين البرامج والنتائج القابلة للقياس','ضعف إدارة العلاقة مع الشركاء وقياس العائد','عدم وجود نظام متابعة متكامل للمستفيد','ضعف توثيق الدروس والتعلم المؤسسي','محدودية القدرة على التوسع دون شراكات'
+    ],
+    opportunities:[
+      'نمو اهتمام الجهات المانحة ببرامج التمكين وقياس الأثر','فرص الشراكة مع القطاع الحكومي والخاص','توسع المسؤولية الاجتماعية للشركات','تزايد الحلول الرقمية منخفضة التكلفة للقطاع غير الربحي','فرص التطوع المهني والتخصصي','وجود برامج وطنية داعمة للقطاع غير الربحي','إمكان بناء تحالفات مع جمعيات متخصصة','فرص تطوير الأوقاف والاستثمار الاجتماعي','ارتفاع الاهتمام المجتمعي بتمكين الأيتام والأسر','إمكان التوسع في الخدمات عن بعد','فرص الشراكة مع المدارس والجامعات','إمكان بناء مسارات تدريب وتوظيف للشباب','توسع قنوات التبرع الرقمية','إمكان بناء متبرعين متكررين','توفر منصات وطنية للتطوع','إمكان استخدام الذكاء الاصطناعي وتحليل البيانات','فرص بناء منتجات تمويل قائمة على النتائج','إمكان التكامل مع خدمات صحية ونفسية واجتماعية','فرص الاستفادة من خبراء متطوعين','توجه المانحين نحو تمويل الأثر لا الأنشطة فقط'
+    ],
+    threats:[
+      'اشتداد المنافسة على المنح والتبرعات','ارتفاع تكاليف التشغيل واستقطاب الكفاءات','تغير الاشتراطات التنظيمية والامتثال','مخاطر الأمن السيبراني وحماية بيانات المستفيدين','تذبذب التبرعات الفردية','تغير احتياجات المستفيدين بسرعة','ارتفاع توقعات المستفيدين والشركاء لجودة الخدمة','اعتماد بعض البرامج على ممول واحد','صعوبة الوصول لبعض المستفيدين جغرافيًا','مخاطر السمعة الناتجة عن ضعف الخدمة أو الإفصاح','التوسع في البرامج قبل توفر تمويل مستدام','ازدواجية الخدمات مع جهات أخرى','ضعف استبقاء المتطوعين','الاعتماد على أفراد محددين في العلاقات والتمويل','ضغط المجتمع لزيادة الأعداد على حساب عمق الأثر','خطر استخدام بيانات أو قصص المستفيدين بصورة غير مناسبة','تغير أولويات المانحين','نقص الكفاءات المتخصصة في الجمعيات الصغيرة','ضعف جاهزية بعض المستفيدين لمسارات التمكين','خطر اتخاذ قرارات اعتمادًا على بيانات ناقصة'
+    ]
+  };
+  const PESTEL_BANK_FIX={
+    political:['تحديثات الأنظمة واللوائح المنظمة للقطاع غير الربحي','متطلبات الحوكمة والامتثال والإفصاح','تنظيمات جمع التبرعات واستقبال التبرعات إلكترونيًا','البرامج الحكومية الداعمة للقطاع غير الربحي','فرص التكامل مع الجهات الحكومية المحلية','تغير أولويات الدعم والمنح الحكومية','متطلبات حماية المستفيد وحقوقه','اشتراطات التراخيص والتصاريح للبرامج والفعاليات'],
+    economic:['ارتفاع تكاليف التشغيل والخدمات','تذبذب القدرة الشرائية للأسر المستفيدة','تغير حجم التبرعات الفردية','اشتداد المنافسة على المنح المؤسسية','فرص المسؤولية الاجتماعية للشركات','فرص الوقف والاستثمار الاجتماعي','ارتفاع تكلفة استقطاب الكفاءات','فرص التمويل المشترك والتحالفات التمويلية'],
+    social:['تغير احتياجات الأيتام باختلاف المراحل العمرية','ارتفاع توقعات المستفيدين لجودة وسرعة الخدمة','الحساسية تجاه الخصوصية والكرامة','وجود وصمة اجتماعية لدى بعض الأسر','ارتفاع الاهتمام المجتمعي بالتمكين لا الإعانة فقط','تزايد فرص التطوع المجتمعي والمهني','تغير أنماط الأسرة والدعم الاجتماعي','الحاجة المتزايدة للدعم النفسي والاجتماعي والتربوي'],
+    technological:['توسع المنصات الرقمية للتبرع والخدمات','إمكان استخدام أنظمة إدارة المستفيدين CRM','تطور أدوات تحليل البيانات والذكاء الاصطناعي','ارتفاع أهمية الأمن السيبراني وحماية البيانات','إمكان تقديم بعض الخدمات عن بعد','توسع التعليم والتدريب الإلكتروني','الحاجة إلى تكامل البيانات بين الأنظمة','فرص أتمتة الإجراءات والمتابعة والتقارير'],
+    environmental:['تباعد بعض المستفيدين جغرافيًا وصعوبة الوصول','الحاجة لخدمات متنقلة أو لامركزية','تأثر بعض الأنشطة بالظروف المناخية والموسمية','اختلاف كثافة الخدمات بين المدن والمراكز','فرص الشراكة مع مرافق مجتمعية قائمة','الحاجة إلى تخطيط مواقع تقديم الخدمة','تأثير النقل والمواصلات على وصول المستفيد','تفاوت البنية التحتية الرقمية بين المستفيدين'],
+    legal:['متطلبات حماية البيانات والخصوصية','الالتزامات التعاقدية مع الموظفين والموردين','اشتراطات الموافقات على استخدام الصور والقصص','الالتزام بالأنظمة المالية والمحاسبية','الاشتراطات النظامية للوقف والاستثمار','متطلبات التوثيق والعقود مع الشركاء','الضوابط النظامية للتطوع','مخاطر المسؤولية القانونية في الخدمات التخصصية']
+  };
+  const LAB={strengths:'نقاط القوة',weaknesses:'نقاط الضعف',opportunities:'الفرص',threats:'التهديدات',political:'السياسي والتنظيمي',economic:'الاقتصادي',social:'الاجتماعي',technological:'التقني',environmental:'البيئي والمكاني',legal:'القانوني'};
+  function ensureEnv(p){
+    p.environment=p.environment||{strengths:[],weaknesses:[],opportunities:[],threats:[],pestel:{}};
+    ['strengths','weaknesses','opportunities','threats'].forEach(k=>p.environment[k]=Array.isArray(p.environment[k])?p.environment[k]:[]);
+    p.environment.pestel=p.environment.pestel||{};
+    ['political','economic','social','technological','environmental','legal'].forEach(k=>p.environment.pestel[k]=p.environment.pestel[k]||'');
+    p.environment.tows=p.environment.tows||[];
+  }
+  function esc2(s=''){return escapeHtml(String(s));}
+  function swotCard(k,p){
+    const list=p.environment[k]||[];
+    return `<div class="card"><div class="card-header"><h3>${LAB[k]}</h3><div><button class="btn ghost env-bank-btn" data-bank="${k}">بنك الأفكار</button> <button class="btn primary env-manual-btn" data-bank="${k}">إضافة يدويًا</button></div></div><div class="list-stack">${list.map((v,i)=>`<div class="list-item"><textarea class="input env-swot-edit" data-key="${k}" data-index="${i}">${esc2(v)}</textarea><button class="icon-btn env-swot-del" data-key="${k}" data-index="${i}">×</button></div>`).join('')||'<div class="empty">لا توجد عناصر بعد — استخدم بنك الأفكار أو أضف يدويًا.</div>'}</div></div>`;
+  }
+  function pestelCard(k,p){
+    return `<div class="field"><div class="card-header"><label>${LAB[k]}</label><button class="btn ghost env-bank-btn" data-bank="${k}">بنك الأفكار</button></div><textarea class="input env-pestel-edit" data-key="${k}" rows="5">${esc2(p.environment.pestel[k])}</textarea></div>`;
+  }
+  function matrix(p){
+    const E=p.environment,S=E.strengths.filter(Boolean).slice(0,6),W=E.weaknesses.filter(Boolean).slice(0,6),O=E.opportunities.filter(Boolean).slice(0,6),T=E.threats.filter(Boolean).slice(0,6);
+    const build=(a,b,type,verb)=>{const out=[];a.forEach(x=>b.forEach(y=>out.push({type,x,y,text:`${verb} «${x}» مع «${y}»`})));return out.slice(0,8)};
+    return {SO:build(S,O,'SO','استثمار'),ST:build(S,T,'ST','توظيف'),WO:build(W,O,'WO','معالجة'),WT:build(W,T,'WT','تقليل')};
+  }
+  function matrixHtml(p){
+    const M=matrix(p),names={SO:'قوة + فرصة',ST:'قوة + تهديد',WO:'ضعف + فرصة',WT:'ضعف + تهديد'};
+    return `<div class="card" style="margin-top:18px"><div class="section-title"><div><h3>مصفوفة استخراج التوجهات TOWS — تلقائية</h3><p>تتولد مباشرة من عناصر SWOT الحالية. اختر فقط العلاقة المنطقية، ثم عدّل صياغتها قبل الاعتماد.</p></div><span class="badge">تلقائي</span></div><div class="grid two">${Object.entries(M).map(([type,arr])=>`<div class="card"><h3>${type} — ${names[type]}</h3>${arr.length?arr.map((r,i)=>`<div class="callout"><b>${esc2(r.text)}</b><div class="small muted" style="margin-top:6px">داخلي: ${esc2(r.x)}<br>خارجي: ${esc2(r.y)}</div><button class="btn ghost env-tows-accept" data-type="${type}" data-x="${esc2(r.x)}" data-y="${esc2(r.y)}" data-text="${esc2(r.text)}" style="margin-top:8px">إضافة للتوجهات</button></div>`).join(''):'<div class="empty">أدخل عناصر SWOT ليتم التوليد تلقائيًا.</div>'}</div>`).join('')}</div></div>`;
+  }
+  function acceptedTowsHtml(p){
+    const list=p.environment.tows||[];
+    return `<div class="card" style="margin-top:18px"><div class="section-title"><div><h3>التوجهات المختارة من TOWS</h3><p>يمكن تعديل الصياغة بالكامل قبل نقلها للمفاضلة والقضايا الاستراتيجية.</p></div><span class="badge">${list.length}</span></div><div class="list-stack">${list.map((r,i)=>`<div class="list-item"><span class="badge">${esc2(r.type)}</span><div class="grow"><textarea class="input env-tows-edit" data-index="${i}">${esc2(r.text)}</textarea><small>${esc2(r.internal)} × ${esc2(r.external)}</small></div><button class="icon-btn env-tows-del" data-index="${i}">×</button></div>`).join('')||'<div class="empty">لم يتم اختيار توجهات بعد.</div>'}</div></div>`;
+  }
+  function openBank(k){
+    const arr=(SWOT_BANK_FIX[k]||PESTEL_BANK_FIX[k]||[]);
+    openModal(`بنك أفكار — ${LAB[k]}`,`<div class="field"><label>بحث</label><input id="bankSearchFix" class="input" placeholder="ابحث في البنك..."></div><div id="bankListFix" class="grid two" style="max-height:58vh;overflow:auto;margin-top:12px">${arr.map((v,i)=>`<div class="card bank-fix-item" data-text="${esc2(v)}"><p>${esc2(v)}</p><button class="btn primary bank-fix-add" data-key="${k}" data-index="${i}">إضافة</button></div>`).join('')}</div>`,null);
+    const search=document.getElementById('bankSearchFix');
+    if(search) search.oninput=()=>document.querySelectorAll('.bank-fix-item').forEach(c=>c.style.display=c.dataset.text.includes(search.value)?'':'none');
+    document.querySelectorAll('.bank-fix-add').forEach(b=>b.onclick=()=>{
+      const p=getPlan(),key=b.dataset.key,val=(SWOT_BANK_FIX[key]||PESTEL_BANK_FIX[key])[Number(b.dataset.index)];ensureEnv(p);
+      if(SWOT_BANK_FIX[key]){if(!p.environment[key].includes(val))p.environment[key].push(val)}
+      else {const old=p.environment.pestel[key]||'';p.environment.pestel[key]=old?old+'\n• '+val:'• '+val}
+      saveState();document.getElementById('modal').close();render();
+    });
+  }
+  views.environment=function(p){
+    ensureEnv(p);
+    return `<div class="section-title"><div><h3>التحليل الاستراتيجي</h3><p>تحليل البيئة الداخلية والخارجية وتحويل البيانات إلى دلالات استراتيجية.</p></div><span class="badge">SWOT + PESTEL + TOWS</span></div>
+    <div class="callout"><b>طريقة العمل:</b> استخدم نتائج التشخيص المؤسسي وصوت المستفيد أولًا، ثم استخدم بنك الأفكار للمساعدة فقط، وعدّل كل عنصر وفق واقع الجمعية ودليله.</div>
+    <div class="grid two">${['strengths','weaknesses','opportunities','threats'].map(k=>swotCard(k,p)).join('')}</div>
+    <div class="card" style="margin-top:18px"><div class="section-title"><div><h3>تحليل PESTEL</h3><p>استخدم بنك الأفكار لكل بُعد، ثم عدّل النص وأضف ما يخص واقع الجمعية فقط.</p></div><span class="badge">بنك أفكار PESTEL</span></div><div class="form-grid">${['political','economic','social','technological','environmental','legal'].map(k=>pestelCard(k,p)).join('')}</div></div>
+    ${matrixHtml(p)}${acceptedTowsHtml(p)}
+    <div class="stage-actions"><button class="btn ghost" data-go="diagnosis">السابق</button><button class="btn primary" data-go="stakeholders">التالي: أصحاب المصلحة</button></div>`;
+  };
+  const oldBindDynamicFix=bindDynamic;
+  bindDynamic=function(){
+    oldBindDynamicFix();
+    document.querySelectorAll('.env-bank-btn').forEach(b=>b.onclick=()=>openBank(b.dataset.bank));
+    document.querySelectorAll('.env-manual-btn').forEach(b=>b.onclick=()=>{
+      const v=prompt(`أضف ${LAB[b.dataset.bank]}:`);if(v){const p=getPlan();ensureEnv(p);p.environment[b.dataset.bank].push(v);saveState();render()}
+    });
+    document.querySelectorAll('.env-swot-edit').forEach(el=>el.oninput=()=>{const p=getPlan();ensureEnv(p);p.environment[el.dataset.key][Number(el.dataset.index)]=el.value;saveState();renderShell()});
+    document.querySelectorAll('.env-swot-del').forEach(b=>b.onclick=()=>{const p=getPlan();ensureEnv(p);p.environment[b.dataset.key].splice(Number(b.dataset.index),1);saveState();render()});
+    document.querySelectorAll('.env-pestel-edit').forEach(el=>el.oninput=()=>{const p=getPlan();ensureEnv(p);p.environment.pestel[el.dataset.key]=el.value;saveState();renderShell()});
+    document.querySelectorAll('.env-tows-accept').forEach(b=>b.onclick=()=>{const p=getPlan();ensureEnv(p);p.environment.tows.push({type:b.dataset.type,internal:b.dataset.x,external:b.dataset.y,text:b.dataset.text});saveState();render()});
+    document.querySelectorAll('.env-tows-edit').forEach(el=>el.oninput=()=>{const p=getPlan();ensureEnv(p);p.environment.tows[Number(el.dataset.index)].text=el.value;saveState()});
+    document.querySelectorAll('.env-tows-del').forEach(b=>b.onclick=()=>{const p=getPlan();ensureEnv(p);p.environment.tows.splice(Number(b.dataset.index),1);saveState();render()});
+  };
+  const pp=getPlan();ensureEnv(pp);saveState();render();
+})();
+
+</script>
+
+<script>
+/* ===== v2.4: بنك الأسئلة والجلسات التشخيصية ===== */
+const guidedBanks={
+ stakeholders:[
+  ["ما أهم ما تتوقعونه من الجمعية خلال فترة الخطة القادمة؟","التوقعات","مجلس الإدارة|الإدارة التنفيذية|الموظفون|المستفيدون والأسر|الشركاء|المانحون"],
+  ["ما أهم احتياج أو مشكلة ترون أن الجمعية ينبغي أن تعطيها أولوية؟","الاحتياجات والقضايا","الجميع"],
+  ["ما أكثر ما تقدّرونه في أداء الجمعية حاليًا ويجب المحافظة عليه؟","نقاط القوة","الجميع"],
+  ["ما أكثر ما يحتاج إلى تحسين في تجربة التعامل مع الجمعية؟","الفجوات","المستفيدون والأسر|الشركاء|المانحون|الموظفون"],
+  ["ما القرار أو التغيير الذي لو حدث سيصنع أكبر فرق للمستفيدين؟","الأولويات","الجميع"],
+  ["ما الذي قد يمنع الجمعية من تحقيق رسالتها خلال السنوات القادمة؟","المخاطر والقضايا","مجلس الإدارة|الإدارة التنفيذية|الموظفون|الشركاء"],
+  ["ما الفرص المتاحة التي ترى أن الجمعية لا تستفيد منها بما يكفي؟","الفرص","مجلس الإدارة|الإدارة التنفيذية|الشركاء|المانحون"],
+  ["كيف تصفون جودة العلاقة الحالية مع الجمعية؟ وما الذي يقويها؟","العلاقة","الجميع"],
+  ["ما الذي يمكن أن تقدموه للجمعية لتحقيق أثر أكبر؟","القيمة المتبادلة","الشركاء|المانحون|الموظفون|مجلس الإدارة"],
+  ["ما المعلومة أو المؤشر الذي يجب أن تتابعه الجمعية لتعرف أنها تتقدم؟","القياس","مجلس الإدارة|الإدارة التنفيذية|المانحون"]
+ ],
+ theory:[
+  ["من الفئة التي نريد أن يحدث التغيير الحقيقي في حياتها؟","الفئة المستهدفة","فريق البناء|المستفيدون والأسر"],
+  ["ما المشكلة الأساسية المثبتة التي تواجه هذه الفئة؟","المشكلة","فريق البناء|المستفيدون والأسر"],
+  ["لماذا تحدث هذه المشكلة؟ وما الأسباب الجذرية لا الأعراض؟","الأسباب الجذرية","فريق البناء|المستفيدون والأسر|الموظفون"],
+  ["ما التغيير النهائي الذي نريد أن نراه في حياة المستفيد؟","الأثر","مجلس الإدارة|الإدارة التنفيذية|المستفيدون والأسر"],
+  ["ما النتائج التي يجب أن تحدث قبل الوصول إلى هذا الأثر؟","النتائج","فريق البناء|الإدارة التنفيذية"],
+  ["ما التدخلات التي يمكن أن تؤدي منطقيًا إلى هذه النتائج؟","التدخلات","فريق البناء|الإدارة التنفيذية|الموظفون"],
+  ["لماذا نتوقع أن ينجح هذا التدخل؟ وما الدليل أو الخبرة التي تدعم ذلك؟","المنطق السببي","فريق البناء|الإدارة التنفيذية"],
+  ["ما المخرجات المباشرة التي سنراها إذا نفذنا التدخل؟","المخرجات","فريق البناء|الموظفون"],
+  ["ما الافتراضات التي يجب أن تتحقق حتى تنجح سلسلة التغيير؟","الافتراضات","فريق البناء|الإدارة التنفيذية"],
+  ["ما العوامل الخارجية أو المخاطر التي قد تعطل الوصول للأثر؟","المخاطر","فريق البناء|الإدارة التنفيذية|الشركاء"]
+ ],
+ issues:[
+  ["ما أكبر تحدٍ قد يمنع الجمعية من تحقيق رسالتها خلال فترة الخطة؟","قضية محتملة","مجلس الإدارة|الإدارة التنفيذية"],
+  ["ما المشكلة التي تتكرر رغم محاولات معالجتها؟","قضية محتملة","الإدارة التنفيذية|الموظفون"],
+  ["أين توجد أكبر فجوة بين الوضع الحالي والوضع الذي نريد الوصول إليه؟","فجوة استراتيجية","مجلس الإدارة|الإدارة التنفيذية|فريق البناء"],
+  ["ما القضية التي إذا لم نعالجها ستؤثر بشدة على المستفيد؟","أثر المستفيد","الجميع"],
+  ["ما الفرصة التي إذا لم نستثمرها الآن قد نفقدها؟","فرصة استراتيجية","مجلس الإدارة|الإدارة التنفيذية|الشركاء"],
+  ["ما القضية التي تتطلب اختيارًا حقيقيًا أو تنازلًا عن شيء آخر؟","اختيار استراتيجي","مجلس الإدارة|الإدارة التنفيذية"],
+  ["ما تكلفة تأجيل معالجة هذه القضية لسنة أو أكثر؟","الاستعجال","مجلس الإدارة|الإدارة التنفيذية"],
+  ["إلى أي مدى تستطيع الجمعية التأثير فعليًا في هذه القضية؟","قابلية التأثير","فريق البناء|الإدارة التنفيذية"],
+  ["ما الدليل الذي يثبت أن هذه قضية وليست انطباعًا؟","قوة الدليل","فريق البناء"],
+  ["إذا اخترنا هذه القضية أولوية، فما الذي سنؤجله أو لن نفعله؟","المفاضلة","مجلس الإدارة|الإدارة التنفيذية"]
+ ]
+};
+function gstate(){let x=p();x.guided=x.guided||{stakeholders:[],theory:[],issues:[]};return x.guided}
+function escg(s){return String(s??'').replace(/[&<>\"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]))}
+function initGuided(k){let g=gstate(); if(!g[k]||!g[k].length) g[k]=guidedBanks[k].map((q,i)=>({q:q[0],purpose:q[1],audience:q[2],answer:'',evidence:'',importance:'',selected:true}));}
+function guidedPanel(k,title){initGuided(k);let rows=gstate()[k].map((r,i)=>`<tr><td>${i+1}</td><td><textarea class="input gq" data-g="${k}:${i}:q">${escg(r.q)}</textarea><small class="muted">نبحث عن: ${escg(r.purpose)}</small></td><td><select class="input gq" data-g="${k}:${i}:audience">${['الجميع','مجلس الإدارة','الإدارة التنفيذية','الموظفون','المستفيدون والأسر','الشركاء','المانحون','فريق البناء'].map(v=>`<option ${r.audience===v?'selected':''}>${v}</option>`).join('')}<option ${!['الجميع','مجلس الإدارة','الإدارة التنفيذية','الموظفون','المستفيدون والأسر','الشركاء','المانحون','فريق البناء'].includes(r.audience)?'selected':''}>${escg(r.audience)}</option></select></td><td><textarea class="input role-asked gq" data-g="${k}:${i}:answer" placeholder="سجل خلاصة الإجابة أثناء الجلسة">${escg(r.answer)}</textarea></td><td><textarea class="input role-team gq" data-g="${k}:${i}:evidence" placeholder="دليل، مثال، وثيقة، قصة...">${escg(r.evidence)}</textarea></td><td><select class="input role-team gq" data-g="${k}:${i}:importance"><option></option>${[1,2,3,4,5].map(v=>`<option ${String(r.importance)===String(v)?'selected':''}>${v}</option>`).join('')}</select></td></tr>`).join('');
+return `<div class="card guided-panel"><div class="section-title"><div><h3>${title}</h3><p>أسئلة تيسير وجمع بيانات؛ يمكن تعديل السؤال وتحديد من يجيب ثم تسجيل الخلاصة والدليل.</p></div><button class="btn ghost add-guided" data-k="${k}">+ سؤال</button></div><div class="callout"><b>طريقة الاستخدام:</b> اسأل → سجل الخلاصة → أرفق الدليل → قيّم الأهمية. الإجابة لا تصبح حقيقة استراتيجية إلا بعد التحقق.</div><div class="table-wrap"><table class="data-table"><thead><tr><th>م</th><th>السؤال والغرض</th><th>من يجيب؟</th><th>خلاصة الإجابة</th><th>الدليل/المثال</th><th>الأهمية 1-5</th></tr></thead><tbody>${rows}</tbody></table></div></div>`}
+function stakeholderInsights(){initGuided('stakeholders');let a=gstate().stakeholders.filter(r=>r.answer);return a.length?`<div class="card"><h3>خلاصة صوت أصحاب المصلحة</h3><div class="grid two">${a.map(r=>`<div class="callout"><b>${escg(r.purpose)}</b><br>${escg(r.answer)}${r.evidence?`<small>الدليل: ${escg(r.evidence)}</small>`:''}</div>`).join('')}</div></div>`:''}
+function theoryDraft(){initGuided('theory');let a=gstate().theory;let get=p=>a.filter(r=>r.purpose===p&&r.answer).map(r=>r.answer).join('؛ ');return `<div class="card"><h3>سلسلة التغيير المستخرجة من الإجابات</h3><div class="callout"><b>الفئة:</b> ${escg(get('الفئة المستهدفة')||'—')} ← <b>المشكلة:</b> ${escg(get('المشكلة')||'—')} ← <b>الأسباب:</b> ${escg(get('الأسباب الجذرية')||'—')} ← <b>التدخل:</b> ${escg(get('التدخلات')||'—')} ← <b>النتائج:</b> ${escg(get('النتائج')||'—')} ← <b>الأثر:</b> ${escg(get('الأثر')||'—')}</div><button class="btn primary" id="applyTheoryAnswers">انعكاس الإجابات على نظرية التغيير</button></div>`}
+function issueCandidates(){initGuided('issues');let q=gstate().issues.filter(r=>r.answer&&['قضية محتملة','فجوة استراتيجية','أثر المستفيد','فرصة استراتيجية','اختيار استراتيجي'].includes(r.purpose));let env=[];try{env=[...(p().environment?.weaknesses||[]),...(p().environment?.threats||[])].filter(Boolean).map(x=>({answer:typeof x==='string'?x:(x.text||x.point||''),purpose:'من SWOT',importance:4,evidence:''}))}catch(e){};return [...q,...env].filter((x,i,a)=>x.answer&&a.findIndex(y=>y.answer===x.answer)===i)}
+function priorityMatrix(){let c=issueCandidates();return `<div class="card"><div class="section-title"><div><h3>القضايا المرشحة والأولوية</h3><p>مقترحات مستخرجة من الإجابات والتحليل؛ لا تعتمد تلقائيًا.</p></div><span class="badge">${c.length} مرشح</span></div><div class="grid two">${c.map((r,i)=>`<div class="callout"><b>${escg(r.answer)}</b><small>${escg(r.purpose)} ${r.evidence?'· '+escg(r.evidence):''}</small><div style="margin-top:8px"><button class="btn primary add-candidate-issue" data-text="${escg(r.answer)}">تحويل إلى قضية للتقييم</button></div></div>`).join('')||'<div class="empty">أجب عن أسئلة التشخيص أو أكمل SWOT لتظهر القضايا المرشحة.</div>'}</div></div>`}
+
+const oldStakeV24=renders.stakeholders;
+renders.stakeholders=function(x){return guidedPanel('stakeholders','بنك أسئلة أصحاب المصلحة')+stakeholderInsights()+oldStakeV24(x)};
+const oldTheoryV24=renders.theory;
+renders.theory=function(x){return guidedPanel('theory','أسئلة بناء نظرية التغيير')+theoryDraft()+oldTheoryV24(x)};
+const oldIssuesV24=renders.issues;
+renders.issues=function(x){return guidedPanel('issues','أسئلة استخراج القضايا والأولويات')+priorityMatrix()+oldIssuesV24(x)};
+
+const oldBindV24=bindStage;
+bindStage=function(){oldBindV24();
+ document.querySelectorAll('.gq').forEach(el=>el.onchange=()=>{let[k,i,f]=el.dataset.g.split(':');gstate()[k][Number(i)][f]=el.value;save();});
+ document.querySelectorAll('.add-guided').forEach(b=>b.onclick=()=>{gstate()[b.dataset.k].push({q:'',purpose:'سؤال مخصص',audience:'الجميع',answer:'',evidence:'',importance:'',selected:true});save();render()});
+ if(document.getElementById('applyTheoryAnswers'))document.getElementById('applyTheoryAnswers').onclick=()=>{let a=gstate().theory,get=z=>a.filter(r=>r.purpose===z&&r.answer).map(r=>r.answer).join('؛ ');let t=p().theory||{};t.targetGroup=get('الفئة المستهدفة')||t.targetGroup;t.problem=get('المشكلة')||t.problem;t.rootCauses=get('الأسباب الجذرية')||t.rootCauses;t.activities=get('التدخلات')||t.activities;t.outputs=get('المخرجات')||t.outputs;t.shortOutcomes=get('النتائج')||t.shortOutcomes;t.impact=get('الأثر')||t.impact;t.assumptions=get('الافتراضات')||t.assumptions;t.risks=get('المخاطر')||t.risks;save();render()};
+ document.querySelectorAll('.add-candidate-issue').forEach(b=>b.onclick=()=>{let text=b.dataset.text;if(!text)return;let arr=p().issues||[];if(!arr.some(z=>(z.title||z.issue)===text))arr.push({title:text,description:'مستخرجة من جلسات التشخيص والتحليل — تحتاج صياغة ودليل واعتماد',impact:3,urgency:3,capability:3,priority:60});save();render()});
+};
+render();
+</script>
+
+
+<script>
+/* ===== v2.5: دمج حقيقي للأسئلة الموجهة داخل الواجهات الفعلية ===== */
+(function(){
+  function ensureGuided(plan){
+    if(plan.guidedV25) return plan.guidedV25;
+    plan.guidedV25={
+      stakeholderAudience:'مجلس الإدارة',
+      stakeholderQuestions:[
+        {q:'ما أهم توقعات هذه الفئة من الجمعية خلال فترة الخطة؟',purpose:'توقعات صاحب المصلحة',answer:'',evidence:'',importance:3},
+        {q:'ما أهم احتياج أو فجوة ترى هذه الفئة أن الجمعية ينبغي أن تعالجها؟',purpose:'احتياج/فجوة',answer:'',evidence:'',importance:4},
+        {q:'ما أكثر ما تقدره هذه الفئة في الجمعية اليوم؟',purpose:'قيمة حالية/قوة محتملة',answer:'',evidence:'',importance:3},
+        {q:'ما أكثر ما يسبب لها عدم رضا أو صعوبة في التعامل؟',purpose:'فجوة تجربة/ضعف محتمل',answer:'',evidence:'',importance:4},
+        {q:'ما القرار أو التغيير الذي سيحدث أكبر فرق لها؟',purpose:'أولوية محتملة',answer:'',evidence:'',importance:5},
+        {q:'ما المخاطر التي قد تمنع نجاح العلاقة مع هذه الفئة؟',purpose:'خطر/تهديد محتمل',answer:'',evidence:'',importance:3},
+        {q:'ما الفرصة التي يمكن أن نبنيها مع هذه الفئة أو من خلالها؟',purpose:'فرصة استراتيجية',answer:'',evidence:'',importance:4},
+        {q:'كيف ستعرف هذه الفئة أن الجمعية نجحت في خدمتها أو الشراكة معها؟',purpose:'مؤشر نجاح',answer:'',evidence:'',importance:4}
+      ],
+      theoryQuestions:[
+        {q:'من الفئة التي نريد أن يحدث لها التغيير تحديدًا؟',purpose:'الفئة المستهدفة',answer:'',evidence:''},
+        {q:'ما المشكلة الأساسية التي تعاني منها هذه الفئة الآن؟',purpose:'المشكلة',answer:'',evidence:''},
+        {q:'ما الأسباب الجذرية التي تجعل المشكلة مستمرة؟',purpose:'الأسباب الجذرية',answer:'',evidence:''},
+        {q:'ما التغيير النهائي الذي نريد أن نراه في حياتها؟',purpose:'الأثر',answer:'',evidence:''},
+        {q:'ما النتائج التي يجب أن تتحقق قبل الوصول إلى هذا الأثر؟',purpose:'النتائج',answer:'',evidence:''},
+        {q:'ما التدخلات أو الخدمات التي يمكن أن تقود إلى تلك النتائج؟',purpose:'التدخلات',answer:'',evidence:''},
+        {q:'ما المخرجات المباشرة التي ستنتج عن التدخلات؟',purpose:'المخرجات',answer:'',evidence:''},
+        {q:'لماذا نتوقع أن تؤدي هذه التدخلات إلى النتائج؟ وما الدليل؟',purpose:'المنطق السببي',answer:'',evidence:''},
+        {q:'ما الافتراضات التي يجب أن تصح لكي تنجح النظرية؟',purpose:'الافتراضات',answer:'',evidence:''},
+        {q:'ما العوامل الخارجية أو المخاطر التي قد تعطل سلسلة التغيير؟',purpose:'المخاطر',answer:'',evidence:''}
+      ],
+      issueQuestions:[
+        {q:'ما أكبر تحدٍ قد يمنع الجمعية من تحقيق رسالتها خلال فترة الخطة؟',purpose:'قضية محتملة',answer:'',evidence:'',impact:4,urgency:4,influence:3},
+        {q:'ما المشكلة التي تتكرر رغم محاولات معالجتها؟',purpose:'قضية مزمنة',answer:'',evidence:'',impact:4,urgency:3,influence:3},
+        {q:'أين توجد أكبر فجوة بين الوضع الحالي والوضع الذي نريد الوصول إليه؟',purpose:'فجوة استراتيجية',answer:'',evidence:'',impact:4,urgency:4,influence:4},
+        {q:'ما القضية التي إذا لم نعالجها ستؤثر بشدة على المستفيد؟',purpose:'أثر المستفيد',answer:'',evidence:'',impact:5,urgency:5,influence:4},
+        {q:'ما الفرصة التي إذا لم نستثمرها الآن قد نفقدها أو تتراجع قيمتها؟',purpose:'فرصة استراتيجية',answer:'',evidence:'',impact:4,urgency:4,influence:3},
+        {q:'ما القرار الكبير الذي يؤجله المجلس أو الإدارة ويحتاج حسمًا؟',purpose:'اختيار استراتيجي',answer:'',evidence:'',impact:4,urgency:4,influence:5}
+      ]
+    };
+    saveState();
+    return plan.guidedV25;
+  }
+  state.plans.forEach(ensureGuided);
+  saveState();
+
+  const auds=['مجلس الإدارة','الإدارة التنفيذية','الموظفون','المستفيدون/الأسر','الشركاء','المانحون','المتطوعون/المجتمع'];
+  function qTable(list,key,extraCols=''){
+    return `<div class="table-wrap"><table class="data-table"><thead><tr><th>السؤال</th><th>الغرض التحليلي</th><th>الإجابة/الخلاصة</th><th>الدليل/المصدر</th>${extraCols}<th></th></tr></thead><tbody>`+
+      list.map((r,i)=>`<tr><td style="min-width:260px"><strong>${escapeHtml(r.q)}</strong></td><td>${escapeHtml(r.purpose)}</td><td><textarea class="input guided-v25" data-gkey="${key}" data-i="${i}" data-f="answer" placeholder="سجل الخلاصة كما قيلت…">${escapeHtml(r.answer||'')}</textarea></td><td><textarea class="input guided-v25" data-gkey="${key}" data-i="${i}" data-f="evidence" placeholder="مثال/بيان/محضر/قصة…">${escapeHtml(r.evidence||'')}</textarea></td>${key==='issueQuestions'?`<td><select class="input guided-v25" data-gkey="${key}" data-i="${i}" data-f="impact">${[1,2,3,4,5].map(v=>`<option ${Number(r.impact)===v?'selected':''}>${v}</option>`).join('')}</select></td><td><select class="input guided-v25" data-gkey="${key}" data-i="${i}" data-f="urgency">${[1,2,3,4,5].map(v=>`<option ${Number(r.urgency)===v?'selected':''}>${v}</option>`).join('')}</select></td><td><select class="input guided-v25" data-gkey="${key}" data-i="${i}" data-f="influence">${[1,2,3,4,5].map(v=>`<option ${Number(r.influence)===v?'selected':''}>${v}</option>`).join('')}</select></td>`:''}<td><button class="icon-btn delete-guided-v25" data-gkey="${key}" data-i="${i}">×</button></td></tr>`).join('')+
+      `</tbody></table></div>`;
+  }
+  function guidedBadge(){return `<span class="badge" style="background:#e8f3ed;color:#184d3f;border:1px solid #c7dfd4">جديد v2.5 · جمع وتشخيص موجّه</span>`}
+
+  views.stakeholders=function(p){
+    const g=ensureGuided(p);
+    return `<div class="section-title"><div><h3>أصحاب المصلحة</h3><p>ابدأ بالأسئلة الموجهة، ثم حوّل الخلاصة إلى مصفوفة أصحاب المصلحة.</p></div>${guidedBadge()}</div>
+      <div class="card" style="border:2px solid #d4e7df">
+        <div class="card-header"><div><h3>جلسة جمع صوت صاحب المصلحة</h3><p class="muted">اختر الفئة ثم سجل الإجابات والأدلة. لا تُطلب من المشاركين مصطلحات استراتيجية متخصصة.</p></div>
+        <div style="min-width:220px"><label>الفئة التي نجمع صوتها الآن</label><select id="stakeAudienceV25" class="input">${auds.map(a=>`<option ${a===g.stakeholderAudience?'selected':''}>${a}</option>`).join('')}</select></div></div>
+        ${qTable(g.stakeholderQuestions,'stakeholderQuestions')}
+        <div class="inline-actions" style="margin-top:12px"><button class="btn primary" id="newStakeQuestionV25">+ سؤال مخصص</button><button class="btn ghost" id="extractStakeV25">استخراج خلاصة لصاحب المصلحة</button></div>
+      </div>
+      <div class="section-title" style="margin-top:24px"><div><h3>مصفوفة أصحاب المصلحة</h3><p>سجل الأطراف بعد جلسات الجمع وحدد التأثير والاهتمام والاحتياج واستراتيجية التعامل.</p></div><button class="btn primary" id="addStakeholderBtn">إضافة طرف</button></div>
+      <div class="table-wrap card"><table class="data-table"><thead><tr><th>الطرف</th><th>التأثير</th><th>الاهتمام</th><th>الاحتياج</th><th>الاستراتيجية</th><th></th></tr></thead><tbody>
+      ${p.stakeholders.map((x,i)=>`<tr><td>${escapeHtml(x.name)}</td><td>${x.influence}</td><td>${x.interest}</td><td>${escapeHtml(x.need)}</td><td>${escapeHtml(x.strategy)}</td><td><button class="icon-btn delete-item" data-type="stakeholders" data-index="${i}">×</button></td></tr>`).join('')||'<tr><td colspan="6"><div class="empty">ابدأ بجلسات الجمع أعلاه ثم أضف أصحاب المصلحة.</div></td></tr>'}
+      </tbody></table></div>
+      <div class="stage-actions"><button class="btn ghost" data-go="environment">السابق</button><button class="btn primary" data-go="theory">التالي: نظرية التغيير</button></div>`;
+  };
+
+  views.theory=function(p){
+    const g=ensureGuided(p);
+    return `<div class="section-title"><div><h3>نظرية التغيير</h3><p>ابنها بالأسئلة أولًا، ثم حوّل الإجابات إلى السلسلة المنطقية.</p></div>${guidedBadge()}</div>
+      <div class="card" style="border:2px solid #d4e7df"><div class="card-header"><div><h3>أسئلة بناء نظرية التغيير</h3><p class="muted">المشكلة ← الأسباب ← النتائج ← التدخلات ← المخرجات ← الأثر ← الافتراضات والمخاطر.</p></div><button class="btn primary" id="applyTheoryV25">تعبئة النظرية من الإجابات</button></div>
+      ${qTable(g.theoryQuestions,'theoryQuestions')}
+      <div class="inline-actions" style="margin-top:12px"><button class="btn ghost" id="newTheoryQuestionV25">+ سؤال مخصص</button></div></div>
+      <div class="card"><h3>مسودة نظرية التغيير</h3><div class="form-grid">
+      ${Object.entries({problem:'المشكلة المجتمعية',rootCauses:'الأسباب الجذرية',targetGroup:'الفئة المستهدفة',inputs:'المدخلات',activities:'التدخلات/الأنشطة',outputs:'المخرجات المباشرة',shortOutcomes:'النتائج قصيرة المدى',midOutcomes:'النتائج المتوسطة',impact:'الأثر طويل المدى',assumptions:'الافتراضات',risks:'المخاطر والعوامل الخارجية'}).map(([k,l])=>`<div class="field ${['problem','impact'].includes(k)?'full':''}"><label>${l}</label><textarea class="input" data-field="theory.${k}">${escapeHtml(p.theory[k])}</textarea></div>`).join('')}
+      </div></div><div class="stage-actions"><button class="btn ghost" data-go="stakeholders">السابق</button><button class="btn primary" data-go="identity">التالي: الهوية الاستراتيجية</button></div>`;
+  };
+
+  function issueCandidatesV25(p){
+    const g=ensureGuided(p); let c=[];
+    g.issueQuestions.filter(r=>r.answer).forEach(r=>c.push({text:r.answer,source:r.purpose,evidence:r.evidence,impact:Number(r.impact)||3,urgency:Number(r.urgency)||3,capability:Number(r.influence)||3}));
+    (p.environment?.weaknesses||[]).forEach(x=>c.push({text:typeof x==='string'?x:(x.text||x.point||''),source:'نقطة ضعف من SWOT',evidence:'SWOT',impact:4,urgency:3,capability:3}));
+    (p.environment?.threats||[]).forEach(x=>c.push({text:typeof x==='string'?x:(x.text||x.point||''),source:'تهديد من SWOT',evidence:'SWOT',impact:4,urgency:4,capability:3}));
+    const seen=new Set(); return c.filter(x=>x.text&&!seen.has(x.text)&&(seen.add(x.text),true));
+  }
+  views.issues=function(p){
+    const g=ensureGuided(p),cand=issueCandidatesV25(p);
+    return `<div class="section-title"><div><h3>القضايا والأولويات الاستراتيجية</h3><p>لا تسأل الجمعية «ما قضاياكم الاستراتيجية؟»؛ استخرجها من أسئلة واضحة ثم قيّمها.</p></div>${guidedBadge()}</div>
+      <div class="card" style="border:2px solid #d4e7df"><div class="card-header"><div><h3>أسئلة استخراج القضايا والأولويات</h3><p class="muted">الإجابة هنا تنتج قضية مرشحة، وليست قضية معتمدة مباشرة.</p></div><button class="btn ghost" id="newIssueQuestionV25">+ سؤال مخصص</button></div>
+      ${qTable(g.issueQuestions,'issueQuestions','<th>الأثر</th><th>الاستعجال</th><th>قدرة التأثير</th>')}</div>
+      <div class="card"><div class="card-header"><div><h3>قضايا مرشحة تلقائيًا</h3><p class="muted">مستخرجة من إجابات الجلسة وSWOT. اختر المناسب فقط.</p></div><span class="badge">${cand.length} مرشح</span></div>
+      <div class="grid two">${cand.map((c,i)=>`<div class="callout"><strong>${escapeHtml(c.text)}</strong><small>${escapeHtml(c.source)}${c.evidence?' · '+escapeHtml(c.evidence):''}</small><div style="margin-top:8px"><button class="btn primary addIssueCandidateV25" data-i="${i}">تحويل إلى قضية للتقييم</button></div></div>`).join('')||'<div class="empty">أجب عن الأسئلة أو أكمل SWOT لتظهر القضايا المرشحة.</div>'}</div></div>
+      <div class="section-title"><div><h3>القضايا المعتمدة/قيد التقييم</h3><p>الأولوية محسوبة إرشاديًا من الأثر والاستعجال وقدرة الجمعية على التأثير.</p></div><button class="btn primary" id="addIssueBtn">إضافة قضية يدويًا</button></div>
+      <div class="list-stack">${p.issues.map((x,i)=>`<div class="list-item"><span class="badge ${x.priority>=80?'danger':x.priority>=55?'warning':'success'}">${x.priority}%</span><div class="grow"><h4>${escapeHtml(x.title)}</h4><p>${escapeHtml(x.description)}</p><small>الأثر: ${x.impact}/5 — الاستعجال: ${x.urgency}/5 — القدرة: ${x.capability}/5</small></div><button class="icon-btn delete-item" data-type="issues" data-index="${i}">×</button></div>`).join('')||'<div class="empty">لم تعتمد قضايا بعد.</div>'}</div>
+      <div class="stage-actions"><button class="btn ghost" data-go="identity">السابق</button><button class="btn primary" data-go="dimensions">التالي: الأبعاد الاستراتيجية</button></div>`;
+  };
+
+  const bindCommonBaseV25=bindCommon;
+  bindCommon=function(){
+    bindCommonBaseV25();
+    const p=getPlan(),g=ensureGuided(p);
+    document.querySelectorAll('.guided-v25').forEach(el=>el.addEventListener('input',()=>{
+      const list=g[el.dataset.gkey], row=list[Number(el.dataset.i)], f=el.dataset.f;
+      row[f]=['impact','urgency','influence','importance'].includes(f)?Number(el.value):el.value; saveState();
+    }));
+    document.querySelectorAll('.delete-guided-v25').forEach(b=>b.onclick=()=>{g[b.dataset.gkey].splice(Number(b.dataset.i),1);saveState();render();});
+    const aud=document.getElementById('stakeAudienceV25'); if(aud)aud.onchange=()=>{g.stakeholderAudience=aud.value;saveState();};
+    const addQ=(key)=>{const q=prompt('اكتب السؤال الجديد:');if(q){g[key].push({q,purpose:'سؤال مخصص',answer:'',evidence:'',importance:3,impact:3,urgency:3,influence:3});saveState();render();}};
+    if(document.getElementById('newStakeQuestionV25'))document.getElementById('newStakeQuestionV25').onclick=()=>addQ('stakeholderQuestions');
+    if(document.getElementById('newTheoryQuestionV25'))document.getElementById('newTheoryQuestionV25').onclick=()=>addQ('theoryQuestions');
+    if(document.getElementById('newIssueQuestionV25'))document.getElementById('newIssueQuestionV25').onclick=()=>addQ('issueQuestions');
+    if(document.getElementById('extractStakeV25'))document.getElementById('extractStakeV25').onclick=()=>{
+      const answered=g.stakeholderQuestions.filter(r=>r.answer); if(!answered.length){showToast('سجل بعض الإجابات أولًا');return;}
+      const needs=answered.filter(r=>/احتياج|فجوة|عدم رضا|أولوية/.test(r.purpose)).map(r=>r.answer).join('؛ ');
+      const strategy=answered.filter(r=>/فرصة|أولوية|مؤشر/.test(r.purpose)).map(r=>r.answer).join('؛ ');
+      p.stakeholders.push({name:g.stakeholderAudience,influence:3,interest:4,need:needs||answered[0].answer,strategy:strategy||'إشراك ومتابعة'}); saveState(); render(); showToast('تمت إضافة خلاصة إلى مصفوفة أصحاب المصلحة');
+    };
+    if(document.getElementById('applyTheoryV25'))document.getElementById('applyTheoryV25').onclick=()=>{
+      const by=purpose=>g.theoryQuestions.filter(r=>r.purpose===purpose&&r.answer).map(r=>r.answer).join('؛ ');
+      p.theory.targetGroup=by('الفئة المستهدفة')||p.theory.targetGroup;
+      p.theory.problem=by('المشكلة')||p.theory.problem;
+      p.theory.rootCauses=by('الأسباب الجذرية')||p.theory.rootCauses;
+      p.theory.activities=by('التدخلات')||p.theory.activities;
+      p.theory.outputs=by('المخرجات')||p.theory.outputs;
+      p.theory.shortOutcomes=by('النتائج')||p.theory.shortOutcomes;
+      p.theory.impact=by('الأثر')||p.theory.impact;
+      p.theory.assumptions=by('الافتراضات')||p.theory.assumptions;
+      p.theory.risks=by('المخاطر')||p.theory.risks;
+      saveState();render();showToast('تمت تعبئة مسودة نظرية التغيير من الإجابات');
+    };
+    const candidates=issueCandidatesV25(p);
+    document.querySelectorAll('.addIssueCandidateV25').forEach(b=>b.onclick=()=>{
+      const c=candidates[Number(b.dataset.i)]; if(!c)return;
+      const pr=Math.round((c.impact+c.urgency+c.capability)/15*100);
+      if(!p.issues.some(x=>x.title===c.text))p.issues.push({title:c.text,description:`مرشحة من: ${c.source}${c.evidence?' | الدليل: '+c.evidence:''}`,impact:c.impact,urgency:c.urgency,capability:c.capability,priority:pr});
+      saveState();render();showToast('أضيفت القضية للتقييم');
+    });
+  };
+  render();
+})();
+</script>
+
+</body>
+</html>
