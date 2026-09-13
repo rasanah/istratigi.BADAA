@@ -713,6 +713,14 @@ render();
 
 <script>
 /* أثر v2 — ترقية البيانات مع المحافظة على المشاريع الحالية */
+/* طبقة توافق بين محرك المنصة الأساسي وإضافات v2 */
+const renders=views;
+const p=()=>getPlan();
+const save=saveState;
+const updateProgress=renderShell;
+const currentProject=getPlan;
+let bindStage=bindDynamic;
+const swotBank={strengths:[],weaknesses:[],opportunities:[],threats:[],so:[],st:[],wo:[],wt:[]};
 function ensureV2(x){
  x.scope=x.scope||{};
  x.scope.readinessRows=x.scope.readinessRows||[
@@ -769,7 +777,7 @@ function ensureV2(x){
  ];
  x.learningLog=x.learningLog||[];
 }
-state.projects.forEach(ensureV2); save();
+state.plans.forEach(ensureV2); saveState();
 </script>
 
 
@@ -1448,6 +1456,13 @@ render();
   };
   render();
 })();
+</script>
+
+<script>
+/* تشغيل روابط وأحداث إضافات v2 بعد اكتمال تحميلها */
+const renderWithV2Bindings=render;
+render=function(){renderWithV2Bindings();bindStage();};
+render();
 </script>
 
 </body>
